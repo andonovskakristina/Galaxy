@@ -24,11 +24,12 @@ namespace Bejeweled
         public int Y { get; set; }
         public ImageType Type { get; set; }
         public Image image { get; set; }
-
+        public Point StartingPosition { get; set; }
         public bool IsSelected { get; set; }
 
         public Img(int X, int Y, ImageType Type)
         {
+            StartingPosition = new Point(X, Y);
             this.X = X;
             this.Y = Y;
             this.Type = Type;

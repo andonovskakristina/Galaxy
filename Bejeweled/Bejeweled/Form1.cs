@@ -21,6 +21,9 @@ namespace Bejeweled
         Random random;
         Point FirstPoint;
         Point SecondPoint;
+        Point PreviousPoint;
+        int I, J, CurrentI, CurrentJ;
+        bool Flag;
 
         public Form1()
         {
@@ -28,6 +31,11 @@ namespace Bejeweled
             random = new Random();
             FirstPoint = new Point(-1, -1);
             SecondPoint = new Point(-1, -1);
+            I = -1;
+            J = -1;
+            CurrentI = -1;
+            CurrentJ = -1;
+            Flag = false;
 
             GenerateRandomImages();
             DoubleBuffered = true;
@@ -108,62 +116,234 @@ namespace Bejeweled
             }
         }
 
-        private void Form1_MouseClick(object sender, MouseEventArgs e)
+        private void Form1_MouseDown(object sender, MouseEventArgs e)
         {
-            // ako sme kliknale vo ramkata
-            if (e.X >= Images[0][0].X && e.X <= Images[MATRIX_HEIGHT - 1][MATRIX_WIDTH - 1].X + IMAGE_SIZE && e.Y >= Images[0][0].Y && e.Y <= Images[MATRIX_HEIGHT - 1][MATRIX_WIDTH - 1].Y + IMAGE_SIZE)
+            for (int i = 0; i < Images.Length; i++)
             {
-                // ako klikame po prv pat
-                if (FirstPoint.X == -1 && FirstPoint.Y == -1)
+                for (int j = 0; j < Images[i].Length; j++)
                 {
-                    FirstPoint = e.Location;
-                }
-                else
-                {
-                    SecondPoint = e.Location;
-
-                    double distance = Math.Sqrt((FirstPoint.X - SecondPoint.X) * (FirstPoint.X - SecondPoint.X) + (FirstPoint.Y - SecondPoint.Y) * (FirstPoint.Y - SecondPoint.Y));
-                    if (distance < 2 * IMAGE_SIZE)
+                    if (Images[i][j].IsHit(e.X, e.Y))
                     {
-                        // kliknato e nekoe sosedno
-
-                        // ako ne e po dijagonala, zameni gi
-                        if (NotDiagonal() && SwapNeeded())
-                        {
-                            Swap();
-                            FirstPoint = new Point(-1, -1);
-                            SecondPoint = new Point(-1, -1);
-                            RefreshSelected();
-                        }
-                        else
-                        {
-                            // izbrisi gi selektiranite
-                            FirstPoint = new Point(-1, -1);
-                            SecondPoint = new Point(-1, -1);
-                            RefreshSelected();
-                        }
-                    }
-                    else
-                    {
-                        // kliknato e nekoe na strana, izbrisi go prethodnoto, zacuvaj go novoto
-                        FirstPoint = SecondPoint;
-                        SecondPoint = new Point(-1, -1);
-                        RefreshSelected();
+                        Images[i][j].IsSelected = true;
+                        I = i;
+                        J = j;
+                        Flag = true;
+                        break;
                     }
                 }
-
-                for (int i = 0; i < MATRIX_HEIGHT; i++)
+                if (Flag)
                 {
-                    for (int j = 0; j < MATRIX_WIDTH; j++)
+                    Flag = false;
+                    break;
+                }
+            }
+            Invalidate();
+            PreviousPoint = e.Location;
+        }
+
+        public void SwapSquare(int a, int b)
+        {
+            Img temp = Images[I][J];
+            Images[I][J] = Images[a][b];
+            Images[a][b] = temp;
+        }
+
+        public bool LegalMove()
+        {
+            return false;
+        }
+
+        private void Form1_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (I != -1 && J != -1 && CurrentI != -1 && CurrentJ != -1)
+            {
+                Images[I][J].X = Images[I][J].StartingPosition.X;
+                Images[I][J].Y = Images[I][J].StartingPosition.Y;
+                Images[CurrentI][CurrentJ].X = Images[CurrentI][CurrentJ].StartingPosition.X;
+                Images[CurrentI][CurrentJ].Y = Images[CurrentI][CurrentJ].StartingPosition.Y;
+                Images[CurrentI][CurrentJ].IsSelected = false;
+
+            }
+            if (I != -1 && J != -1)
+            {
+                Images[I][J].IsSelected = false;
+                I = -1;
+                J = -1;
+            }
+            Invalidate();
+        }
+
+        private void Form1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (I != -1 && J != -1)
+            {
+                int dX = e.X - PreviousPoint.X;
+                int dY = e.Y - PreviousPoint.Y;
+                int newX = Images[I][J].X + dX;
+                int newY = Images[I][J].Y + dY;
+
+                // move right one square
+                //Current Square for putting back in place if no swap happens
+                if (J < (Images[I].Length - 1) && newX <= (Images[I][J].StartingPosition.X + 5 + IMAGE_SIZE) &&
+                    newX >= Images[I][J].StartingPosition.X
+                    && newY == Images[I][J].StartingPosition.Y)
+                {
+                    Images[I][J].X = Images[I][J].X + dX;
+                    Images[I][J].Y = Images[I][J].Y;
+                    Images[I][J + 1].X = Images[I][J + 1].X - dX;
+                    Images[I][J + 1].Y = Images[I][J + 1].Y;
+                    Images[I][J + 1].IsSelected = true;
+                    CurrentI = I;
+                    CurrentJ = J + 1;
+                    if (Images[I][J].X == Images[I][J + 1].StartingPosition.X
+                        && Images[I][J].Y == Images[I][J + 1].StartingPosition.Y)
                     {
-                        Images[i][j].Click(FirstPoint.X, FirstPoint.Y);
-                        Images[i][j].Click(SecondPoint.X, SecondPoint.Y);
+                        SwapNeeded();
+                        SwapSquare(I, J + 1);
+                        Point t = Images[I][J].StartingPosition;
+                        Images[I][J].StartingPosition = Images[I][J + 1].StartingPosition;
+                        Images[I][J + 1].StartingPosition = t;
+                        Images[I][J].IsSelected = false;
+                        Images[I][J + 1].IsSelected = false;
                     }
                 }
 
+                // move left one square
+                else if (J > 0 && newX <= Images[I][J].StartingPosition.X
+                    && newX >= (Images[I][J].StartingPosition.X - 5 - IMAGE_SIZE)
+                    && newY == Images[I][J].StartingPosition.Y)
+                {
+                    Images[I][J].X = Images[I][J].X + dX;
+                    Images[I][J].Y = Images[I][J].Y;
+                    Images[I][J - 1].X = Images[I][J - 1].X - dX;
+                    Images[I][J - 1].Y = Images[I][J - 1].Y;
+                    Images[I][J - 1].IsSelected = true;
+                    CurrentI = I;
+                    CurrentJ = J - 1;
+                    if (Images[I][J].X == Images[I][J - 1].StartingPosition.X
+                         && Images[I][J].Y == Images[I][J - 1].StartingPosition.Y)
+                    {
+                        SwapNeeded();
+                        SwapSquare(I, J - 1);
+                        Point t = Images[I][J].StartingPosition;
+                        Images[I][J].StartingPosition = Images[I][J - 1].StartingPosition;
+                        Images[I][J - 1].StartingPosition = t;
+                        Images[I][J].IsSelected = false;
+                        Images[I][J - 1].IsSelected = false;
+                    }
+                }
+
+                // move bottom one square
+                else if (I < (Images.Length - 1) && newY <= (Images[I][J].StartingPosition.Y + 5 + IMAGE_SIZE)
+                    && newY >= Images[I][J].StartingPosition.Y
+                    && newX == Images[I][J].StartingPosition.X)
+                {
+                    Images[I][J].X = Images[I][J].X;
+                    Images[I][J].Y = Images[I][J].Y + dY;
+                    Images[I + 1][J].X = Images[I + 1][J].X;
+                    Images[I + 1][J].Y = Images[I + 1][J].Y - dY;
+                    Images[I + 1][J].IsSelected = true;
+                    CurrentI = I + 1;
+                    CurrentJ = J;
+                    if (Images[I][J].X == Images[I + 1][J].StartingPosition.X
+                        && Images[I][J].Y == Images[I + 1][J].StartingPosition.Y)
+                    {
+                        SwapNeeded();
+                        SwapSquare(I + 1, J);
+                        Point t = Images[I][J].StartingPosition;
+                        Images[I][J].StartingPosition = Images[I + 1][J].StartingPosition;
+                        Images[I + 1][J].StartingPosition = t;
+                        Images[I][J].IsSelected = false;
+                        Images[I + 1][J].IsSelected = false;
+                    }
+                }
+
+                // move top one square
+                else if (I > 0 && newY >= (Images[I][J].StartingPosition.Y - 5 - IMAGE_SIZE)
+                     && newY <= Images[I][J].StartingPosition.Y
+                     && newX == Images[I][J].StartingPosition.X)
+                {
+                    Images[I][J].X = Images[I][J].X;
+                    Images[I][J].Y = Images[I][J].Y + dY;
+                    Images[I - 1][J].X = Images[I - 1][J].X;
+                    Images[I - 1][J].Y = Images[I - 1][J].Y - dY;
+                    Images[I - 1][J].IsSelected = true;
+                    CurrentI = I - 1;
+                    CurrentJ = J;
+                    if (Images[I][J].X == Images[I - 1][J].StartingPosition.X
+                        && Images[I][J].Y == Images[I - 1][J].StartingPosition.Y)
+                    {
+                        SwapNeeded();
+                        SwapSquare(I - 1, J);
+                        Point t = Images[I][J].StartingPosition;
+                        Images[I][J].StartingPosition = Images[I - 1][J].StartingPosition;
+                        Images[I - 1][J].StartingPosition = t;
+                        Images[I][J].IsSelected = false;
+                        Images[I - 1][J].IsSelected = false;
+                    }
+                }
+
+                PreviousPoint = e.Location;
                 Invalidate();
             }
         }
+
+        //private void Form1_MouseClick(object sender, MouseEventArgs e)
+        //{
+        //    // ako sme kliknale vo ramkata
+        //    if (e.X >= Images[0][0].X && e.X <= Images[MATRIX_HEIGHT - 1][MATRIX_WIDTH - 1].X + IMAGE_SIZE && e.Y >= Images[0][0].Y && e.Y <= Images[MATRIX_HEIGHT - 1][MATRIX_WIDTH - 1].Y + IMAGE_SIZE)
+        //    {
+        //        // ako klikame po prv pat
+        //        if (FirstPoint.X == -1 && FirstPoint.Y == -1)
+        //        {
+        //            FirstPoint = e.Location;
+        //        }
+        //        else
+        //        {
+        //            SecondPoint = e.Location;
+
+        //            double distance = Math.Sqrt((FirstPoint.X - SecondPoint.X) * (FirstPoint.X - SecondPoint.X) + (FirstPoint.Y - SecondPoint.Y) * (FirstPoint.Y - SecondPoint.Y));
+        //            if (distance < 2 * IMAGE_SIZE)
+        //            {
+        //                // kliknato e nekoe sosedno
+
+        //                // ako ne e po dijagonala, zameni gi
+        //                if (NotDiagonal() && SwapNeeded())
+        //                {
+        //                    Swap();
+        //                    FirstPoint = new Point(-1, -1);
+        //                    SecondPoint = new Point(-1, -1);
+        //                    RefreshSelected();
+        //                }
+        //                else
+        //                {
+        //                    // izbrisi gi selektiranite
+        //                    FirstPoint = new Point(-1, -1);
+        //                    SecondPoint = new Point(-1, -1);
+        //                    RefreshSelected();
+        //                }
+        //            }
+        //            else
+        //            {
+        //                // kliknato e nekoe na strana, izbrisi go prethodnoto, zacuvaj go novoto
+        //                FirstPoint = SecondPoint;
+        //                SecondPoint = new Point(-1, -1);
+        //                RefreshSelected();
+        //            }
+        //        }
+
+        //        for (int i = 0; i < MATRIX_HEIGHT; i++)
+        //        {
+        //            for (int j = 0; j < MATRIX_WIDTH; j++)
+        //            {
+        //                Images[i][j].Click(FirstPoint.X, FirstPoint.Y);
+        //                Images[i][j].Click(SecondPoint.X, SecondPoint.Y);
+        //            }
+        //        }
+
+        //        Invalidate();
+        //    }
+        //}
 
         public void RefreshSelected()
         {
@@ -230,10 +410,14 @@ namespace Bejeweled
             // x = j * IMAGE_SIZE + 5 * j
             // y = i * IMAGE_SIZE + 5 * i
 
-            int i1 = FirstPoint.Y / (IMAGE_SIZE + 5);
-            int j1 = FirstPoint.X / (IMAGE_SIZE + 5);
-            int i2 = SecondPoint.Y / (IMAGE_SIZE + 5);
-            int j2 = SecondPoint.X / (IMAGE_SIZE + 5);
+            //int i1 = FirstPoint.Y / (IMAGE_SIZE + 5);
+            //int j1 = FirstPoint.X / (IMAGE_SIZE + 5);
+            //int i2 = SecondPoint.Y / (IMAGE_SIZE + 5);
+            //int j2 = SecondPoint.X / (IMAGE_SIZE + 5);
+            int i1 = I;
+            int j1 = J;
+            int i2 = CurrentI;
+            int j2 = CurrentJ;
 
             if (j1 == j2)
             {
