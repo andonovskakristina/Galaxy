@@ -1,0 +1,10 @@
+D:\Kiki\VP - Proekt\Bejeweled\Bejeweled\bin\Debug\Bejeweled.exe.config
+D:\Kiki\VP - Proekt\Bejeweled\Bejeweled\bin\Debug\Bejeweled.exe
+D:\Kiki\VP - Proekt\Bejeweled\Bejeweled\bin\Debug\Bejeweled.pdb
+D:\Kiki\VP - Proekt\Bejeweled\Bejeweled\obj\Debug\Bejeweled.csprojAssemblyReference.cache
+D:\Kiki\VP - Proekt\Bejeweled\Bejeweled\obj\Debug\Bejeweled.Form1.resources
+D:\Kiki\VP - Proekt\Bejeweled\Bejeweled\obj\Debug\Bejeweled.Properties.Resources.resources
+D:\Kiki\VP - Proekt\Bejeweled\Bejeweled\obj\Debug\Bejeweled.csproj.GenerateResource.cache
+D:\Kiki\VP - Proekt\Bejeweled\Bejeweled\obj\Debug\Bejeweled.csproj.CoreCompileInputs.cache
+D:\Kiki\VP - Proekt\Bejeweled\Bejeweled\obj\Debug\Bejeweled.exe
+D:\Kiki\VP - Proekt\Bejeweled\Bejeweled\obj\Debug\Bejeweled.pdb
