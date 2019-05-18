@@ -26,9 +26,11 @@ namespace Bejeweled
         public Image image { get; set; }
         public Point StartingPosition { get; set; }
         public bool IsSelected { get; set; }
+        public bool IsForDeleting { get; set; }
 
         public Img(int X, int Y, ImageType Type)
         {
+            IsForDeleting = false;
             StartingPosition = new Point(X, Y);
             this.X = X;
             this.Y = Y;

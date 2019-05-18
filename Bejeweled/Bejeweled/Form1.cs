@@ -23,7 +23,9 @@ namespace Bejeweled
         Point SecondPoint;
         Point PreviousPoint;
         int I, J, CurrentI, CurrentJ;
-        bool Flag;
+        bool Break;
+        bool IsSwapped;
+        bool Delete;
 
         public Form1()
         {
@@ -35,7 +37,8 @@ namespace Bejeweled
             J = -1;
             CurrentI = -1;
             CurrentJ = -1;
-            Flag = false;
+            Break = false;
+            IsSwapped = false;
 
             GenerateRandomImages();
             DoubleBuffered = true;
@@ -127,13 +130,13 @@ namespace Bejeweled
                         Images[i][j].IsSelected = true;
                         I = i;
                         J = j;
-                        Flag = true;
+                        Break = true;
                         break;
                     }
                 }
-                if (Flag)
+                if (Break)
                 {
-                    Flag = false;
+                    Break = false;
                     break;
                 }
             }
@@ -196,15 +199,17 @@ namespace Bejeweled
                     CurrentI = I;
                     CurrentJ = J + 1;
                     if (Images[I][J].X == Images[I][J + 1].StartingPosition.X
-                        && Images[I][J].Y == Images[I][J + 1].StartingPosition.Y)
+                        && Images[I][J].Y == Images[I][J + 1].StartingPosition.Y && SwapNeeded())
                     {
-                        SwapNeeded();
+                        IsSwapped = true;
                         SwapSquare(I, J + 1);
                         Point t = Images[I][J].StartingPosition;
                         Images[I][J].StartingPosition = Images[I][J + 1].StartingPosition;
                         Images[I][J + 1].StartingPosition = t;
                         Images[I][J].IsSelected = false;
                         Images[I][J + 1].IsSelected = false;
+                        I = -1;
+                        J = -1;
                     }
                 }
 
@@ -221,15 +226,17 @@ namespace Bejeweled
                     CurrentI = I;
                     CurrentJ = J - 1;
                     if (Images[I][J].X == Images[I][J - 1].StartingPosition.X
-                         && Images[I][J].Y == Images[I][J - 1].StartingPosition.Y)
+                         && Images[I][J].Y == Images[I][J - 1].StartingPosition.Y && SwapNeeded())
                     {
-                        SwapNeeded();
+                        IsSwapped = true;
                         SwapSquare(I, J - 1);
                         Point t = Images[I][J].StartingPosition;
                         Images[I][J].StartingPosition = Images[I][J - 1].StartingPosition;
                         Images[I][J - 1].StartingPosition = t;
                         Images[I][J].IsSelected = false;
                         Images[I][J - 1].IsSelected = false;
+                        I = -1;
+                        J = -1;
                     }
                 }
 
@@ -246,15 +253,17 @@ namespace Bejeweled
                     CurrentI = I + 1;
                     CurrentJ = J;
                     if (Images[I][J].X == Images[I + 1][J].StartingPosition.X
-                        && Images[I][J].Y == Images[I + 1][J].StartingPosition.Y)
+                        && Images[I][J].Y == Images[I + 1][J].StartingPosition.Y && SwapNeeded())
                     {
-                        SwapNeeded();
+                        IsSwapped = true;
                         SwapSquare(I + 1, J);
                         Point t = Images[I][J].StartingPosition;
                         Images[I][J].StartingPosition = Images[I + 1][J].StartingPosition;
                         Images[I + 1][J].StartingPosition = t;
                         Images[I][J].IsSelected = false;
                         Images[I + 1][J].IsSelected = false;
+                        I = -1;
+                        J = -1;
                     }
                 }
 
@@ -271,18 +280,23 @@ namespace Bejeweled
                     CurrentI = I - 1;
                     CurrentJ = J;
                     if (Images[I][J].X == Images[I - 1][J].StartingPosition.X
-                        && Images[I][J].Y == Images[I - 1][J].StartingPosition.Y)
+                        && Images[I][J].Y == Images[I - 1][J].StartingPosition.Y && SwapNeeded())
                     {
-                        SwapNeeded();
+                        IsSwapped = true;
                         SwapSquare(I - 1, J);
                         Point t = Images[I][J].StartingPosition;
                         Images[I][J].StartingPosition = Images[I - 1][J].StartingPosition;
                         Images[I - 1][J].StartingPosition = t;
                         Images[I][J].IsSelected = false;
                         Images[I - 1][J].IsSelected = false;
+                        I = -1;
+                        J = -1;
                     }
                 }
-
+                if (IsSwapped)
+                {
+                    DeleteSquares();
+                }
                 PreviousPoint = e.Location;
                 Invalidate();
             }
@@ -418,7 +432,7 @@ namespace Bejeweled
             int j1 = J;
             int i2 = CurrentI;
             int j2 = CurrentJ;
-
+            Delete = false;
             if (j1 == j2)
             {
                 // nad pod - horizontala
@@ -429,24 +443,46 @@ namespace Bejeweled
                     // sobira 5
                     if((Images[i1][j1 - 2].Type == Images[i1][j1 - 1].Type) && (Images[i1][j1 - 2].Type == Images[i2][j2].Type) && (Images[i1][j1 - 2].Type == Images[i1][j1 + 1].Type) && (Images[i1][j1 - 2].Type == Images[i1][j1 + 2].Type))
                     {
-                        MessageBox.Show("5");
+                        Images[i1][j1 - 2].IsForDeleting = true;
+                        Images[i1][j1 - 1].IsForDeleting = true;
+                        Images[i2][j2].IsForDeleting = true;
+                        Images[i1][j1 + 1].IsForDeleting = true;
+                        Images[i1][j1 + 2].IsForDeleting = true;
+                        Delete = true;
+                        //MessageBox.Show("5");
                     }
                     else if((Images[i2][j2 - 2].Type == Images[i2][j2 - 1].Type) && (Images[i2][j2 - 2].Type == Images[i1][j1].Type) && (Images[i2][j2 - 2].Type == Images[i2][j2 + 1].Type) && (Images[i2][j2 - 2].Type == Images[i2][j2 + 2].Type))
                     {
-                        MessageBox.Show("5");
+                        Images[i2][j2 - 2].IsForDeleting = true;
+                        Images[i2][j2 - 1].IsForDeleting = true;
+                        Images[i1][j1].IsForDeleting = true;
+                        Images[i1][j1 + 1].IsForDeleting = true;
+                        Images[i1][j1 + 2].IsForDeleting = true;
+                        Delete = true;
+                      //  MessageBox.Show("5");
                     }
                 }
 
                 // isto isto (first ili second) isto
-                if(j1 > 1 && j1 < MATRIX_WIDTH - 1)
+                if(j1 > 1 && j1 < MATRIX_WIDTH - 1 && j2 > 1)
                 {
                     if ((Images[i1][j1 - 2].Type == Images[i1][j1 - 1].Type) && (Images[i1][j1 - 2].Type == Images[i2][j2].Type) && (Images[i1][j1 - 2].Type == Images[i1][j1 + 1].Type))
                     {
-                        MessageBox.Show("4");
+                        Images[i1][j1 - 2].IsForDeleting = true;
+                        Images[i1][j1 - 1].IsForDeleting = true;
+                        Images[i2][j2].IsForDeleting = true;
+                        Images[i1][j1 + 1].IsForDeleting = true;
+                        Delete = true;
+                      //  MessageBox.Show("4");
                     }
                     else if ((Images[i2][j2 - 2].Type == Images[i2][j2 - 1].Type) && (Images[i2][j2 - 2].Type == Images[i1][j1].Type) && (Images[i2][j2 - 2].Type == Images[i2][j2 + 1].Type))
                     {
-                        MessageBox.Show("4");
+                        Images[i2][j2 - 2].IsForDeleting = true;
+                        Images[i2][j2 - 1].IsForDeleting = true;
+                        Images[i1][j1].IsForDeleting = true;
+                        Images[i2][j2 + 1].IsForDeleting = true;
+                        Delete = true;
+                      //  MessageBox.Show("4");
                     }
                 }
 
@@ -455,11 +491,21 @@ namespace Bejeweled
                 {
                     if ((Images[i1][j1 - 1].Type == Images[i2][j2].Type) && (Images[i1][j1 - 1].Type == Images[i1][j1 + 1].Type) && (Images[i1][j1 - 1].Type == Images[i1][j1 + 2].Type))
                     {
-                        MessageBox.Show("4");
+                        Images[i1][j1 - 1].IsForDeleting = true;
+                        Images[i2][j2].IsForDeleting = true;
+                        Images[i1][j1 + 1].IsForDeleting = true;
+                        Images[i1][j1 + 2].IsForDeleting = true;
+                        Delete = true;
+                    //    MessageBox.Show("4");
                     }
                     else if ((Images[i2][j2 - 1].Type == Images[i1][j1].Type) && (Images[i2][j2 - 1].Type == Images[i2][j2 + 1].Type) && (Images[i2][j2 - 1].Type == Images[i2][j2 + 2].Type))
                     {
-                        MessageBox.Show("4");
+                        Images[i2][j2 - 1].IsForDeleting = true;
+                        Images[i1][j1].IsForDeleting = true;
+                        Images[i2][j2 + 1].IsForDeleting = true;
+                        Images[i2][j2 + 2].IsForDeleting = true;
+                        Delete = true;
+                      //  MessageBox.Show("4");
                     }
                 }
 
@@ -468,11 +514,19 @@ namespace Bejeweled
                 {
                     if ((Images[i1][j2].Type == Images[i1][j1 + 1].Type) && (Images[i2][j2].Type == Images[i1][j1 + 2].Type))
                     {
-                        MessageBox.Show("3");
+                        Images[i1][j2].IsForDeleting = true;
+                        Images[i1][j1 + 1].IsForDeleting = true;
+                        Images[i1][j1 + 2].IsForDeleting = true;
+                        Delete = true;
+                       // MessageBox.Show("3");
                     }
                     else if ((Images[i2][j1].Type == Images[i2][j2 + 1].Type) && (Images[i1][j1].Type == Images[i2][j2 + 2].Type))
                     {
-                        MessageBox.Show("3");
+                        Images[i2][j1].IsForDeleting = true;
+                        Images[i2][j2 + 1].IsForDeleting = true;
+                        Images[i2][j2 + 2].IsForDeleting = true;
+                        Delete = true;
+                     //   MessageBox.Show("3");
                     }
                 }
 
@@ -481,11 +535,19 @@ namespace Bejeweled
                 {
                     if ((Images[i1][j1 - 1].Type == Images[i2][j2].Type) && (Images[i1][j1 - 1].Type == Images[i1][j1 + 1].Type))
                     {
-                        MessageBox.Show("3");
+                        Images[i1][j1 - 1].IsForDeleting = true;
+                        Images[i2][j2].IsForDeleting = true;
+                        Images[i1][j1 + 1].IsForDeleting = true;
+                        Delete = true;
+                       // MessageBox.Show("3");
                     }
                     else if ((Images[i2][j2 - 1].Type == Images[i1][j1].Type) && (Images[i2][j2 - 1].Type == Images[i2][j2 + 1].Type))
                     {
-                        MessageBox.Show("3");
+                        Images[i2][j2 - 1].IsForDeleting = true;
+                        Images[i1][j1].IsForDeleting = true;
+                        Images[i2][j2 + 1].IsForDeleting = true;
+                        Delete = true;
+                      //  MessageBox.Show("3");
                     }
                 }
 
@@ -494,11 +556,19 @@ namespace Bejeweled
                 {
                     if ((Images[i1][j1 - 2].Type == Images[i1][j1 - 1].Type) && (Images[i1][j1 - 2].Type == Images[i2][j2].Type))
                     {
-                        MessageBox.Show("3");
+                        Images[i1][j1 - 2].IsForDeleting = true;
+                        Images[i1][j1 - 1].IsForDeleting = true;
+                        Images[i2][j2].IsForDeleting = true;
+                        Delete = true;
+                      //  MessageBox.Show("3");
                     }
                     else if ((Images[i2][j2 - 2].Type == Images[i2][j2 - 1].Type) && (Images[i2][j2 - 2].Type == Images[i1][j1].Type))
                     {
-                        MessageBox.Show("3");
+                        Images[i2][j2 - 2].IsForDeleting = true;
+                        Images[i2][j2 - 1].IsForDeleting = true;
+                        Images[i1][j1].IsForDeleting = true;
+                        Delete = true;
+                     //   MessageBox.Show("3");
                     }
                 }
             }
@@ -511,11 +581,23 @@ namespace Bejeweled
                 {
                     if((Images[i2 - 2][j2].Type == Images[i2 - 1][j2].Type) && (Images[i2 - 2][j2].Type == Images[i1][j1].Type) && (Images[i2 - 2][j2].Type == Images[i2 + 1][j2].Type) && (Images[i2 - 2][j2].Type == Images[i2 + 2][j2].Type))
                     {
-                        MessageBox.Show("5");
+                        Images[i2 - 2][j2].IsForDeleting = true;
+                        Images[i2 - 1][j2].IsForDeleting = true;
+                        Images[i1][j1].IsForDeleting = true;
+                        Images[i2 + 1][j2].IsForDeleting = true;
+                        Images[i2 + 2][j2].IsForDeleting = true;
+                        Delete = true;
+                      //  MessageBox.Show("5");
                     }
                     else if((Images[i1 - 2][j1].Type == Images[i1 - 1][j1].Type) && (Images[i1 - 2][j1].Type == Images[i2][j2].Type) && (Images[i1 - 2][j1].Type == Images[i1 + 1][j1].Type) && (Images[i1 - 2][j1].Type == Images[i1 + 2][j1].Type))
                     {
-                        MessageBox.Show("5");
+                        Images[i1 - 2][j1].IsForDeleting = true;
+                        Images[i1 - 1][j1].IsForDeleting = true;
+                        Images[i2][j2].IsForDeleting = true;
+                        Images[i1 + 1][j1].IsForDeleting = true;
+                        Images[i1 + 2][j1].IsForDeleting = true;
+                        Delete = true;
+                     //   MessageBox.Show("5");
                     }
                 }
 
@@ -524,11 +606,21 @@ namespace Bejeweled
                 {
                     if ((Images[i2 - 2][j2].Type == Images[i2 - 1][j2].Type) && (Images[i2 - 2][j2].Type == Images[i1][j1].Type) && (Images[i2 - 2][j2].Type == Images[i2 + 1][j2].Type))
                     {
-                        MessageBox.Show("4");
+                        Images[i2 - 2][j2].IsForDeleting = true;
+                        Images[i2 - 1][j2].IsForDeleting = true;
+                        Images[i1][j1].IsForDeleting = true;
+                        Images[i2 + 1][j2].IsForDeleting = true;
+                        Delete = true;
+                     //   MessageBox.Show("4");
                     }
                     else if ((Images[i1 - 2][j1].Type == Images[i1 - 1][j1].Type) && (Images[i1 - 2][j1].Type == Images[i2][j2].Type) && (Images[i1 - 2][j1].Type == Images[i1 + 1][j1].Type))
                     {
-                        MessageBox.Show("4");
+                        Images[i1 - 2][j1].IsForDeleting = true;
+                        Images[i1 - 1][j1].IsForDeleting = true;
+                        Images[i2][j2].IsForDeleting = true;
+                        Images[i1 + 1][j1].IsForDeleting = true;
+                        Delete = true;
+                     //   MessageBox.Show("4");
                     }
                 }
 
@@ -537,11 +629,21 @@ namespace Bejeweled
                 {
                     if ((Images[i2 - 1][j2].Type == Images[i1][j1].Type) && (Images[i2 - 1][j2].Type == Images[i2 + 1][j2].Type) && (Images[i2 - 1][j2].Type == Images[i2 + 2][j2].Type))
                     {
-                        MessageBox.Show("4");
+                        Images[i2 - 1][j2].IsForDeleting = true;
+                        Images[i1][j1].IsForDeleting = true;
+                        Images[i2 + 1][j2].IsForDeleting = true;
+                        Images[i2 + 2][j2].IsForDeleting = true;
+                        Delete = true;
+                     //  MessageBox.Show("4");
                     }
                     else if ((Images[i1 - 1][j1].Type == Images[i2][j2].Type) && (Images[i1 - 1][j1].Type == Images[i1 + 1][j1].Type) && (Images[i1 - 1][j1].Type == Images[i1 + 2][j1].Type))
                     {
-                        MessageBox.Show("4");
+                        Images[i1 - 1][j1].IsForDeleting = true;
+                        Images[i2][j2].IsForDeleting = true;
+                        Images[i1 + 1][j1].IsForDeleting = true;
+                        Images[i1 + 2][j1].IsForDeleting = true;
+                        Delete = true;
+                     //   MessageBox.Show("4");
                     }
                 }
 
@@ -550,11 +652,19 @@ namespace Bejeweled
                 {
                     if ((Images[i1][j1].Type == Images[i2 + 1][j2].Type) && (Images[i2 + 1][j2].Type == Images[i2 + 2][j2].Type))
                     {
-                        MessageBox.Show("3");
+                        Images[i1][j1].IsForDeleting = true;
+                        Images[i2 + 1][j2].IsForDeleting = true;
+                        Images[i2 + 2][j2].IsForDeleting = true;
+                        Delete = true;
+                     //   MessageBox.Show("3");
                     }
                     else if ((Images[i2][j2].Type == Images[i1 + 1][j1].Type) && (Images[i1 + 1][j1].Type == Images[i1 + 2][j1].Type))
                     {
-                        MessageBox.Show("3");
+                        Images[i2][j2].IsForDeleting = true;
+                        Images[i1 + 1][j1].IsForDeleting = true;
+                        Images[i1 + 2][j1].IsForDeleting = true;
+                        Delete = true;
+                    //    MessageBox.Show("3");
                     }
                 }
 
@@ -563,11 +673,19 @@ namespace Bejeweled
                 {
                     if ((Images[i2 - 1][j2].Type == Images[i1][j1].Type) && (Images[i2 - 1][j2].Type == Images[i2 + 1][j2].Type))
                     {
-                        MessageBox.Show("3");
+                        Images[i2 - 1][j2].IsForDeleting = true;
+                        Images[i1][j1].IsForDeleting = true;
+                        Images[i2 + 1][j2].IsForDeleting = true;
+                        Delete = true;
+                     //   MessageBox.Show("3");
                     }
                     else if ((Images[i1 - 1][j1].Type == Images[i2][j2].Type) && (Images[i1 - 1][j1].Type == Images[i1 + 1][j1].Type))
                     {
-                        MessageBox.Show("3");
+                        Images[i1 - 1][j1].IsForDeleting = true;
+                        Images[i2][j2].IsForDeleting = true;
+                        Images[i1 + 1][j1].IsForDeleting = true;
+                        Delete = true;
+                      //  MessageBox.Show("3");
                     }
                 }
 
@@ -576,11 +694,20 @@ namespace Bejeweled
                 {
                     if ((Images[i2 - 2][j2].Type == Images[i2 - 1][j2].Type) && (Images[i2 - 2][j2].Type == Images[i1][j1].Type))
                     {
-                        MessageBox.Show("3");
+                        Images[i2 - 2][j2].IsForDeleting = true;
+                        Images[i2 - 1][j2].IsForDeleting = true;
+                        Images[i1][j1].IsForDeleting = true;
+
+                        Delete = true;
+                       // MessageBox.Show("3");
                     }
                     else if ((Images[i1 - 2][j1].Type == Images[i1 - 1][j1].Type) && (Images[i1 - 2][j1].Type == Images[i2][j2].Type))
                     {
-                        MessageBox.Show("3");
+                        Images[i1 - 2][j1].IsForDeleting = true;
+                        Images[i1 - 1][j1].IsForDeleting = true;
+                        Images[i2][j2].IsForDeleting = true;
+                        Delete = true;
+                     //   MessageBox.Show("3");
                     }
                 }
             }
@@ -590,11 +717,19 @@ namespace Bejeweled
             {
                 if((Images[i1][j1].Type != Images[i2][j2].Type) && (Images[i1][j1].Type == Images[i1][j1 + 2].Type) && (Images[i1][j1].Type == Images[i1][j1 + 3].Type))
                 {
-                    MessageBox.Show("3");
+                    Images[i1][j1].IsForDeleting = true;
+                    Images[i1][j1 + 2].IsForDeleting = true;
+                    Images[i1][j1 + 3].IsForDeleting = true;
+                    Delete = true;
+                  //  MessageBox.Show("3");
                 }
                 else if((Images[i2][j2].Type != Images[i1][j1].Type) && (Images[i2][j2].Type == Images[i2][j2 + 2].Type) && (Images[i2][j2].Type == Images[i2][j2 + 3].Type))
                 {
-                    MessageBox.Show("3");
+                    Images[i2][j2].IsForDeleting = true;
+                    Images[i2][j2 + 2].IsForDeleting = true;
+                    Images[i2][j2 + 3].IsForDeleting = true;
+                    Delete = true;
+                  //  MessageBox.Show("3");
                 }
             }
 
@@ -603,11 +738,19 @@ namespace Bejeweled
             {
                 if ((Images[i1][j1 - 2].Type == Images[i1][j1 - 1].Type) && (Images[i1][j1 - 2].Type != Images[i1][j1].Type) && (Images[i1][j1 - 2].Type == Images[i2][j2].Type))
                 {
-                    MessageBox.Show("3");
+                    Images[i1][j1 - 2].IsForDeleting = true;
+                    Images[i1][j1 - 1].IsForDeleting = true;
+                    Images[i2][j2].IsForDeleting = true;
+                    Delete = true;
+                  //  MessageBox.Show("3");
                 }
                 else if ((Images[i2][j2 - 2].Type == Images[i2][j2 - 1].Type) && (Images[i2][j2 - 2].Type != Images[i2][j2].Type) && (Images[i2][j2 - 2].Type == Images[i1][j1].Type))
                 {
-                    MessageBox.Show("3");
+                    Images[i2][j2 - 2].IsForDeleting = true;
+                    Images[i2][j2 - 1].IsForDeleting = true;
+                    Images[i1][j1].IsForDeleting = true;
+                    Delete = true;
+                  //  MessageBox.Show("3");
                 }
             }
 
@@ -616,11 +759,20 @@ namespace Bejeweled
             {
                 if ((Images[i1][j1].Type != Images[i2][j2].Type) && (Images[i1][j1].Type == Images[i1 + 2][j1].Type) && (Images[i1][j1].Type == Images[i1 + 3][j1].Type))
                 {
-                    MessageBox.Show("3");
+                    Images[i1][j1].IsForDeleting = true;
+                    Images[i1 + 2][j1].IsForDeleting = true;
+                    Images[i1 + 3][j1].IsForDeleting = true;
+                    Delete = true;
+                  //  MessageBox.Show("3");
                 }
                 else if ((Images[i2][j2].Type != Images[i1][j1].Type) && (Images[i2][j2].Type == Images[i2 + 2][j2].Type) && (Images[i2][j2].Type == Images[i2 + 3][j2].Type))
                 {
-                    MessageBox.Show("3");
+
+                    Images[i2][j2].IsForDeleting = true;
+                    Images[i2 + 2][j2].IsForDeleting = true;
+                    Images[i2 + 3][j2].IsForDeleting = true;
+                    Delete = true;
+                  //  MessageBox.Show("3");
                 }
             }
 
@@ -629,20 +781,39 @@ namespace Bejeweled
             {
                 if ((Images[i1 - 2][j1].Type == Images[i1 - 1][j1].Type) && (Images[i1 - 2][j1].Type != Images[i1][j1].Type) && (Images[i1 - 2][j1].Type == Images[i2][j2].Type))
                 {
-                    MessageBox.Show("3");
+                    Images[i1 - 2][j1].IsForDeleting = true;
+                    Images[i1 - 1][j1].IsForDeleting = true;
+                    Images[i2][j2].IsForDeleting = true;
+                    Delete = true;
+                  //  MessageBox.Show("3");
                 }
                 else if ((Images[i2 - 2][j2].Type == Images[i2 - 1][j2].Type) && (Images[i2 - 2][j2].Type != Images[i2][j2].Type) && (Images[i2 - 2][j2].Type == Images[i1][j1].Type))
                 {
-                    MessageBox.Show("3");
+                    Images[i2 - 2][j2].IsForDeleting = true;
+                    Images[i2 - 1][j2].IsForDeleting = true;
+                    Images[i1][j1].IsForDeleting = true;
+                    Delete = true;
+                 //   MessageBox.Show("3");
                 }
             }
 
-            return true;
+            return Delete;
         }
 
-        public void Swap()
+        public void DeleteSquares()
         {
-            MessageBox.Show("Swap");
+            for (int i = 0; i < Images.Length; i++)
+            {
+                for (int j = 0; j < Images[i].Length; j++)
+                {
+                    if(Images[i][j].IsForDeleting)
+                    {
+                        Images[i][j].image = new Bitmap(5, 5);
+                        Images[i][j].IsForDeleting = false;
+                    }
+                }
+            }
         }
+       
     }
 }
