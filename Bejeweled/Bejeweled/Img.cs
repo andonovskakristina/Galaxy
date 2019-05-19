@@ -17,7 +17,9 @@ namespace Bejeweled
             Green,
             Yellow,
             Orange,
-            Purple
+            Purple,
+            Bomba5,
+            Bomba4
         }
 
         public int X { get; set; }
