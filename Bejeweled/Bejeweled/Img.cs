@@ -19,7 +19,8 @@ namespace Bejeweled
             Orange,
             Purple,
             Bomba5,
-            Bomba4
+            Bomba4,
+            White
         }
 
         public int X { get; set; }
@@ -29,9 +30,12 @@ namespace Bejeweled
         public Point StartingPosition { get; set; }
         public bool IsSelected { get; set; }
         public bool IsForDeleting { get; set; }
-
+        public bool Bomba4 { get; set; }
+        public bool Bomba5 { get; set; }
         public Img(int X, int Y, ImageType Type)
         {
+            Bomba4 = false;
+            Bomba5 = false;
             IsForDeleting = false;
             StartingPosition = new Point(X, Y);
             this.X = X;
@@ -57,7 +61,7 @@ namespace Bejeweled
         public void Draw(Graphics g)
         {
             g.DrawImageUnscaled(image, X, Y);
-            if(IsSelected)
+            if (IsSelected)
             {
                 Pen pen = new Pen(Color.Black, 1);
                 g.DrawRectangle(pen, X, Y, image.Size.Width, image.Size.Height);
@@ -66,7 +70,7 @@ namespace Bejeweled
 
         public void Click(int x, int y)
         {
-            if(IsHit(x, y))
+            if (IsHit(x, y))
             {
                 IsSelected = true;
             }

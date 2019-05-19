@@ -79,7 +79,7 @@ namespace Bejeweled
                 if (!ThreeFromTheSameType())
                     break;
             }
-            
+
         }
 
         public bool ThreeFromTheSameType()
@@ -116,6 +116,9 @@ namespace Bejeweled
                     Images[i][j].Draw(e.Graphics);
                 }
             }
+
+            GenerateRandomDeletedImages();
+            CheckState();
         }
 
         private void Form1_MouseDown(object sender, MouseEventArgs e)
@@ -200,7 +203,7 @@ namespace Bejeweled
                     if (Images[I][J].X == Images[I][J + 1].StartingPosition.X
                         && Images[I][J].Y == Images[I][J + 1].StartingPosition.Y)
                     {
-                        if (Images[I][J].Type == Img.ImageType.Bomba5 || Images[I][J].Type == Img.ImageType.Bomba4 || SwapNeeded())
+                        if (Images[I][J].Type == Img.ImageType.Bomba5 || Images[I][J].Type == Img.ImageType.Bomba4 || SwapNeeded(I, J, CurrentI, CurrentJ))
                         {
                             SwapSquare(I, J + 1);
                             Point t = Images[I][J].StartingPosition;
@@ -245,7 +248,7 @@ namespace Bejeweled
                     if (Images[I][J].X == Images[I][J - 1].StartingPosition.X
                          && Images[I][J].Y == Images[I][J - 1].StartingPosition.Y)
                     {
-                        if (Images[I][J].Type == Img.ImageType.Bomba5 || SwapNeeded())
+                        if (Images[I][J].Type == Img.ImageType.Bomba5 || SwapNeeded(I, J, CurrentI, CurrentJ))
                         {
                             SwapSquare(I, J - 1);
                             Point t = Images[I][J].StartingPosition;
@@ -286,7 +289,7 @@ namespace Bejeweled
                     if (Images[I][J].X == Images[I + 1][J].StartingPosition.X
                         && Images[I][J].Y == Images[I + 1][J].StartingPosition.Y)
                     {
-                        if (Images[I][J].Type == Img.ImageType.Bomba5 || Images[I][J].Type == Img.ImageType.Bomba4 || SwapNeeded())
+                        if (Images[I][J].Type == Img.ImageType.Bomba5 || Images[I][J].Type == Img.ImageType.Bomba4 || SwapNeeded(I, J, CurrentI, CurrentJ))
                         {
                             SwapSquare(I + 1, J);
                             Point t = Images[I][J].StartingPosition;
@@ -332,7 +335,7 @@ namespace Bejeweled
                     if (Images[I][J].X == Images[I - 1][J].StartingPosition.X
                         && Images[I][J].Y == Images[I - 1][J].StartingPosition.Y)
                     {
-                        if (Images[I][J].Type == Img.ImageType.Bomba5 || Images[I][J].Type == Img.ImageType.Bomba4 || SwapNeeded())
+                        if (Images[I][J].Type == Img.ImageType.Bomba5 || Images[I][J].Type == Img.ImageType.Bomba4 || SwapNeeded(I, J, CurrentI, CurrentJ))
                         {
                             SwapSquare(I - 1, J);
                             Point t = Images[I][J].StartingPosition;
@@ -431,7 +434,7 @@ namespace Bejeweled
         //    return false;
         //}
 
-        public bool SwapNeeded()
+        public bool SwapNeeded(int a, int b, int a1, int b1)
         {
             // x = j * IMAGE_SIZE + 5 * j
             // y = i * IMAGE_SIZE + 5 * i
@@ -440,10 +443,10 @@ namespace Bejeweled
             //int j1 = FirstPoint.X / (IMAGE_SIZE + 5);
             //int i2 = SecondPoint.Y / (IMAGE_SIZE + 5);
             //int j2 = SecondPoint.X / (IMAGE_SIZE + 5);
-            int i1 = I;
-            int j1 = J;
-            int i2 = CurrentI;
-            int j2 = CurrentJ;
+            int i1 = a;
+            int j1 = b;
+            int i2 = a1;
+            int j2 = b1;
             Delete = false;
             if (j1 == j2)
             {
@@ -457,9 +460,10 @@ namespace Bejeweled
                     {
                         Images[i1][j1 - 2].IsForDeleting = true;
                         Images[i1][j1 - 1].IsForDeleting = true;
-                        Images[i2][j2].IsForDeleting = true;
+                        //Images[i2][j2].IsForDeleting = true;
                         Images[i1][j1 + 1].IsForDeleting = true;
                         Images[i1][j1 + 2].IsForDeleting = true;
+                        Images[i2][j2].Bomba5 = true;
                         Delete = true;
                         //MessageBox.Show("5");
                     }
@@ -467,9 +471,10 @@ namespace Bejeweled
                     {
                         Images[i2][j2 - 2].IsForDeleting = true;
                         Images[i2][j2 - 1].IsForDeleting = true;
-                        Images[i1][j1].IsForDeleting = true;
+                        //Images[i1][j1].IsForDeleting = true;
                         Images[i1][j1 + 1].IsForDeleting = true;
                         Images[i1][j1 + 2].IsForDeleting = true;
+                        Images[i1][j1].Bomba5 = true;
                         Delete = true;
                         //  MessageBox.Show("5");
                     }
@@ -482,8 +487,9 @@ namespace Bejeweled
                     {
                         Images[i1][j1 - 2].IsForDeleting = true;
                         Images[i1][j1 - 1].IsForDeleting = true;
-                        Images[i2][j2].IsForDeleting = true;
+                        //Images[i2][j2].IsForDeleting = true;
                         Images[i1][j1 + 1].IsForDeleting = true;
+                        Images[i2][j2].Bomba4 = true;
                         Delete = true;
                         //  MessageBox.Show("4");
                     }
@@ -491,8 +497,9 @@ namespace Bejeweled
                     {
                         Images[i2][j2 - 2].IsForDeleting = true;
                         Images[i2][j2 - 1].IsForDeleting = true;
-                        Images[i1][j1].IsForDeleting = true;
+                        //Images[i1][j1].IsForDeleting = true;
                         Images[i2][j2 + 1].IsForDeleting = true;
+                        Images[i1][j1].Bomba4 = true;
                         Delete = true;
                         //  MessageBox.Show("4");
                     }
@@ -504,18 +511,20 @@ namespace Bejeweled
                     if ((Images[i1][j1 - 1].Type == Images[i2][j2].Type) && (Images[i1][j1 - 1].Type == Images[i1][j1 + 1].Type) && (Images[i1][j1 - 1].Type == Images[i1][j1 + 2].Type))
                     {
                         Images[i1][j1 - 1].IsForDeleting = true;
-                        Images[i2][j2].IsForDeleting = true;
+                        //Images[i2][j2].IsForDeleting = true;
                         Images[i1][j1 + 1].IsForDeleting = true;
                         Images[i1][j1 + 2].IsForDeleting = true;
+                        Images[i2][j2].Bomba4 = true;
                         Delete = true;
                         //    MessageBox.Show("4");
                     }
                     else if ((Images[i2][j2 - 1].Type == Images[i1][j1].Type) && (Images[i2][j2 - 1].Type == Images[i2][j2 + 1].Type) && (Images[i2][j2 - 1].Type == Images[i2][j2 + 2].Type))
                     {
                         Images[i2][j2 - 1].IsForDeleting = true;
-                        Images[i1][j1].IsForDeleting = true;
+                        //Images[i1][j1].IsForDeleting = true;
                         Images[i2][j2 + 1].IsForDeleting = true;
                         Images[i2][j2 + 2].IsForDeleting = true;
+                        Images[i1][j1].Bomba4 = true;
                         Delete = true;
                         //  MessageBox.Show("4");
                     }
@@ -524,17 +533,17 @@ namespace Bejeweled
                 // (first ili second) isto isto
                 if (j1 >= 0 && j1 < MATRIX_WIDTH - 2)
                 {
-                    if ((Images[i1][j2].Type == Images[i1][j1 + 1].Type) && (Images[i2][j2].Type == Images[i1][j1 + 2].Type))
+                    if ((Images[i2][j2].Type == Images[i1][j1 + 1].Type) && (Images[i2][j2].Type == Images[i1][j1 + 2].Type))
                     {
-                        Images[i1][j2].IsForDeleting = true;
+                        Images[i2][j2].IsForDeleting = true;
                         Images[i1][j1 + 1].IsForDeleting = true;
                         Images[i1][j1 + 2].IsForDeleting = true;
                         Delete = true;
                         // MessageBox.Show("3");
                     }
-                    else if ((Images[i2][j1].Type == Images[i2][j2 + 1].Type) && (Images[i1][j1].Type == Images[i2][j2 + 2].Type))
+                    else if ((Images[i1][j1].Type == Images[i2][j2 + 1].Type) && (Images[i1][j1].Type == Images[i2][j2 + 2].Type))
                     {
-                        Images[i2][j1].IsForDeleting = true;
+                        Images[i1][j1].IsForDeleting = true;
                         Images[i2][j2 + 1].IsForDeleting = true;
                         Images[i2][j2 + 2].IsForDeleting = true;
                         Delete = true;
@@ -597,8 +606,9 @@ namespace Bejeweled
                         Images[i2 - 1][j2].IsForDeleting = true;
                         Images[i1][j1].IsForDeleting = true;
                         Images[i2 + 1][j2].IsForDeleting = true;
-                        Images[i2 + 2][j2].IsForDeleting = true;
+                        //Images[i2 + 2][j2].IsForDeleting = true;
                         Delete = true;
+                        Images[i2 + 2][j2].Bomba5 = true;
                         //  MessageBox.Show("5");
                     }
                     else if ((Images[i1 - 2][j1].Type == Images[i1 - 1][j1].Type) && (Images[i1 - 2][j1].Type == Images[i2][j2].Type) && (Images[i1 - 2][j1].Type == Images[i1 + 1][j1].Type) && (Images[i1 - 2][j1].Type == Images[i1 + 2][j1].Type))
@@ -607,7 +617,8 @@ namespace Bejeweled
                         Images[i1 - 1][j1].IsForDeleting = true;
                         Images[i2][j2].IsForDeleting = true;
                         Images[i1 + 1][j1].IsForDeleting = true;
-                        Images[i1 + 2][j1].IsForDeleting = true;
+                        //Images[i1 + 2][j1].IsForDeleting = true;
+                        Images[i1 + 2][j1].Bomba5 = true;
                         Delete = true;
                         //   MessageBox.Show("5");
                     }
@@ -621,7 +632,8 @@ namespace Bejeweled
                         Images[i2 - 2][j2].IsForDeleting = true;
                         Images[i2 - 1][j2].IsForDeleting = true;
                         Images[i1][j1].IsForDeleting = true;
-                        Images[i2 + 1][j2].IsForDeleting = true;
+                        //Images[i2 + 1][j2].IsForDeleting = true;
+                        Images[i2 + 1][j1 - 1].Bomba4 = true;
                         Delete = true;
                         //   MessageBox.Show("4");
                     }
@@ -630,7 +642,8 @@ namespace Bejeweled
                         Images[i1 - 2][j1].IsForDeleting = true;
                         Images[i1 - 1][j1].IsForDeleting = true;
                         Images[i2][j2].IsForDeleting = true;
-                        Images[i1 + 1][j1].IsForDeleting = true;
+                        //Images[i1 + 1][j1].IsForDeleting = true;
+                        Images[i1 + 1][j1].Bomba4 = true;
                         Delete = true;
                         //   MessageBox.Show("4");
                     }
@@ -644,7 +657,8 @@ namespace Bejeweled
                         Images[i2 - 1][j2].IsForDeleting = true;
                         Images[i1][j1].IsForDeleting = true;
                         Images[i2 + 1][j2].IsForDeleting = true;
-                        Images[i2 + 2][j2].IsForDeleting = true;
+                        //Images[i2 + 2][j2].IsForDeleting = true;
+                        Images[i2 + 2][j2].Bomba4 = true;
                         Delete = true;
                         //  MessageBox.Show("4");
                     }
@@ -653,7 +667,8 @@ namespace Bejeweled
                         Images[i1 - 1][j1].IsForDeleting = true;
                         Images[i2][j2].IsForDeleting = true;
                         Images[i1 + 1][j1].IsForDeleting = true;
-                        Images[i1 + 2][j1].IsForDeleting = true;
+                        //Images[i1 + 2][j1].IsForDeleting = true;
+                        Images[i1 + 2][j1].Bomba4 = true;
                         Delete = true;
                         //   MessageBox.Show("4");
                     }
@@ -809,8 +824,6 @@ namespace Bejeweled
                 }
             }
 
-
-
             return Delete;
         }
 
@@ -820,10 +833,24 @@ namespace Bejeweled
             {
                 for (int j = 0; j < Images[i].Length; j++)
                 {
-                    if (Images[i][j].IsForDeleting)
+                    if (Images[i][j].Bomba4)
                     {
-                        Images[i][j].image = new Bitmap(5, 5);
+                        Images[i][j].image = Resources.Black;
+                        Images[i][j].Type = Img.ImageType.Bomba4;
+                        Images[i][j].Bomba4 = false;
+                    }
+                    else if (Images[i][j].Bomba5)
+                    {
+                        Images[i][j].image = Resources.Gray;
+                        Images[i][j].Type = Img.ImageType.Bomba5;
+                        Images[i][j].Bomba5 = false;
+                    }
+                    else if (Images[i][j].IsForDeleting)
+                    {
                         Images[i][j].IsForDeleting = false;
+                        FallDown(i, j);
+
+                        Invalidate();
                     }
                 }
             }
@@ -923,6 +950,140 @@ namespace Bejeweled
             DeleteSquares();
         }
 
+        public void FallDown(int I, int J)
+        {
+            if (I == 0)
+            {
+                Images[I][J].image = Resources.White;
+                Images[I][J].Type = Img.ImageType.White;
+            }
+            //else if (!Images[I - 1][J].IsForDeleting)
+            // {
+            for (int i = I; i > 0; i--)
+            {
+                Images[i][J].image = Images[i - 1][J].image;
+                Images[i][J].Type = Images[i - 1][J].Type;
+                Images[i - 1][J].image = Resources.White;
+                Images[i - 1][J].Type = Img.ImageType.White;
+            }
+            //}
+        }
 
+        public void GenerateRandomDeletedImages()
+        {
+            for (int i = 0; i < MATRIX_HEIGHT; i++)
+            {
+                for (int j = 0; j < MATRIX_WIDTH; j++)
+                {
+                    if (Images[i][j].Type == Img.ImageType.White)
+                    {
+                        int type = random.Next(0, 6); // 6 tipovi na sliki (0 - red, 1 - blue, 2 - green, 3 - yellow, 4 - orange, 5 - purple)
+                        int x = j * IMAGE_SIZE + 5 * j;
+                        int y = i * IMAGE_SIZE + 5 * i;
+
+                        if (type == 0)
+                            Images[i][j] = new Img(x, y, Img.ImageType.Red);
+                        else if (type == 1)
+                            Images[i][j] = new Img(x, y, Img.ImageType.Blue);
+                        else if (type == 2)
+                            Images[i][j] = new Img(x, y, Img.ImageType.Green);
+                        else if (type == 3)
+                            Images[i][j] = new Img(x, y, Img.ImageType.Yellow);
+                        else if (type == 4)
+                            Images[i][j] = new Img(x, y, Img.ImageType.Orange);
+                        else if (type == 5)
+                            Images[i][j] = new Img(x, y, Img.ImageType.Purple);
+                    }
+                }
+            }
+        }
+
+        public bool Check(int i, int j)
+        {
+            // 5 vertikalno
+            if (i > 1 && i < MATRIX_HEIGHT - 2 && Images[i][j].Type == Images[i + 1][j].Type &&
+                Images[i][j].Type == Images[i - 1][j].Type && Images[i][j].Type == Images[i + 2][j].Type &&
+                Images[i][j].Type == Images[i - 2][j].Type)
+            {
+                Images[i][j].IsForDeleting = true;
+                Images[i - 1][j].IsForDeleting = true;
+                Images[i + 1][j].IsForDeleting = true;
+                Images[i + 2][j].IsForDeleting = true;
+                Images[i - 2][j].IsForDeleting = true;
+                return true;
+            }
+
+            // 4 vertikalno
+            if (i > 1 && i < MATRIX_HEIGHT - 1 && Images[i][j].Type == Images[i + 1][j].Type &&
+                Images[i][j].Type == Images[i - 1][j].Type && Images[i][j].Type == Images[i - 2][j].Type)
+            {
+                Images[i][j].IsForDeleting = true;
+                Images[i - 1][j].IsForDeleting = true;
+                Images[i + 1][j].IsForDeleting = true;
+                Images[i - 2][j].IsForDeleting = true;
+                return true;
+            }
+
+            // 3 vertikalno
+            if (i > 0 && i < MATRIX_HEIGHT - 1 && Images[i][j].Type == Images[i + 1][j].Type
+                && Images[i][j].Type == Images[i - 1][j].Type)
+            {
+                Images[i][j].IsForDeleting = true;
+                Images[i - 1][j].IsForDeleting = true;
+                Images[i + 1][j].IsForDeleting = true;
+                return true;
+            }
+
+            // 5 horizontalno
+            if (j > 1 && j < MATRIX_WIDTH - 2 && Images[i][j].Type == Images[i][j + 1].Type &&
+                Images[i][j].Type == Images[i][j - 1].Type && Images[i][j].Type == Images[i][j + 2].Type &&
+                Images[i][j].Type == Images[i][j - 2].Type)
+            {
+                Images[i][j].IsForDeleting = true;
+                Images[i][j - 1].IsForDeleting = true;
+                Images[i][j + 1].IsForDeleting = true;
+                Images[i][j + 2].IsForDeleting = true;
+                Images[i][j - 2].IsForDeleting = true;
+                return true;
+            }
+
+            // 4 horizontalno
+            if (j > 1 && j < MATRIX_WIDTH - 1 && Images[i][j].Type == Images[i][j + 1].Type &&
+                Images[i][j].Type == Images[i][j - 1].Type && Images[i][j].Type == Images[i][j - 2].Type)
+            {
+                Images[i][j].IsForDeleting = true;
+                Images[i][j - 1].IsForDeleting = true;
+                Images[i][j + 1].IsForDeleting = true;
+                Images[i][j - 2].IsForDeleting = true;
+                return true;
+            }
+
+            // 3 horizontalno
+            if (j > 0 && j < MATRIX_WIDTH - 1 && Images[i][j].Type == Images[i][j + 1].Type
+                && Images[i][j].Type == Images[i][j - 1].Type)
+            {
+                Images[i][j].IsForDeleting = true;
+                Images[i][j - 1].IsForDeleting = true;
+                Images[i][j + 1].IsForDeleting = true;
+                return true;
+            }
+
+            return false;
+        }
+
+        public void CheckState()
+        {
+            for (int i = 0; i < MATRIX_HEIGHT; i++)
+            {
+                for (int j = 0; j < MATRIX_WIDTH; j++)
+                {
+                    if (Check(i, j))
+                    {
+                        DeleteSquares();
+                        Invalidate();
+                    }
+                }
+            }
+        }
     }
 }
