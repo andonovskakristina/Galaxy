@@ -119,6 +119,7 @@ namespace Bejeweled
 
             GenerateRandomDeletedImages();
             CheckState();
+            Shuffle();
         }
 
         private void Form1_MouseDown(object sender, MouseEventArgs e)
@@ -448,7 +449,8 @@ namespace Bejeweled
             int i2 = a1;
             int j2 = b1;
             Delete = false;
-            if (j1 == j2)
+
+            if (j1 == j2 && J != -1)
             {
                 // nad pod - horizontala
 
@@ -593,7 +595,7 @@ namespace Bejeweled
                     }
                 }
             }
-            else if (i1 == i2)
+            else if (i1 == i2 && I != -1)
             {
                 // levo desno - vertikala
 
@@ -1084,6 +1086,285 @@ namespace Bejeweled
                     }
                 }
             }
+        }
+
+        public bool IsSwapPossible(int a, int b, int a1, int b1)
+        {
+            int i1 = a;
+            int j1 = b;
+            int i2 = a1;
+            int j2 = b1;
+
+            if (j1 == j2 && J != -1)
+            {
+                // nad pod - horizontala
+
+                // isto isto (first ili second) isto isto
+                if (j1 > 1 && j1 < MATRIX_WIDTH - 2)
+                {
+                    // sobira 5
+                    if ((Images[i1][j1 - 2].Type == Images[i1][j1 - 1].Type) && (Images[i1][j1 - 2].Type == Images[i2][j2].Type) && (Images[i1][j1 - 2].Type == Images[i1][j1 + 1].Type) && (Images[i1][j1 - 2].Type == Images[i1][j1 + 2].Type))
+                    {
+                        return true;
+                    }
+                    else if ((Images[i2][j2 - 2].Type == Images[i2][j2 - 1].Type) && (Images[i2][j2 - 2].Type == Images[i1][j1].Type) && (Images[i2][j2 - 2].Type == Images[i2][j2 + 1].Type) && (Images[i2][j2 - 2].Type == Images[i2][j2 + 2].Type))
+                    {
+                        return true;
+                    }
+                }
+
+                // isto isto (first ili second) isto
+                if (j1 > 1 && j1 < MATRIX_WIDTH - 1 && j2 > 1)
+                {
+                    if ((Images[i1][j1 - 2].Type == Images[i1][j1 - 1].Type) && (Images[i1][j1 - 2].Type == Images[i2][j2].Type) && (Images[i1][j1 - 2].Type == Images[i1][j1 + 1].Type))
+                    {
+                        return true;
+                    }
+                    else if ((Images[i2][j2 - 2].Type == Images[i2][j2 - 1].Type) && (Images[i2][j2 - 2].Type == Images[i1][j1].Type) && (Images[i2][j2 - 2].Type == Images[i2][j2 + 1].Type))
+                    {
+                        return true;
+                    }
+                }
+
+                // isto (first ili second) isto isto
+                if (j1 > 0 && j1 < MATRIX_WIDTH - 2)
+                {
+                    if ((Images[i1][j1 - 1].Type == Images[i2][j2].Type) && (Images[i1][j1 - 1].Type == Images[i1][j1 + 1].Type) && (Images[i1][j1 - 1].Type == Images[i1][j1 + 2].Type))
+                    {
+                        return true;
+                    }
+                    else if ((Images[i2][j2 - 1].Type == Images[i1][j1].Type) && (Images[i2][j2 - 1].Type == Images[i2][j2 + 1].Type) && (Images[i2][j2 - 1].Type == Images[i2][j2 + 2].Type))
+                    {
+                        return true;
+                    }
+                }
+
+                // (first ili second) isto isto
+                if (j1 >= 0 && j1 < MATRIX_WIDTH - 2)
+                {
+                    if ((Images[i2][j2].Type == Images[i1][j1 + 1].Type) && (Images[i2][j2].Type == Images[i1][j1 + 2].Type))
+                    {
+                        return true;
+                    }
+                    else if ((Images[i1][j1].Type == Images[i2][j2 + 1].Type) && (Images[i1][j1].Type == Images[i2][j2 + 2].Type))
+                    {
+                        return true;
+                    }
+                }
+
+                // isto (first ili second) isto
+                if (j1 > 0 && j1 < MATRIX_WIDTH - 1)
+                {
+                    if ((Images[i1][j1 - 1].Type == Images[i2][j2].Type) && (Images[i1][j1 - 1].Type == Images[i1][j1 + 1].Type))
+                    {
+                        return true;
+                    }
+                    else if ((Images[i2][j2 - 1].Type == Images[i1][j1].Type) && (Images[i2][j2 - 1].Type == Images[i2][j2 + 1].Type))
+                    {
+                        return true;
+                    }
+                }
+
+                // isto isto (first ili second)
+                if (j1 > 1 && j1 < MATRIX_WIDTH)
+                {
+                    if ((Images[i1][j1 - 2].Type == Images[i1][j1 - 1].Type) && (Images[i1][j1 - 2].Type == Images[i2][j2].Type))
+                    {
+                        return true;
+                    }
+                    else if ((Images[i2][j2 - 2].Type == Images[i2][j2 - 1].Type) && (Images[i2][j2 - 2].Type == Images[i1][j1].Type))
+                    {
+                        return true;
+                    }
+                }
+            }
+            else if (i1 == i2 && I != -1)
+            {
+                // levo desno - vertikala
+
+                // isto isto (first ili second) isto isto
+                if (i1 > 1 && i1 < MATRIX_HEIGHT - 2)
+                {
+                    if ((Images[i2 - 2][j2].Type == Images[i2 - 1][j2].Type) && (Images[i2 - 2][j2].Type == Images[i1][j1].Type) && (Images[i2 - 2][j2].Type == Images[i2 + 1][j2].Type) && (Images[i2 - 2][j2].Type == Images[i2 + 2][j2].Type))
+                    {
+                        return true;
+                    }
+                    else if ((Images[i1 - 2][j1].Type == Images[i1 - 1][j1].Type) && (Images[i1 - 2][j1].Type == Images[i2][j2].Type) && (Images[i1 - 2][j1].Type == Images[i1 + 1][j1].Type) && (Images[i1 - 2][j1].Type == Images[i1 + 2][j1].Type))
+                    {
+                        return true;
+                    }
+                }
+
+                // isto isto (first ili second) isto
+                if (i1 > 1 && i1 < MATRIX_HEIGHT - 1)
+                {
+                    if ((Images[i2 - 2][j2].Type == Images[i2 - 1][j2].Type) && (Images[i2 - 2][j2].Type == Images[i1][j1].Type) && (Images[i2 - 2][j2].Type == Images[i2 + 1][j2].Type))
+                    {
+                        return true;
+                    }
+                    else if ((Images[i1 - 2][j1].Type == Images[i1 - 1][j1].Type) && (Images[i1 - 2][j1].Type == Images[i2][j2].Type) && (Images[i1 - 2][j1].Type == Images[i1 + 1][j1].Type))
+                    {
+                        return true;
+                    }
+                }
+
+                // isto (first ili second) isto isto
+                if (i1 > 0 && i1 < MATRIX_HEIGHT - 2)
+                {
+                    if ((Images[i2 - 1][j2].Type == Images[i1][j1].Type) && (Images[i2 - 1][j2].Type == Images[i2 + 1][j2].Type) && (Images[i2 - 1][j2].Type == Images[i2 + 2][j2].Type))
+                    {
+                        return true;
+                    }
+                    else if ((Images[i1 - 1][j1].Type == Images[i2][j2].Type) && (Images[i1 - 1][j1].Type == Images[i1 + 1][j1].Type) && (Images[i1 - 1][j1].Type == Images[i1 + 2][j1].Type))
+                    {
+                        return true;
+                    }
+                }
+
+                // (first ili second) isto isto
+                if (i1 >= 0 && i1 < MATRIX_HEIGHT - 2)
+                {
+                    if ((Images[i1][j1].Type == Images[i2 + 1][j2].Type) && (Images[i2 + 1][j2].Type == Images[i2 + 2][j2].Type))
+                    {
+                        return true;
+                    }
+                    else if ((Images[i2][j2].Type == Images[i1 + 1][j1].Type) && (Images[i1 + 1][j1].Type == Images[i1 + 2][j1].Type))
+                    {
+                        return true;
+                    }
+                }
+
+                // isto (first ili second) isto
+                if (i1 > 0 && i1 < MATRIX_HEIGHT - 1)
+                {
+                    if ((Images[i2 - 1][j2].Type == Images[i1][j1].Type) && (Images[i2 - 1][j2].Type == Images[i2 + 1][j2].Type))
+                    {
+                        return true;
+                    }
+                    else if ((Images[i1 - 1][j1].Type == Images[i2][j2].Type) && (Images[i1 - 1][j1].Type == Images[i1 + 1][j1].Type))
+                    {
+                        return true;
+                    }
+                }
+
+                // isto isto (first ili second)
+                if (i1 > 1 && i1 < MATRIX_HEIGHT)
+                {
+                    if ((Images[i2 - 2][j2].Type == Images[i2 - 1][j2].Type) && (Images[i2 - 2][j2].Type == Images[i1][j1].Type))
+                    {
+                        return true;
+                    }
+                    else if ((Images[i1 - 2][j1].Type == Images[i1 - 1][j1].Type) && (Images[i1 - 2][j1].Type == Images[i2][j2].Type))
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            // isto razlicno isto isto - horizontalno
+            if (i1 == i2 && ((j1 == j2 - 1 && j1 >= 0 && j1 < MATRIX_WIDTH - 3) || (j1 == j2 + 1 && j2 >= 0 && j2 < MATRIX_WIDTH - 3)))
+            {
+                if ((Images[i1][j1].Type != Images[i2][j2].Type) && (Images[i1][j1].Type == Images[i1][j1 + 2].Type) && (Images[i1][j1].Type == Images[i1][j1 + 3].Type))
+                {
+                    return true;
+                }
+                else if ((Images[i2][j2].Type != Images[i1][j1].Type) && (Images[i2][j2].Type == Images[i2][j2 + 2].Type) && (Images[i2][j2].Type == Images[i2][j2 + 3].Type))
+                {
+                    return true;
+                }
+            }
+
+            // isto isto razlicno isto - horizontalno
+            if (i1 == i2 && ((j1 == j2 - 1 && j1 > 1 && j1 < MATRIX_WIDTH - 1) || (j1 == j2 + 1 && j2 > 2 && j2 < MATRIX_WIDTH)))
+            {
+                if ((Images[i1][j1 - 2].Type == Images[i1][j1 - 1].Type) && (Images[i1][j1 - 2].Type != Images[i1][j1].Type) && (Images[i1][j1 - 2].Type == Images[i2][j2].Type))
+                {
+                    return true;
+                }
+                else if ((Images[i2][j2 - 2].Type == Images[i2][j2 - 1].Type) && (Images[i2][j2 - 2].Type != Images[i2][j2].Type) && (Images[i2][j2 - 2].Type == Images[i1][j1].Type))
+                {
+                    return true;
+                }
+            }
+
+            // isto razlicno isto isto - vertikalno
+            if (j1 == j2 && ((i1 == i2 - 1 && i1 >= 0 && i1 < MATRIX_HEIGHT - 3) || (i1 == i2 + 1 && i2 >= 0 && i2 < MATRIX_HEIGHT - 3)))
+            {
+                if ((Images[i1][j1].Type != Images[i2][j2].Type) && (Images[i1][j1].Type == Images[i1 + 2][j1].Type) && (Images[i1][j1].Type == Images[i1 + 3][j1].Type))
+                {
+                    return true;
+                }
+                else if ((Images[i2][j2].Type != Images[i1][j1].Type) && (Images[i2][j2].Type == Images[i2 + 2][j2].Type) && (Images[i2][j2].Type == Images[i2 + 3][j2].Type))
+                {
+
+                    Images[i2][j2].IsForDeleting = true;
+                    Images[i2 + 2][j2].IsForDeleting = true;
+                    Images[i2 + 3][j2].IsForDeleting = true;
+                    Delete = true;
+                    //  MessageBox.Show("3");
+                }
+            }
+
+            // isto isto razlicno isto - vertikalno
+            if (j1 == j2 && ((i1 == i2 - 1 && i1 > 1 && i1 < MATRIX_HEIGHT - 1) || (i1 == i2 + 1 && i2 > 2 && i2 < MATRIX_HEIGHT)))
+            {
+                if ((Images[i1 - 2][j1].Type == Images[i1 - 1][j1].Type) && (Images[i1 - 2][j1].Type != Images[i1][j1].Type) && (Images[i1 - 2][j1].Type == Images[i2][j2].Type))
+                {
+                    return true;
+                }
+                else if ((Images[i2 - 2][j2].Type == Images[i2 - 1][j2].Type) && (Images[i2 - 2][j2].Type != Images[i2][j2].Type) && (Images[i2 - 2][j2].Type == Images[i1][j1].Type))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public void Shuffle()
+        {
+            bool ShuffleNeeded = true;
+            for (int i = 0; i < MATRIX_HEIGHT; i++)
+            {
+                for (int j = 0; j < MATRIX_WIDTH; j++)
+                {
+                    // ako ima bomba, postoi sleden poteg
+                    if(Images[i][j].Type == Img.ImageType.Bomba4 || Images[i][j].Type == Img.ImageType.Bomba5)
+                    {
+                        ShuffleNeeded = false;
+                    }
+
+                    // gore
+                    if(i > 0 && IsSwapPossible(i, j, i - 1, j))
+                    {
+                        ShuffleNeeded = false;
+                    }
+
+                    // levo
+                    if(j > 0 && IsSwapPossible(i, j, i, j - 1))
+                    {
+                        ShuffleNeeded = false;
+                    }
+
+                    // dole
+                    if(i < MATRIX_HEIGHT - 1 && IsSwapPossible(i, j, i + 1, j))
+                    {
+                        ShuffleNeeded = false;
+                    }
+
+                    // desno
+                    if(j < MATRIX_WIDTH - 1 && IsSwapPossible(i, j, i, j + 1))
+                    {
+                        ShuffleNeeded = false;
+                    }
+                }
+
+                if (!ShuffleNeeded)
+                    break;
+            }
+
+            if (ShuffleNeeded)
+                GenerateRandomImages();
         }
     }
 }
