@@ -130,6 +130,9 @@
   <data name="Green" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Green.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="KeyboardArrows" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>KeyboardArrows.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Orange" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Orange.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -138,6 +141,9 @@
   </data>
   <data name="Red" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Red.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Star3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Star3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="White" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>White.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

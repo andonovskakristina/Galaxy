@@ -33,6 +33,7 @@
             this.btnHint = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.lblNumOfHits = new System.Windows.Forms.Label();
+            this.btnPause = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblVremeForFive
@@ -68,11 +69,22 @@
             this.lblNumOfHits.Size = new System.Drawing.Size(0, 13);
             this.lblNumOfHits.TabIndex = 2;
             // 
+            // btnPause
+            // 
+            this.btnPause.Location = new System.Drawing.Point(534, 128);
+            this.btnPause.Name = "btnPause";
+            this.btnPause.Size = new System.Drawing.Size(75, 23);
+            this.btnPause.TabIndex = 3;
+            this.btnPause.Text = "Pause";
+            this.btnPause.UseVisualStyleBackColor = true;
+            this.btnPause.Click += new System.EventHandler(this.btnPause_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(623, 531);
+            this.Controls.Add(this.btnPause);
             this.Controls.Add(this.lblNumOfHits);
             this.Controls.Add(this.btnHint);
             this.Controls.Add(this.lblVremeForFive);
@@ -93,6 +105,7 @@
         private System.Windows.Forms.Button btnHint;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label lblNumOfHits;
+        private System.Windows.Forms.Button btnPause;
     }
 }
 

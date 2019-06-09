@@ -103,6 +103,16 @@ namespace Bejeweled.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap KeyboardArrows {
+            get {
+                object obj = ResourceManager.GetObject("KeyboardArrows", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Orange {
             get {
                 object obj = ResourceManager.GetObject("Orange", resourceCulture);
@@ -126,6 +136,16 @@ namespace Bejeweled.Properties {
         internal static System.Drawing.Bitmap Red {
             get {
                 object obj = ResourceManager.GetObject("Red", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Star3 {
+            get {
+                object obj = ResourceManager.GetObject("Star3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -12,7 +12,7 @@ namespace Bejeweled
         public static int MATRIX_WIDTH = 8;
         public static int MATRIX_HEIGHT = 8;
         public static int IMAGE_SIZE = 50;
-        private static readonly int TIME = 3;
+        private static readonly int TIME = 4;
 
         private SoundPlayer soundPlayer;
         Img[][] Images;
@@ -213,8 +213,20 @@ namespace Bejeweled
                     if (Images[I][J].X == Images[I][J + 1].StartingPosition.X
                         && Images[I][J].Y == Images[I][J + 1].StartingPosition.Y)
                     {
+                        //Proveri dali se dve bombi
+                        if(Images[I][J].Type == Img.ImageType.Bomba4 && Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba4)
+                        {
+                            IsSwapped = true;
+                            Images[I][J].IsForDeleting = true;
+                            Images[CurrentI][CurrentJ].IsForDeleting = true;
+                            Images[I][J].IsSelected = false;
+                            Images[CurrentI][CurrentJ].IsSelected = false;
+                            I = -1;
+                            J = -1;
+                            CallSnake();
+                        }
                         //proveri bomba da ne e kliknata
-                        if (Images[I][J].Type == Img.ImageType.Bomba5 || Images[I][J].Type == Img.ImageType.Bomba4 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba4 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba5)
+                        else if (Images[I][J].Type == Img.ImageType.Bomba5 || Images[I][J].Type == Img.ImageType.Bomba4 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba4 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba5)
                         {
                             SwapSquare(I, J + 1);
                             Point t = Images[I][J].StartingPosition;
@@ -269,7 +281,20 @@ namespace Bejeweled
                     if (Images[I][J].X == Images[I][J - 1].StartingPosition.X
                          && Images[I][J].Y == Images[I][J - 1].StartingPosition.Y)
                     {
-                        if (Images[I][J].Type == Img.ImageType.Bomba4 || Images[I][J].Type == Img.ImageType.Bomba5 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba4 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba5)
+                        //Proveri dali se dve bombi
+                        if (Images[I][J].Type == Img.ImageType.Bomba4 && Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba4)
+                        {
+                            IsSwapped = true;
+                            Images[I][J].IsForDeleting = true;
+                            Images[CurrentI][CurrentJ].IsForDeleting = true;
+                            Images[I][J].IsSelected = false;
+                            Images[CurrentI][CurrentJ].IsSelected = false;
+                            I = -1;
+                            J = -1;
+                            CallSnake();
+                        }
+                        //proveri bomba da ne e kliknata
+                        else if (Images[I][J].Type == Img.ImageType.Bomba4 || Images[I][J].Type == Img.ImageType.Bomba5 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba4 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba5)
                         {
                             SwapSquare(I, J - 1);
                             Point t = Images[I][J].StartingPosition;
@@ -326,7 +351,20 @@ namespace Bejeweled
                     if (Images[I][J].X == Images[I + 1][J].StartingPosition.X
                         && Images[I][J].Y == Images[I + 1][J].StartingPosition.Y)
                     {
-                        if (Images[I][J].Type == Img.ImageType.Bomba4 || Images[I][J].Type == Img.ImageType.Bomba5 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba4 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba5)
+                        //Proveri dali se dve bombi
+                        if (Images[I][J].Type == Img.ImageType.Bomba4 && Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba4)
+                        {
+                            IsSwapped = true;
+                            Images[I][J].IsForDeleting = true;
+                            Images[CurrentI][CurrentJ].IsForDeleting = true;
+                            Images[I][J].IsSelected = false;
+                            Images[CurrentI][CurrentJ].IsSelected = false;
+                            I = -1;
+                            J = -1;
+                            CallSnake();
+                        }
+                        //proveri bomba da ne e kliknata
+                        else if(Images[I][J].Type == Img.ImageType.Bomba4 || Images[I][J].Type == Img.ImageType.Bomba5 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba4 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba5)
                         {
                             SwapSquare(I + 1, J);
                             Point t = Images[I][J].StartingPosition;
@@ -381,7 +419,20 @@ namespace Bejeweled
                     if (Images[I][J].X == Images[I - 1][J].StartingPosition.X
                         && Images[I][J].Y == Images[I - 1][J].StartingPosition.Y)
                     {
-                        if (Images[I][J].Type == Img.ImageType.Bomba4 || Images[I][J].Type == Img.ImageType.Bomba5 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba4 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba5)
+                        //Proveri dali se dve bombi
+                        if (Images[I][J].Type == Img.ImageType.Bomba4 && Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba4)
+                        {
+                            IsSwapped = true;
+                            Images[I][J].IsForDeleting = true;
+                            Images[CurrentI][CurrentJ].IsForDeleting = true;
+                            Images[I][J].IsSelected = false;
+                            Images[CurrentI][CurrentJ].IsSelected = false;
+                            I = -1;
+                            J = -1;
+                            CallSnake();
+                        }
+                        //proveri bomba da ne e kliknata
+                        else if(Images[I][J].Type == Img.ImageType.Bomba4 || Images[I][J].Type == Img.ImageType.Bomba5 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba4 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba5)
                         {
                             SwapSquare(I - 1, J);
                             Point t = Images[I][J].StartingPosition;
@@ -430,6 +481,32 @@ namespace Bejeweled
             }
         }
 
+        private void GamePause()
+        {
+            this.MouseDown -= new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
+            this.MouseMove -= new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
+            this.MouseUp -= new System.Windows.Forms.MouseEventHandler(this.Form1_MouseUp);
+            timer1.Stop();
+        }
+
+        private void GameUnPause()
+        {
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseUp);
+            timer1.Start();
+        }
+        private void CallSnake()
+        {
+            GamePause();
+            SnakeForm sf = new SnakeForm();
+            if(sf.ShowDialog() == DialogResult.OK)
+            {
+                sf.Close();
+            }
+            GameUnPause();
+
+        }
 
         public void RefreshSelected()
         {
@@ -1358,6 +1435,20 @@ namespace Bejeweled
                 }
             }
             Invalidate();
+        }
+
+        private void btnPause_Click(object sender, EventArgs e)
+        {
+            if (btnPause.Text == "Pause")
+            {
+                btnPause.Text = "Start";
+                GamePause();
+            }
+            else
+            {
+                btnPause.Text = "Pause";
+                GameUnPause();
+            }
         }
 
         public void CheckState()
