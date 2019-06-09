@@ -2,6 +2,8 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Media;
+
 
 namespace Bejeweled
 {
@@ -12,6 +14,7 @@ namespace Bejeweled
         public static int IMAGE_SIZE = 50;
         private static readonly int TIME = 3;
 
+        private SoundPlayer soundPlayer;
         Img[][] Images;
         Random random;
         Timer TimerForFive;
@@ -21,15 +24,17 @@ namespace Bejeweled
         int I, J, CurrentI, CurrentJ;
         bool Break;
         bool IsSwapped;
+      
       //  bool Delete;
         int timeElapsed;
+        int time = 0;
+        CustomProgressBar progress;
+        int NoOfUsedHints;
 
         public Form1()
         {
             InitializeComponent();
             random = new Random();
-            //FirstPoint = new Point(-1, -1);
-            //SecondPoint = new Point(-1, -1);
             I = -1;
             J = -1;
             CurrentI = -1;
@@ -37,7 +42,11 @@ namespace Bejeweled
             Break = false;
             IsSwapped = false;
             lblVremeForFive.Text = "";
-
+            time = 0;
+            NoOfUsedHints = 0;  
+            progress = new CustomProgressBar(0, "");
+            timer1.Start();
+            lblNumOfHits.Text = String.Format("3 hits left.");
             GenerateRandomImages();
             DoubleBuffered = true;
         }
@@ -58,8 +67,8 @@ namespace Bejeweled
                     for (int j = 0; j < MATRIX_WIDTH; j++)
                     {
                         int type = random.Next(0, 6); // 6 tipovi na sliki (0 - red, 1 - blue, 2 - green, 3 - yellow, 4 - orange, 5 - purple)
-                        int x = j * IMAGE_SIZE + 5 * j;
-                        int y = i * IMAGE_SIZE + 5 * i;
+                        int x = j * IMAGE_SIZE + 5 * j + 80;
+                        int y = i * IMAGE_SIZE + 5 * i + 50;
 
                         if (type == 0)
                             Images[i][j] = new Img(x, y, Img.ImageType.Red);
@@ -116,7 +125,7 @@ namespace Bejeweled
                     Images[i][j].Draw(e.Graphics);
                 }
             }
-
+            progress.Draw(e.Graphics);
             GenerateRandomDeletedImages();
             CheckState();
             Shuffle();
@@ -1017,6 +1026,22 @@ namespace Bejeweled
             }
             //}
         }
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            time++;
+            if (time == 120)
+            {
+                timer1.Stop();
+                MessageBox.Show("GAME OVER!!");
+            }
+            int left = 120 - time;
+            int min = left / 60;
+            int sec = left % 60;
+            string s = String.Format("Time left: {0:00}:{1:00} ", min, sec);
+
+            progress = new CustomProgressBar(time, s);
+            Invalidate();
+        }
 
         public void GenerateRandomDeletedImages()
         {
@@ -1027,8 +1052,8 @@ namespace Bejeweled
                     if (Images[i][j].Type == Img.ImageType.White)
                     {
                         int type = random.Next(0, 6); // 6 tipovi na sliki (0 - red, 1 - blue, 2 - green, 3 - yellow, 4 - orange, 5 - purple)
-                        int x = j * IMAGE_SIZE + 5 * j;
-                        int y = i * IMAGE_SIZE + 5 * i;
+                        int x = j * IMAGE_SIZE + 5 * j + 80;
+                        int y = i * IMAGE_SIZE + 5 * i + 50;
 
                         if (type == 0)
                             Images[i][j] = new Img(x, y, Img.ImageType.Red);
@@ -1229,6 +1254,13 @@ namespace Bejeweled
         private void btnHint_Click(object sender, EventArgs e)
         {
            Hint();
+            NoOfUsedHints++;
+            int x = 3 - NoOfUsedHints;
+            lblNumOfHits.Text = String.Format("{0} hits left.", x);
+            if (NoOfUsedHints == 3)
+            {
+                btnHint.Enabled = false;
+            }
         }
 
         public void Hint()
@@ -1617,7 +1649,7 @@ namespace Bejeweled
 
             if (ShuffleNeeded)
             {
-                MessageBox.Show("No more possible moves.. Shuffle");
+              //  MessageBox.Show("No more possible moves.. Shuffle");
                 GenerateRandomImages();
             }
         }

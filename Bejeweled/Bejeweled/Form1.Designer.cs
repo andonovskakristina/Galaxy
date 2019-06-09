@@ -28,8 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lblVremeForFive = new System.Windows.Forms.Label();
             this.btnHint = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.lblNumOfHits = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblVremeForFive
@@ -43,19 +46,34 @@
             // 
             // btnHint
             // 
-            this.btnHint.Location = new System.Drawing.Point(679, 29);
+            this.btnHint.Location = new System.Drawing.Point(534, 52);
             this.btnHint.Name = "btnHint";
-            this.btnHint.Size = new System.Drawing.Size(46, 23);
+            this.btnHint.Size = new System.Drawing.Size(77, 25);
             this.btnHint.TabIndex = 1;
             this.btnHint.Text = "Hint";
             this.btnHint.UseVisualStyleBackColor = true;
             this.btnHint.Click += new System.EventHandler(this.btnHint_Click);
             // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // lblNumOfHits
+            // 
+            this.lblNumOfHits.AutoSize = true;
+            this.lblNumOfHits.Location = new System.Drawing.Point(534, 84);
+            this.lblNumOfHits.Name = "lblNumOfHits";
+            this.lblNumOfHits.Size = new System.Drawing.Size(0, 13);
+            this.lblNumOfHits.TabIndex = 2;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(623, 531);
+            this.Controls.Add(this.lblNumOfHits);
             this.Controls.Add(this.btnHint);
             this.Controls.Add(this.lblVremeForFive);
             this.Name = "Form1";
@@ -73,6 +91,8 @@
 
         private System.Windows.Forms.Label lblVremeForFive;
         private System.Windows.Forms.Button btnHint;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label lblNumOfHits;
     }
 }
 
