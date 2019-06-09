@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.lblVremeForFive = new System.Windows.Forms.Label();
+            this.btnHint = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblVremeForFive
@@ -40,11 +41,22 @@
             this.lblVremeForFive.TabIndex = 0;
             this.lblVremeForFive.Text = "label1";
             // 
+            // btnHint
+            // 
+            this.btnHint.Location = new System.Drawing.Point(679, 29);
+            this.btnHint.Name = "btnHint";
+            this.btnHint.Size = new System.Drawing.Size(46, 23);
+            this.btnHint.TabIndex = 1;
+            this.btnHint.Text = "Hint";
+            this.btnHint.UseVisualStyleBackColor = true;
+            this.btnHint.Click += new System.EventHandler(this.btnHint_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnHint);
             this.Controls.Add(this.lblVremeForFive);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -60,6 +72,7 @@
         #endregion
 
         private System.Windows.Forms.Label lblVremeForFive;
+        private System.Windows.Forms.Button btnHint;
     }
 }
 

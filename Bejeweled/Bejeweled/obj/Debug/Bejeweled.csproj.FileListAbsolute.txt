@@ -28,3 +28,13 @@ C:\Users\kristina\Desktop\Bejeweled\Bejeweled\Bejeweled\obj\Debug\Bejeweled.pdb
 C:\Users\kristina\Desktop\Bejeweled\Bejeweled\Bejeweled\bin\Debug\Bejeweled.exe.config
 C:\Users\kristina\Desktop\Bejeweled\Bejeweled\Bejeweled\bin\Debug\Bejeweled.exe
 C:\Users\kristina\Desktop\Bejeweled\Bejeweled\Bejeweled\bin\Debug\Bejeweled.pdb
+C:\Users\pc\Desktop\Novo\Bejeweled\Bejeweled\Bejeweled\bin\Debug\Bejeweled.exe.config
+C:\Users\pc\Desktop\Novo\Bejeweled\Bejeweled\Bejeweled\bin\Debug\Bejeweled.exe
+C:\Users\pc\Desktop\Novo\Bejeweled\Bejeweled\Bejeweled\bin\Debug\Bejeweled.pdb
+C:\Users\pc\Desktop\Novo\Bejeweled\Bejeweled\Bejeweled\obj\Debug\Bejeweled.csprojAssemblyReference.cache
+C:\Users\pc\Desktop\Novo\Bejeweled\Bejeweled\Bejeweled\obj\Debug\Bejeweled.Form1.resources
+C:\Users\pc\Desktop\Novo\Bejeweled\Bejeweled\Bejeweled\obj\Debug\Bejeweled.Properties.Resources.resources
+C:\Users\pc\Desktop\Novo\Bejeweled\Bejeweled\Bejeweled\obj\Debug\Bejeweled.csproj.GenerateResource.cache
+C:\Users\pc\Desktop\Novo\Bejeweled\Bejeweled\Bejeweled\obj\Debug\Bejeweled.csproj.CoreCompileInputs.cache
+C:\Users\pc\Desktop\Novo\Bejeweled\Bejeweled\Bejeweled\obj\Debug\Bejeweled.exe
+C:\Users\pc\Desktop\Novo\Bejeweled\Bejeweled\Bejeweled\obj\Debug\Bejeweled.pdb
