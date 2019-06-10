@@ -507,6 +507,16 @@ namespace Bejeweled
             GameUnPause();
 
         }
+        private void CallAssociation()
+        {
+            GamePause();
+            AsocijacijaForm af = new AsocijacijaForm();
+            if(af.ShowDialog() == DialogResult.OK)
+            {
+                af.Close();
+            }
+            GameUnPause();
+        }
 
         public void RefreshSelected()
         {
@@ -1449,6 +1459,28 @@ namespace Bejeweled
                 btnPause.Text = "Pause";
                 GameUnPause();
             }
+        }
+
+        private void btnHelp_Click(object sender, EventArgs e)
+        {
+
+            if (MessageBox.Show( "Guest the term behind the photo and add 5 sec to your time!", "Earn extra time", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+
+                CallAssociation();
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            GamePause();
+            SoundForm af = new SoundForm();
+            if (af.ShowDialog() == DialogResult.OK)
+            {
+                af.Close();
+            }
+            GameUnPause();
+
         }
 
         public void CheckState()

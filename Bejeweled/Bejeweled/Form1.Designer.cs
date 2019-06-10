@@ -34,6 +34,8 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.lblNumOfHits = new System.Windows.Forms.Label();
             this.btnPause = new System.Windows.Forms.Button();
+            this.btnHelp = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblVremeForFive
@@ -71,7 +73,7 @@
             // 
             // btnPause
             // 
-            this.btnPause.Location = new System.Drawing.Point(534, 128);
+            this.btnPause.Location = new System.Drawing.Point(537, 141);
             this.btnPause.Name = "btnPause";
             this.btnPause.Size = new System.Drawing.Size(75, 23);
             this.btnPause.TabIndex = 3;
@@ -79,11 +81,33 @@
             this.btnPause.UseVisualStyleBackColor = true;
             this.btnPause.Click += new System.EventHandler(this.btnPause_Click);
             // 
+            // btnHelp
+            // 
+            this.btnHelp.Location = new System.Drawing.Point(536, 112);
+            this.btnHelp.Name = "btnHelp";
+            this.btnHelp.Size = new System.Drawing.Size(75, 23);
+            this.btnHelp.TabIndex = 4;
+            this.btnHelp.Text = "Help";
+            this.btnHelp.UseVisualStyleBackColor = true;
+            this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(537, 194);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Play song";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(623, 531);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnHelp);
             this.Controls.Add(this.btnPause);
             this.Controls.Add(this.lblNumOfHits);
             this.Controls.Add(this.btnHint);
@@ -106,6 +130,8 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label lblNumOfHits;
         private System.Windows.Forms.Button btnPause;
+        private System.Windows.Forms.Button btnHelp;
+        private System.Windows.Forms.Button button1;
     }
 }
 

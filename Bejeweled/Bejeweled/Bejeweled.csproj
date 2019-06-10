@@ -47,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AsocijacijaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AsocijacijaForm.Designer.cs">
+      <DependentUpon>AsocijacijaForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomProgressBar.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -76,7 +82,17 @@
     <Compile Include="SnakeForm.Designer.cs">
       <DependentUpon>SnakeForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sound.cs" />
+    <Compile Include="SoundForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SoundForm.Designer.cs">
+      <DependentUpon>SoundForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Square.cs" />
+    <EmbeddedResource Include="AsocijacijaForm.resx">
+      <DependentUpon>AsocijacijaForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -98,6 +114,9 @@
     </Compile>
     <EmbeddedResource Include="SnakeForm.resx">
       <DependentUpon>SnakeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SoundForm.resx">
+      <DependentUpon>SoundForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -147,6 +166,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\KeyboardArrows.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gameOver.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\one.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\thre.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\two.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\guessTheSong.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
