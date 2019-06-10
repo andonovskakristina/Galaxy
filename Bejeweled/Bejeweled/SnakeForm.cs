@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bejeweled.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,6 +22,7 @@ namespace Bejeweled
         int NumberTicks;
         public SnakeForm()
         {
+            this.BackgroundImage = Resources.BG4;
             InitializeComponent();
             StartDialog();
             int top = 10;

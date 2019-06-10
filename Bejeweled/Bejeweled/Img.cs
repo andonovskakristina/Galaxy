@@ -12,12 +12,12 @@ namespace Bejeweled
     {
         public enum ImageType
         {
-            Red,
-            Blue,
-            Green,
-            Yellow,
-            Orange,
-            Purple,
+            Mars,
+            Earth,
+            Saturn,
+            Jupiter,
+            Comet,
+            Mercury,
             Bomba5,
             Bomba4,
             White
@@ -42,18 +42,18 @@ namespace Bejeweled
             this.Y = Y;
             this.Type = Type;
 
-            if (Type == ImageType.Blue)
-                image = Resources.Blue;
-            else if (Type == ImageType.Green)
-                image = Resources.Green;
-            else if (Type == ImageType.Red)
-                image = Resources.Red;
-            else if (Type == ImageType.Yellow)
-                image = Resources.Yellow;
-            else if (Type == ImageType.Orange)
-                image = Resources.Orange;
-            else if (Type == ImageType.Purple)
-                image = Resources.Purple;
+            if (Type == ImageType.Earth)
+                image = Resources.Earth;
+            else if (Type == ImageType.Saturn)
+                image = Resources.Saturn;
+            else if (Type == ImageType.Mars)
+                image = Resources.Mars;
+            else if (Type == ImageType.Jupiter)
+                image = Resources.Jupiter;
+            else if (Type == ImageType.Mercury)
+                image = Resources.Mercury;
+            else if (Type == ImageType.Comet)
+                image = Resources.Comet;
 
             IsSelected = false;
         }
@@ -63,8 +63,17 @@ namespace Bejeweled
             g.DrawImageUnscaled(image, X, Y);
             if (IsSelected)
             {
-                Pen pen = new Pen(Color.Black, 1);
-                g.DrawRectangle(pen, X, Y, image.Size.Width, image.Size.Height);
+                Pen pen = new Pen(Color.White, 2);
+                if (Type == Img.ImageType.Bomba4 || Type == ImageType.Bomba5)
+                {
+                    g.DrawRectangle(pen, X, Y, 50, 50);
+                }
+                else
+                {
+                    g.DrawRectangle(pen, X, Y, image.Size.Width, image.Size.Height);
+                }
+               
+               
             }
         }
 

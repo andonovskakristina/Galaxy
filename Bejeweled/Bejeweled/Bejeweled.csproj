@@ -75,6 +75,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Snake.cs" />
     <Compile Include="SnakeForm.cs">
       <SubType>Form</SubType>
@@ -104,14 +109,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="SnakeForm.resx">
       <DependentUpon>SnakeForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -181,6 +181,48 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\guessTheSong.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Saturn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\BackgroundPicture.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Comet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Ear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Jup.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Mars.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Mercury.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Earth.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Jupiter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\BG4.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Bomb4.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Bomb4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Bomb5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Bomb5.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

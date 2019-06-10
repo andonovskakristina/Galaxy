@@ -46,9 +46,13 @@ namespace Bejeweled
             NoOfUsedHints = 0;  
             progress = new CustomProgressBar(0, "");
             timer1.Start();
-            lblNumOfHits.Text = String.Format("3 hits left.");
+            lblNumHits.Text = String.Format("3 hints left");
+            lblTimeLeftForFive.Text = "";
             GenerateRandomImages();
             DoubleBuffered = true;
+            lblNumHits.Parent = pictureBox1;
+            lblNumHits.BackColor = Color.Transparent;
+
         }
 
         public void GenerateRandomImages()
@@ -71,22 +75,23 @@ namespace Bejeweled
                         int y = i * IMAGE_SIZE + 5 * i + 50;
 
                         if (type == 0)
-                            Images[i][j] = new Img(x, y, Img.ImageType.Red);
+                            Images[i][j] = new Img(x, y, Img.ImageType.Mars);
                         else if (type == 1)
-                            Images[i][j] = new Img(x, y, Img.ImageType.Blue);
+                            Images[i][j] = new Img(x, y, Img.ImageType.Earth);
                         else if (type == 2)
-                            Images[i][j] = new Img(x, y, Img.ImageType.Green);
+                            Images[i][j] = new Img(x, y, Img.ImageType.Jupiter);
                         else if (type == 3)
-                            Images[i][j] = new Img(x, y, Img.ImageType.Yellow);
+                            Images[i][j] = new Img(x, y, Img.ImageType.Saturn);
                         else if (type == 4)
-                            Images[i][j] = new Img(x, y, Img.ImageType.Orange);
+                            Images[i][j] = new Img(x, y, Img.ImageType.Mercury);
                         else if (type == 5)
-                            Images[i][j] = new Img(x, y, Img.ImageType.Purple);
+                            Images[i][j] = new Img(x, y, Img.ImageType.Comet);
                     }
                 }
 
                 if (!ThreeFromTheSameType())
                     break;
+             
             }
            
         }
@@ -116,7 +121,7 @@ namespace Bejeweled
             return false;
         }
 
-        private void Form1_Paint(object sender, PaintEventArgs e)
+        private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
             for (int i = 0; i < Images.Length; i++)
             {
@@ -130,7 +135,7 @@ namespace Bejeweled
             CheckState();
             Shuffle();
         }
-
+      
         private void Form1_MouseDown(object sender, MouseEventArgs e)
         {
             for (int i = 0; i < Images.Length; i++)
@@ -216,9 +221,11 @@ namespace Bejeweled
                         //Proveri dali se dve bombi
                         if(Images[I][J].Type == Img.ImageType.Bomba4 && Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba4)
                         {
-                            IsSwapped = true;
-                            Images[I][J].IsForDeleting = true;
-                            Images[CurrentI][CurrentJ].IsForDeleting = true;
+                           
+                            Images[I][J].image = Resources.Earth;
+                            Images[I][J].Type = Img.ImageType.Earth;
+                            Images[CurrentI][CurrentJ].image = Resources.Mars;
+                            Images[CurrentI][CurrentJ].Type = Img.ImageType.Mars;
                             Images[I][J].IsSelected = false;
                             Images[CurrentI][CurrentJ].IsSelected = false;
                             I = -1;
@@ -284,9 +291,11 @@ namespace Bejeweled
                         //Proveri dali se dve bombi
                         if (Images[I][J].Type == Img.ImageType.Bomba4 && Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba4)
                         {
-                            IsSwapped = true;
-                            Images[I][J].IsForDeleting = true;
-                            Images[CurrentI][CurrentJ].IsForDeleting = true;
+                          
+                            Images[I][J].image = Resources.Earth;
+                            Images[I][J].Type = Img.ImageType.Earth;
+                            Images[CurrentI][CurrentJ].image = Resources.Mars;
+                            Images[CurrentI][CurrentJ].Type = Img.ImageType.Mars;
                             Images[I][J].IsSelected = false;
                             Images[CurrentI][CurrentJ].IsSelected = false;
                             I = -1;
@@ -354,9 +363,11 @@ namespace Bejeweled
                         //Proveri dali se dve bombi
                         if (Images[I][J].Type == Img.ImageType.Bomba4 && Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba4)
                         {
-                            IsSwapped = true;
-                            Images[I][J].IsForDeleting = true;
-                            Images[CurrentI][CurrentJ].IsForDeleting = true;
+                           
+                            Images[I][J].image = Resources.Earth;
+                            Images[I][J].Type = Img.ImageType.Earth;
+                            Images[CurrentI][CurrentJ].image = Resources.Mars;
+                            Images[CurrentI][CurrentJ].Type = Img.ImageType.Mars;
                             Images[I][J].IsSelected = false;
                             Images[CurrentI][CurrentJ].IsSelected = false;
                             I = -1;
@@ -422,9 +433,11 @@ namespace Bejeweled
                         //Proveri dali se dve bombi
                         if (Images[I][J].Type == Img.ImageType.Bomba4 && Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba4)
                         {
-                            IsSwapped = true;
-                            Images[I][J].IsForDeleting = true;
-                            Images[CurrentI][CurrentJ].IsForDeleting = true;
+                       
+                            Images[I][J].image = Resources.Earth;
+                            Images[I][J].Type = Img.ImageType.Earth;
+                            Images[CurrentI][CurrentJ].image = Resources.Mars;
+                            Images[CurrentI][CurrentJ].Type = Img.ImageType.Mars;
                             Images[I][J].IsSelected = false;
                             Images[CurrentI][CurrentJ].IsSelected = false;
                             I = -1;
@@ -483,17 +496,17 @@ namespace Bejeweled
 
         private void GamePause()
         {
-            this.MouseDown -= new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
-            this.MouseMove -= new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
-            this.MouseUp -= new System.Windows.Forms.MouseEventHandler(this.Form1_MouseUp);
+            pictureBox1.MouseDown -= new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
+            pictureBox1.MouseMove -= new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
+            pictureBox1.MouseUp -= new System.Windows.Forms.MouseEventHandler(this.Form1_MouseUp);
             timer1.Stop();
         }
 
         private void GameUnPause()
         {
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
-            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseUp);
+            pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
+            pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
+            pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseUp);
             timer1.Start();
         }
         private void CallSnake()
@@ -980,13 +993,13 @@ namespace Bejeweled
                 {
                     if (Images[i][j].Bomba4)
                     {
-                        Images[i][j].image = Resources.Black;
+                        Images[i][j].image = Resources.Bomb4;
                         Images[i][j].Type = Img.ImageType.Bomba4;
                         Images[i][j].Bomba4 = false;
                     }
                     else if (Images[i][j].Bomba5)
                     {
-                        Images[i][j].image = Resources.Gray;
+                        Images[i][j].image = Resources.Bomb5;
                         Images[i][j].Type = Img.ImageType.Bomba5;
                         Images[i][j].Bomba5 = false;
                     }
@@ -1004,10 +1017,11 @@ namespace Bejeweled
 
         public void DeleteForFive()
         {
-            this.MouseDown -= new MouseEventHandler(this.Form1_MouseDown);
-            this.MouseMove -= new MouseEventHandler(this.Form1_MouseMove);
-            this.MouseUp -= new MouseEventHandler(this.Form1_MouseUp);
-            this.MouseClick += new MouseEventHandler(this.Form1_MouseClick);
+            pictureBox1.MouseDown -= new MouseEventHandler(this.Form1_MouseDown);
+            pictureBox1.MouseMove -= new MouseEventHandler(this.Form1_MouseMove);
+            pictureBox1.MouseUp -= new MouseEventHandler(this.Form1_MouseUp);
+            pictureBox1.MouseClick += new MouseEventHandler(this.Form1_MouseClick);
+            lblTimeLeftForFive.Text += "TIME LEFT";
             TimerForFive = new Timer();
             TimerForFive.Tick += new EventHandler(TimerForFive_Tick);
             TimerForFive.Interval = 1000;
@@ -1052,10 +1066,11 @@ namespace Bejeweled
 
         private void GoBackToGame()
         {
-            this.MouseClick -= new MouseEventHandler(this.Form1_MouseClick);
-            this.MouseDown += new MouseEventHandler(this.Form1_MouseDown);
-            this.MouseMove += new MouseEventHandler(this.Form1_MouseMove);
-            this.MouseUp += new MouseEventHandler(this.Form1_MouseUp);
+            pictureBox1.MouseClick -= new MouseEventHandler(this.Form1_MouseClick);
+            pictureBox1.MouseDown += new MouseEventHandler(this.Form1_MouseDown);
+            pictureBox1.MouseMove += new MouseEventHandler(this.Form1_MouseMove);
+            pictureBox1.MouseUp += new MouseEventHandler(this.Form1_MouseUp);
+            lblTimeLeftForFive.Text = "";
             lblVremeForFive.Text = "";
             for (int i = 0; i < Images.Length; i++)
             {
@@ -1143,17 +1158,17 @@ namespace Bejeweled
                         int y = i * IMAGE_SIZE + 5 * i + 50;
 
                         if (type == 0)
-                            Images[i][j] = new Img(x, y, Img.ImageType.Red);
+                            Images[i][j] = new Img(x, y, Img.ImageType.Mars);
                         else if (type == 1)
-                            Images[i][j] = new Img(x, y, Img.ImageType.Blue);
+                            Images[i][j] = new Img(x, y, Img.ImageType.Earth);
                         else if (type == 2)
-                            Images[i][j] = new Img(x, y, Img.ImageType.Green);
+                            Images[i][j] = new Img(x, y, Img.ImageType.Jupiter);
                         else if (type == 3)
-                            Images[i][j] = new Img(x, y, Img.ImageType.Yellow);
+                            Images[i][j] = new Img(x, y, Img.ImageType.Saturn);
                         else if (type == 4)
-                            Images[i][j] = new Img(x, y, Img.ImageType.Orange);
+                            Images[i][j] = new Img(x, y, Img.ImageType.Mercury);
                         else if (type == 5)
-                            Images[i][j] = new Img(x, y, Img.ImageType.Purple);
+                            Images[i][j] = new Img(x, y, Img.ImageType.Comet);
                     }
                 }
             }
@@ -1239,7 +1254,7 @@ namespace Bejeweled
                 Images[i][j].Type == Images[i - 1][j].Type && Images[i][j].Type == Images[i + 2][j].Type &&
                 Images[i][j].Type == Images[i - 2][j].Type)
             {
-                Images[i][j].image = Resources.Gray;
+                Images[i][j].image = Resources.Bomb5;
                 Images[i][j].Type = Img.ImageType.Bomba5;
                 Images[i - 1][j].IsForDeleting = true;
                 Images[i + 1][j].IsForDeleting = true;
@@ -1251,7 +1266,7 @@ namespace Bejeweled
             if (i > 1 && i < MATRIX_HEIGHT - 1 && Images[i][j].Type == Images[i + 1][j].Type &&
                 Images[i][j].Type == Images[i - 1][j].Type && Images[i][j].Type == Images[i - 2][j].Type)
             {
-                Images[i][j].image = Resources.Black;
+                Images[i][j].image = Resources.Bomb4;
                 Images[i][j].Type = Img.ImageType.Bomba4;
                 Images[i - 1][j].IsForDeleting = true;
                 Images[i + 1][j].IsForDeleting = true;
@@ -1262,7 +1277,7 @@ namespace Bejeweled
             if (i > 0 && i < MATRIX_HEIGHT - 2 && Images[i][j].Type == Images[i + 1][j].Type &&
                 Images[i][j].Type == Images[i - 1][j].Type && Images[i][j].Type == Images[i + 2][j].Type)
             {
-                Images[i][j].image = Resources.Black;
+                Images[i][j].image = Resources.Bomb4;
                 Images[i][j].Type = Img.ImageType.Bomba4;
                 Images[i - 1][j].IsForDeleting = true;
                 Images[i + 1][j].IsForDeleting = true;
@@ -1283,7 +1298,7 @@ namespace Bejeweled
                 Images[i][j].Type == Images[i][j - 1].Type && Images[i][j].Type == Images[i][j + 2].Type &&
                 Images[i][j].Type == Images[i][j - 2].Type)
             {
-                Images[i][j].image = Resources.Gray;
+                Images[i][j].image = Resources.Bomb5;
                 Images[i][j].Type = Img.ImageType.Bomba5;
                 Images[i][j - 1].IsForDeleting = true;
                 Images[i][j + 1].IsForDeleting = true;
@@ -1295,7 +1310,7 @@ namespace Bejeweled
             if (j > 1 && j < MATRIX_WIDTH - 1 && Images[i][j].Type == Images[i][j + 1].Type &&
                 Images[i][j].Type == Images[i][j - 1].Type && Images[i][j].Type == Images[i][j - 2].Type)
             {
-                Images[i][j].image = Resources.Black;
+                Images[i][j].image = Resources.Bomb4;
                 Images[i][j].Type = Img.ImageType.Bomba4;
                 Images[i][j - 1].IsForDeleting = true;
                 Images[i][j + 1].IsForDeleting = true;
@@ -1305,7 +1320,7 @@ namespace Bejeweled
             if (j > 0 && j < MATRIX_WIDTH - 2 && Images[i][j].Type == Images[i][j + 1].Type &&
                 Images[i][j].Type == Images[i][j - 1].Type && Images[i][j].Type == Images[i][j + 2].Type)
             {
-                Images[i][j].image = Resources.Black;
+                Images[i][j].image = Resources.Bomb4;
                 Images[i][j].Type = Img.ImageType.Bomba4;
                 Images[i][j - 1].IsForDeleting = true;
                 Images[i][j + 1].IsForDeleting = true;
@@ -1343,7 +1358,7 @@ namespace Bejeweled
            Hint();
             NoOfUsedHints++;
             int x = 3 - NoOfUsedHints;
-            lblNumOfHits.Text = String.Format("{0} hits left.", x);
+            lblNumHits.Text = String.Format("{0} hints left", x);
             if (NoOfUsedHints == 3)
             {
                 btnHint.Enabled = false;
