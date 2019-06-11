@@ -14,6 +14,7 @@ namespace Bejeweled
         public static int IMAGE_SIZE = 50;
         private static readonly int TIME = 4;
 
+        private bool Helper1, Helper2, Helper3;
         private SoundPlayer soundPlayer;
         Img[][] Images;
         Random random;
@@ -30,10 +31,14 @@ namespace Bejeweled
         int time = 0;
         CustomProgressBar progress;
         int NoOfUsedHints;
-
+        int Points;
         public Form1()
         {
             InitializeComponent();
+            Points = 0;
+            Helper1 = true;
+            Helper2 = true;
+            Helper3 = true;
             random = new Random();
             soundPlayer = new SoundPlayer(Resources.Atmosphere_04);
             soundPlayer.Play();
@@ -48,13 +53,31 @@ namespace Bejeweled
             NoOfUsedHints = 0;  
             progress = new CustomProgressBar(0, "");
             timer1.Start();
-            lblNumHits.Text = String.Format("3 hints left");
+            lblNumHits.Text = String.Format("3");
             lblTimeLeftForFive.Text = "";
             GenerateRandomImages();
             DoubleBuffered = true;
             lblNumHits.Parent = pictureBox1;
             lblNumHits.BackColor = Color.Transparent;
-
+            lblHelpers.Parent = pictureBox1;
+            lblHelpers.BackColor = Color.Transparent;
+            lblPoints.Parent = pictureBox1;
+            lblPoints.BackColor = Color.Transparent;
+            lblPoints.Text = String.Format("{0:00000}",Points);
+            pictureBox1.Controls.Add(picStart);
+            pictureBox1.Controls.Add(picHint);
+            pictureBox1.Controls.Add(picSound);
+            pictureBox1.Controls.Add(picSongHelper);
+            pictureBox1.Controls.Add(picSnakeHelper);
+            pictureBox1.Controls.Add(picAssociationsHelper);
+            picAssociationsHelper.BackColor = Color.Transparent;
+            picSnakeHelper.BackColor = Color.Transparent;
+            picSongHelper.BackColor = Color.Transparent;
+            picSound.BackColor = Color.Transparent;
+            picStart.BackColor = Color.Transparent;
+            picHint.BackColor = Color.Transparent;
+            picStart.Tag = "Pause";
+            picSound.Tag = "On";
         }
 
         public void GenerateRandomImages()
@@ -74,7 +97,7 @@ namespace Bejeweled
                     {
                         int type = random.Next(0, 6); // 6 tipovi na sliki (0 - red, 1 - blue, 2 - green, 3 - yellow, 4 - orange, 5 - purple)
                         int x = j * IMAGE_SIZE + 5 * j + 80;
-                        int y = i * IMAGE_SIZE + 5 * i + 50;
+                        int y = i * IMAGE_SIZE + 5 * i + 110;
 
                         if (type == 0)
                             Images[i][j] = new Img(x, y, Img.ImageType.Mars);
@@ -218,22 +241,23 @@ namespace Bejeweled
                     if (Images[I][J].X == Images[I][J + 1].StartingPosition.X
                         && Images[I][J].Y == Images[I][J + 1].StartingPosition.Y)
                     {
-                        //Proveri dali se dve bombi
-                        if(Images[I][J].Type == Img.ImageType.Bomba4 && Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba4)
-                        {
-                           
-                            Images[I][J].image = Resources.Earth;
-                            Images[I][J].Type = Img.ImageType.Earth;
-                            Images[CurrentI][CurrentJ].image = Resources.Mars;
-                            Images[CurrentI][CurrentJ].Type = Img.ImageType.Mars;
-                            Images[I][J].IsSelected = false;
-                            Images[CurrentI][CurrentJ].IsSelected = false;
-                            I = -1;
-                            J = -1;
-                            CallSnake();
-                        }
+                        ////Proveri dali se dve bombi
+                        //if (Images[I][J].Type == Img.ImageType.Bomba4 && Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba4)
+                        //{
+
+                        //    Images[I][J].image = Resources.Earth;
+                        //    Images[I][J].Type = Img.ImageType.Earth;
+                        //    Images[CurrentI][CurrentJ].image = Resources.Mars;
+                        //    Images[CurrentI][CurrentJ].Type = Img.ImageType.Mars;
+                        //    Images[I][J].IsSelected = false;
+                        //    Images[CurrentI][CurrentJ].IsSelected = false;
+                        //    I = -1;
+                        //    J = -1;
+                        //    CallSnake();
+                        //}
+
                         //proveri bomba da ne e kliknata
-                        else if (Images[I][J].Type == Img.ImageType.Bomba5 || Images[I][J].Type == Img.ImageType.Bomba4 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba4 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba5)
+                         if (Images[I][J].Type == Img.ImageType.Bomba5 || Images[I][J].Type == Img.ImageType.Bomba4 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba4 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba5)
                         {
                             SwapSquare(I, J + 1);
                             Point t = Images[I][J].StartingPosition;
@@ -288,22 +312,9 @@ namespace Bejeweled
                     if (Images[I][J].X == Images[I][J - 1].StartingPosition.X
                          && Images[I][J].Y == Images[I][J - 1].StartingPosition.Y)
                     {
-                        //Proveri dali se dve bombi
-                        if (Images[I][J].Type == Img.ImageType.Bomba4 && Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba4)
-                        {
-                          
-                            Images[I][J].image = Resources.Earth;
-                            Images[I][J].Type = Img.ImageType.Earth;
-                            Images[CurrentI][CurrentJ].image = Resources.Mars;
-                            Images[CurrentI][CurrentJ].Type = Img.ImageType.Mars;
-                            Images[I][J].IsSelected = false;
-                            Images[CurrentI][CurrentJ].IsSelected = false;
-                            I = -1;
-                            J = -1;
-                            CallSnake();
-                        }
+                        
                         //proveri bomba da ne e kliknata
-                        else if (Images[I][J].Type == Img.ImageType.Bomba4 || Images[I][J].Type == Img.ImageType.Bomba5 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba4 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba5)
+                         if (Images[I][J].Type == Img.ImageType.Bomba4 || Images[I][J].Type == Img.ImageType.Bomba5 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba4 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba5)
                         {
                             SwapSquare(I, J - 1);
                             Point t = Images[I][J].StartingPosition;
@@ -360,22 +371,9 @@ namespace Bejeweled
                     if (Images[I][J].X == Images[I + 1][J].StartingPosition.X
                         && Images[I][J].Y == Images[I + 1][J].StartingPosition.Y)
                     {
-                        //Proveri dali se dve bombi
-                        if (Images[I][J].Type == Img.ImageType.Bomba4 && Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba4)
-                        {
-                           
-                            Images[I][J].image = Resources.Earth;
-                            Images[I][J].Type = Img.ImageType.Earth;
-                            Images[CurrentI][CurrentJ].image = Resources.Mars;
-                            Images[CurrentI][CurrentJ].Type = Img.ImageType.Mars;
-                            Images[I][J].IsSelected = false;
-                            Images[CurrentI][CurrentJ].IsSelected = false;
-                            I = -1;
-                            J = -1;
-                            CallSnake();
-                        }
+                       
                         //proveri bomba da ne e kliknata
-                        else if(Images[I][J].Type == Img.ImageType.Bomba4 || Images[I][J].Type == Img.ImageType.Bomba5 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba4 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba5)
+                         if(Images[I][J].Type == Img.ImageType.Bomba4 || Images[I][J].Type == Img.ImageType.Bomba5 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba4 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba5)
                         {
                             SwapSquare(I + 1, J);
                             Point t = Images[I][J].StartingPosition;
@@ -430,22 +428,9 @@ namespace Bejeweled
                     if (Images[I][J].X == Images[I - 1][J].StartingPosition.X
                         && Images[I][J].Y == Images[I - 1][J].StartingPosition.Y)
                     {
-                        //Proveri dali se dve bombi
-                        if (Images[I][J].Type == Img.ImageType.Bomba4 && Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba4)
-                        {
-                       
-                            Images[I][J].image = Resources.Earth;
-                            Images[I][J].Type = Img.ImageType.Earth;
-                            Images[CurrentI][CurrentJ].image = Resources.Mars;
-                            Images[CurrentI][CurrentJ].Type = Img.ImageType.Mars;
-                            Images[I][J].IsSelected = false;
-                            Images[CurrentI][CurrentJ].IsSelected = false;
-                            I = -1;
-                            J = -1;
-                            CallSnake();
-                        }
+                        
                         //proveri bomba da ne e kliknata
-                        else if(Images[I][J].Type == Img.ImageType.Bomba4 || Images[I][J].Type == Img.ImageType.Bomba5 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba4 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba5)
+                        if(Images[I][J].Type == Img.ImageType.Bomba4 || Images[I][J].Type == Img.ImageType.Bomba5 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba4 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba5)
                         {
                             SwapSquare(I - 1, J);
                             Point t = Images[I][J].StartingPosition;
@@ -1135,17 +1120,16 @@ namespace Bejeweled
             {
                // soundPlayer.Stop();
                 soundPlayer.Play();
-            }
-            if (time == 120)
-            {
-                timer1.Stop();
-                MessageBox.Show("GAME OVER!!");
-            }
+            } 
             int left = 120 - time;
             int min = left / 60;
             int sec = left % 60;
             string s = String.Format("Time left: {0:00}:{1:00} ", min, sec);
-
+            if (time > 120)
+            {
+                timer1.Stop();
+                MessageBox.Show("GAME OVER!!");
+            }
             progress = new CustomProgressBar(time, s);
             Invalidate();
         }
@@ -1160,7 +1144,7 @@ namespace Bejeweled
                     {
                         int type = random.Next(0, 6); // 6 tipovi na sliki (0 - red, 1 - blue, 2 - green, 3 - yellow, 4 - orange, 5 - purple)
                         int x = j * IMAGE_SIZE + 5 * j + 80;
-                        int y = i * IMAGE_SIZE + 5 * i + 50;
+                        int y = i * IMAGE_SIZE + 5 * i + 110;
 
                         if (type == 0)
                             Images[i][j] = new Img(x, y, Img.ImageType.Mars);
@@ -1363,10 +1347,10 @@ namespace Bejeweled
            Hint();
             NoOfUsedHints++;
             int x = 3 - NoOfUsedHints;
-            lblNumHits.Text = String.Format("{0} hints left", x);
+            lblNumHits.Text = String.Format("{0}", x);
             if (NoOfUsedHints == 3)
             {
-                btnHint.Enabled = false;
+                picHint.Enabled = false;
             }
         }
 
@@ -1403,6 +1387,8 @@ namespace Bejeweled
                         flag = true;
                         break;
                     }
+                    //HORIZONTALNO
+
                     // levo isto razl isto isto
                     if (j > 0 && j < MATRIX_WIDTH - 2 && Images[i][j - 1].Type == Images[i][j + 1].Type && Images[i][j - 1].Type == Images[i][j + 2].Type)
                     {
@@ -1458,6 +1444,98 @@ namespace Bejeweled
                         flag = true;
                         break;
                     }
+                    //isto gore isto
+                    if (i > 0 && j < MATRIX_WIDTH - 2 && Images[i][j].Type == Images[i][j + 2].Type && Images[i][j + 2].Type == Images[i - 1][j + 1].Type)
+                    {
+                        Images[i][j].IsSelected = true;
+                        Images[i][j + 2].IsSelected = true;
+                        Images[i - 1][j + 1].IsSelected = true;
+                        flag = true;
+                        break;
+                    }
+                    //isto dole isto
+                    if (i < MATRIX_HEIGHT - 1 && j < MATRIX_WIDTH - 2 && Images[i][j].Type == Images[i][j + 2].Type && Images[i][j + 2].Type == Images[i + 1][j + 1].Type)
+                    {
+                        Images[i][j].IsSelected = true;
+                        Images[i][j + 2].IsSelected = true;
+                        Images[i + 1][j + 1].IsSelected = true;
+                        flag = true;
+                        break;
+                    }
+                    //VERTIKALNO
+
+                    //isto isto razl isto
+                    if(i < MATRIX_HEIGHT - 3 && Images[i][j].Type == Images[i + 1][j].Type && Images[i][j].Type == Images[i + 3][j].Type)
+                    {
+                        Images[i][j].IsSelected = true;
+                        Images[i + 1][j].IsSelected = true;
+                        Images[i + 3][j].IsSelected = true;
+                        flag = true;
+                        break;
+                    }
+                    //isto razl isto isto
+                    if (i < MATRIX_HEIGHT - 3 && Images[i][j].Type == Images[i + 2][j].Type && Images[i][j].Type == Images[i + 3][j].Type)
+                    {
+                        Images[i][j].IsSelected = true;
+                        Images[i + 2][j].IsSelected = true;
+                        Images[i + 3][j].IsSelected = true;
+                        flag = true;
+                        break;
+                    }
+                    //isto isto razl desno
+                    if (i < MATRIX_HEIGHT - 2 && j < MATRIX_WIDTH - 1 && Images[i][j].Type == Images[i + 1][j].Type && Images[i][j].Type == Images[i + 2][j + 1].Type)
+                    {
+                        Images[i][j].IsSelected = true;
+                        Images[i + 1][j].IsSelected = true;
+                        Images[i + 2][j + 1].IsSelected = true;
+                        flag = true;
+                        break;
+                    }
+                    //isto isto razl levo
+                    if (i < MATRIX_HEIGHT - 2 && j > 0 && Images[i][j].Type == Images[i + 1][j].Type && Images[i][j].Type == Images[i + 2][j - 1].Type)
+                    {
+                        Images[i][j].IsSelected = true;
+                        Images[i + 1][j].IsSelected = true;
+                        Images[i + 2][j - 1].IsSelected = true;
+                        flag = true;
+                        break;
+                    }
+                    //razl isto isto levo
+                    if (i < MATRIX_HEIGHT - 2 && j > 0 && Images[i][j].Type == Images[i +  1][j - 1].Type && Images[i][j].Type == Images[i + 2][j - 1].Type)
+                    {
+                        Images[i][j].IsSelected = true;
+                        Images[i + 1][j - 1].IsSelected = true;
+                        Images[i + 2][j - 1].IsSelected = true;
+                        flag = true;
+                        break;
+                    }
+                    //razl isto isto desno
+                    if (i < MATRIX_HEIGHT - 2 && j < MATRIX_WIDTH - 1 && Images[i][j].Type == Images[i + 1][j + 1].Type && Images[i][j].Type == Images[i + 2][j + 1].Type)
+                    {
+                        Images[i][j].IsSelected = true;
+                        Images[i + 1][j + 1].IsSelected = true;
+                        Images[i + 2][j + 1].IsSelected = true;
+                        flag = true;
+                        break;
+                    }
+                    //isto razl isto levo
+                    if (i < MATRIX_HEIGHT - 2 && j > 0 && Images[i][j].Type == Images[i + 2][j].Type && Images[i][j].Type == Images[i + 1][j - 1].Type)
+                    {
+                        Images[i][j].IsSelected = true;
+                        Images[i + 1][j - 1].IsSelected = true;
+                        Images[i + 2][j].IsSelected = true;
+                        flag = true;
+                        break;
+                    }
+                    //isto razl isto desno
+                    if (i < MATRIX_HEIGHT - 2 && j < MATRIX_WIDTH - 1 && Images[i][j].Type == Images[i + 2][j].Type && Images[i][j].Type == Images[i + 1][j + 1].Type)
+                    {
+                        Images[i][j].IsSelected = true;
+                        Images[i + 1][j + 1].IsSelected = true;
+                        Images[i + 2][j].IsSelected = true;
+                        flag = true;
+                        break;
+                    }
                 }
                 if (flag)
                 {
@@ -1467,40 +1545,115 @@ namespace Bejeweled
             Invalidate();
         }
 
-        private void btnPause_Click(object sender, EventArgs e)
-        {
-            if (btnPause.Text == "Pause")
-            {
-                btnPause.Text = "Start";
-                GamePause();
-            }
-            else
-            {
-                btnPause.Text = "Pause";
-                GameUnPause();
-            }
-        }
-
+       
         private void btnHelp_Click(object sender, EventArgs e)
         {
-
-            if (MessageBox.Show( "Guest the term behind the photo and add 5 sec to your time!", "Earn extra time", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (Helper3)
             {
+                if (MessageBox.Show("Guest the term behind the photo and add 5 sec to your time!", "Earn extra time", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
 
-                CallAssociation();
+                    CallAssociation();
+                    Helper3 = false;
+                    picAssociationsHelper.Image = Resources.MoonUsed;
+                    picAssociationsHelper.Enabled = false;
+
+                }
             }
+           
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            GamePause();
-            SoundForm af = new SoundForm();
-            if (af.ShowDialog() == DialogResult.OK)
+            if (Helper1)
             {
-                af.Close();
+                GamePause();
+                SoundForm af = new SoundForm();
+                if (af.ShowDialog() == DialogResult.OK)
+                {
+                    af.Close();
+                }
+                GameUnPause();
+                picSongHelper.Enabled = false;
+                Helper1 = false;
+                picSongHelper.Image = Resources.SunUsed;
             }
-            GameUnPause();
+           
 
+        }
+
+        private void picStart_Click(object sender, EventArgs e)
+        {
+            if (picStart.Tag.ToString() == "Pause")
+            {
+                picStart.Image = Resources.Start;
+                picStart.Tag = "Start";
+                GamePause();
+            }
+            else
+            {            
+                picStart.Image = Resources.Pause;
+                picStart.Tag = "Pause";
+                GameUnPause();
+            }
+        }
+
+        private void picSnakeHelper_Click(object sender, EventArgs e)
+        {
+            if (Helper2)
+            {
+                CallSnake();
+                Helper2 = false;
+                picSnakeHelper.Image = Resources.StarUsed;
+                picSnakeHelper.Enabled = false;
+            }
+        }
+
+        //NEW GAME
+        public void newGame()
+        {
+            GenerateRandomImages();
+            Points = 0;
+            time = 0;
+            Helper1 = true;
+            Helper2 = true;
+            Helper3 = true;
+            picSnakeHelper.Image = Resources.StarHelper;
+            picSnakeHelper.Enabled = true;
+            picAssociationsHelper.Image = Resources.MoonHelper;
+            picAssociationsHelper.Enabled = true;
+            picSongHelper.Enabled = true;
+            picSongHelper.Image = Resources.Sun;
+            I = -1;
+            J = -1;
+            CurrentI = -1;
+            CurrentJ = -1;
+            Break = false;
+            IsSwapped = false;
+            lblVremeForFive.Text = "";
+            lblNumHits.Text = "3";
+            NoOfUsedHints = 0;
+            GameUnPause();
+            picStart.Tag = "Pause";
+            picStart.Image = Resources.Pause;
+        }
+        private void button2_Click(object sender, EventArgs e)
+        {
+            newGame();
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            if (picSound.Tag.ToString() == "On")
+            {
+                picSound.Image = Resources.SoundOff;
+                picSound.Tag = "Off";
+            }
+            else
+            {
+                picSound.Image = Resources.SoundOn;
+                picSound.Tag = "On";
+            }
         }
 
         public void CheckState()

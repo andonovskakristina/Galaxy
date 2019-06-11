@@ -10,7 +10,7 @@ namespace Bejeweled
     public class CustomProgressBar
     {
         Rectangle rec { get; set; }
-        Point point = new Point(50, 500);
+        Point point = new Point(100, 500);
         int value;
         string text;
         public CustomProgressBar(int current, string txt)

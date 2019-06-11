@@ -236,5 +236,41 @@
   <ItemGroup>
     <EmbeddedResource Include="bin\Debug\Atmosphere-04.wav" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Pause.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Start.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Hint.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\SoundOff.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\SoundOn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Sun.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\SunUsed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\StarHelper.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\StarUsed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\MoonHelper.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\MoonUsed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\BackgroundImage.gif" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
