@@ -13,7 +13,7 @@ namespace Bejeweled
 {
     public partial class AsocijacijaForm : Form
     {
-        public string[] solutions = { "one", "two", "three" };
+        public string[] solutions = { "planet", "comet", "star" };
         public int i;
         int t;
         int points;
@@ -48,7 +48,7 @@ namespace Bejeweled
         }
 
         private void btnCheck_Click(object sender, EventArgs e)   //dava 5 poeni ili ti zema 10 sekundi
-        {  //dava 5 poeni ili ti zema 10 sekundi
+        { 
             {
                 if (txtSolution.Text != "")
                 {
@@ -112,7 +112,7 @@ namespace Bejeweled
             t++;
             int left = 20 - t;
             lblVreme.Text = string.Format("Time left:  {0:00}", left);
-            if (left < 1)
+            if (left == 0)
             {
                 picture.Image = Resources.gameOver;
                 btnCheck.Visible = false;

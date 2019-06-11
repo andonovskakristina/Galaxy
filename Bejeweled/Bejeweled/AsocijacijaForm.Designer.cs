@@ -33,9 +33,9 @@
             this.txtSolution = new System.Windows.Forms.TextBox();
             this.lblPoints = new System.Windows.Forms.Label();
             this.btnNext = new System.Windows.Forms.Button();
-            this.picture = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.lblVreme = new System.Windows.Forms.Label();
+            this.picture = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.picture)).BeginInit();
             this.SuspendLayout();
             // 
@@ -82,15 +82,6 @@
             this.btnNext.UseVisualStyleBackColor = false;
             this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
-            // picture
-            // 
-            this.picture.Image = global::Bejeweled.Properties.Resources.one;
-            this.picture.Location = new System.Drawing.Point(87, 44);
-            this.picture.Name = "picture";
-            this.picture.Size = new System.Drawing.Size(223, 231);
-            this.picture.TabIndex = 12;
-            this.picture.TabStop = false;
-            // 
             // timer1
             // 
             this.timer1.Enabled = true;
@@ -104,6 +95,15 @@
             this.lblVreme.Name = "lblVreme";
             this.lblVreme.Size = new System.Drawing.Size(0, 13);
             this.lblVreme.TabIndex = 13;
+            // 
+            // picture
+            // 
+            this.picture.Image = global::Bejeweled.Properties.Resources.one;
+            this.picture.Location = new System.Drawing.Point(87, 44);
+            this.picture.Name = "picture";
+            this.picture.Size = new System.Drawing.Size(223, 231);
+            this.picture.TabIndex = 12;
+            this.picture.TabStop = false;
             // 
             // AsocijacijaForm
             // 

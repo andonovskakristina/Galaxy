@@ -35,6 +35,8 @@ namespace Bejeweled
         {
             InitializeComponent();
             random = new Random();
+            soundPlayer = new SoundPlayer(Resources.Atmosphere_04);
+            soundPlayer.Play();
             I = -1;
             J = -1;
             CurrentI = -1;
@@ -167,8 +169,6 @@ namespace Bejeweled
             Images[I][J] = Images[a][b];
             Images[a][b] = temp;
         }
-
-
 
         private void Form1_MouseUp(object sender, MouseEventArgs e)
         {
@@ -1131,6 +1131,11 @@ namespace Bejeweled
         private void timer1_Tick(object sender, EventArgs e)
         {
             time++;
+            if(time % 28 == 0)
+            {
+               // soundPlayer.Stop();
+                soundPlayer.Play();
+            }
             if (time == 120)
             {
                 timer1.Stop();

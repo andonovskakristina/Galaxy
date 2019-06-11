@@ -224,5 +224,17 @@
   <ItemGroup>
     <None Include="Properties\Bomb5.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\comet400.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jupter400.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\nebula400.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="bin\Debug\Atmosphere-04.wav" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
