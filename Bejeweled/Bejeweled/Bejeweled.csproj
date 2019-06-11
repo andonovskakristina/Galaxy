@@ -53,18 +53,18 @@
     <Compile Include="AsocijacijaForm.Designer.cs">
       <DependentUpon>AsocijacijaForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Cover.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cover.Designer.cs">
+      <DependentUpon>Cover.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomProgressBar.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GuessTheSong.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GuessTheSong.Designer.cs">
-      <DependentUpon>GuessTheSong.cs</DependentUpon>
     </Compile>
     <Compile Include="Img.cs" />
     <Compile Include="KeyboardHelper.cs">
@@ -98,11 +98,11 @@
     <EmbeddedResource Include="AsocijacijaForm.resx">
       <DependentUpon>AsocijacijaForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Cover.resx">
+      <DependentUpon>Cover.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GuessTheSong.resx">
-      <DependentUpon>GuessTheSong.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="KeyboardHelper.resx">
       <DependentUpon>KeyboardHelper.cs</DependentUpon>
@@ -271,6 +271,36 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\BackgroundImage.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\505 lyrics - Arctic Monkeys-.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Queen - I Want To Break Free %28Official Video%29 %281%29.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Queen - Love of my life.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Sting - Englishman In New York.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\System Of A Down - Toxicity.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\The Police - Roxanne %28Official Music Video%29-[AudioTrimmer.com].wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\The White Stripes - %27Seven Nation Army.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Тоше Проески - Игри без граници %28HQ%29.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\If_I_Know_You.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\On_Off_Snae.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

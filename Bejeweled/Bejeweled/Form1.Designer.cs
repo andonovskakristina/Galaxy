@@ -102,11 +102,11 @@
             // 
             this.button2.BackColor = System.Drawing.Color.MidnightBlue;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button2.Location = new System.Drawing.Point(459, 563);
+            this.button2.Location = new System.Drawing.Point(459, 558);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.Size = new System.Drawing.Size(83, 30);
             this.button2.TabIndex = 14;
             this.button2.Text = "New Game";
             this.button2.UseVisualStyleBackColor = false;

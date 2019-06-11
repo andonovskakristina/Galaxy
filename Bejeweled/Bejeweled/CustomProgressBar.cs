@@ -10,7 +10,7 @@ namespace Bejeweled
     public class CustomProgressBar
     {
         Rectangle rec { get; set; }
-        Point point = new Point(100, 500);
+        Point point = new Point(100, 550);
         int value;
         string text;
         public CustomProgressBar(int current, string txt)
@@ -25,7 +25,7 @@ namespace Bejeweled
             Pen p;
             int skalar = 360 - (value * 3);
             p = new Pen(Color.Black, 1);
-            rec = new Rectangle(80, 500, 360, 30);
+            rec = new Rectangle(80, 560, 360, 30);
             g.DrawRectangle(p, rec);
 
             if (value < 80)
@@ -40,11 +40,11 @@ namespace Bejeweled
             {
                 b = new SolidBrush(Color.FromArgb(255, 230, 255));
             }
-            rec = new Rectangle(81, 501, skalar, 29);
+            rec = new Rectangle(81, 561, skalar, 29);
             g.FillRectangle(b, rec);
             Font f = new Font("Ariel", 14);
             b = new SolidBrush(Color.White);
-            g.DrawString(text, f, b, 200, 505);
+            g.DrawString(text, f, b, 195, 565);
         }
 
 

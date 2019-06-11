@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
+using System.Media;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,8 +17,10 @@ namespace Bejeweled
         public int i;
         int t;
         int points;
+        SoundPlayer soundPlayer;
         bool flag = true;
         bool flag1 = false;
+        
        
         public AsocijacijaForm()
         {
@@ -28,6 +30,8 @@ namespace Bejeweled
             lblVreme.Text = "Time left: 20";
             points = 0;
             t = 0;
+            soundPlayer = new SoundPlayer(Resources.If_I_Know_You);
+            soundPlayer.Play();
         }
         private void StartDialog()
         {
@@ -35,6 +39,7 @@ namespace Bejeweled
            if(MessageBox.Show("Earn extra time","Guest the term behind the photo and and 5 sec to your time!",MessageBoxButtons.YesNo) == DialogResult.OK)
             {
                 timer1.Start();
+               
             }
 
         }
@@ -67,6 +72,7 @@ namespace Bejeweled
                             txtSolution.Visible = false;
                             lblVreme.Text = string.Format("Time left:  0:00");
                             MessageBox.Show("You won " + points + "points!!");
+                            soundPlayer.Stop();
                             timer1.Stop();
                             this.Close();
                         }
@@ -114,11 +120,14 @@ namespace Bejeweled
             lblVreme.Text = string.Format("Time left:  {0:00}", left);
             if (left == 0)
             {
+                soundPlayer.Stop();
                 picture.Image = Resources.gameOver;
                 btnCheck.Visible = false;
                 btnNext.Visible = false;
                 txtSolution.Visible = false;
                 timer1.Stop();
+                soundPlayer.Stop();
+                this.Close();
               //  MessageBox.Show("You won " + points + "points!!");
             }
         }

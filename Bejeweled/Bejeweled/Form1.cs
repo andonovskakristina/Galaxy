@@ -13,7 +13,6 @@ namespace Bejeweled
         public static int MATRIX_HEIGHT = 8;
         public static int IMAGE_SIZE = 50;
         private static readonly int TIME = 4;
-
         private bool Helper1, Helper2, Helper3;
         private SoundPlayer soundPlayer;
         Img[][] Images;
@@ -25,8 +24,9 @@ namespace Bejeweled
         int I, J, CurrentI, CurrentJ;
         bool Break;
         bool IsSwapped;
-      
-      //  bool Delete;
+        bool flagSoundIcon = false;
+        bool flagPauseIcon = false;
+        //  bool Delete;
         int timeElapsed;
         int time = 0;
         CustomProgressBar progress;
@@ -514,6 +514,10 @@ namespace Bejeweled
                 af.Close();
             }
             GameUnPause();
+            if (!flagSoundIcon)
+            {
+                soundPlayer.Play();
+            }
         }
 
         public void RefreshSelected()
@@ -999,7 +1003,6 @@ namespace Bejeweled
             }
         }
 
-
         public void DeleteForFive()
         {
             pictureBox1.MouseDown -= new MouseEventHandler(this.Form1_MouseDown);
@@ -1118,8 +1121,9 @@ namespace Bejeweled
             time++;
             if(time % 28 == 0)
             {
-               // soundPlayer.Stop();
-                soundPlayer.Play();
+                // soundPlayer.Stop();
+                if (!flagPauseIcon && !flagSoundIcon)
+                { soundPlayer.Play(); }
             } 
             int left = 120 - time;
             int min = left / 60;
@@ -1128,7 +1132,11 @@ namespace Bejeweled
             if (time > 120)
             {
                 timer1.Stop();
+                GamePause();
+                soundPlayer.Stop();
                 MessageBox.Show("GAME OVER!!");
+                
+                
             }
             progress = new CustomProgressBar(time, s);
             Invalidate();
@@ -1545,38 +1553,50 @@ namespace Bejeweled
             Invalidate();
         }
 
-       
         private void btnHelp_Click(object sender, EventArgs e)
         {
             if (Helper3)
             {
+                soundPlayer.Stop();
+                GamePause();
                 if (MessageBox.Show("Guest the term behind the photo and add 5 sec to your time!", "Earn extra time", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-
                     CallAssociation();
                     Helper3 = false;
                     picAssociationsHelper.Image = Resources.MoonUsed;
                     picAssociationsHelper.Enabled = false;
-
                 }
+                //GameUnPause();
+                //if (!flagSoundIcon)
+                //{
+                //    soundPlayer.Play();
+                //}
+               
             }
-           
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             if (Helper1)
             {
+                soundPlayer.Stop();
                 GamePause();
-                SoundForm af = new SoundForm();
-                if (af.ShowDialog() == DialogResult.OK)
+                if (MessageBox.Show("Guest the song  and add 5 sec to your time!", "Earn extra time", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    af.Close();
+                  
+                    SoundForm af = new SoundForm();
+                    if (af.ShowDialog() == DialogResult.OK)
+                    {
+                        af.Close();
+                    }                 
+                    picSongHelper.Enabled = false;
+                    Helper1 = false;
+                    picSongHelper.Image = Resources.SunUsed;
                 }
-                GameUnPause();
-                picSongHelper.Enabled = false;
-                Helper1 = false;
-                picSongHelper.Image = Resources.SunUsed;
+            }
+            GameUnPause();
+            if (!flagSoundIcon)
+            {
+                soundPlayer.Play();
             }
            
 
@@ -1584,17 +1604,43 @@ namespace Bejeweled
 
         private void picStart_Click(object sender, EventArgs e)
         {
+            flagSoundIcon = false;
             if (picStart.Tag.ToString() == "Pause")
             {
                 picStart.Image = Resources.Start;
                 picStart.Tag = "Start";
+                soundPlayer.Stop();
+                flagSoundIcon = true;
                 GamePause();
             }
             else
             {            
                 picStart.Image = Resources.Pause;
                 picStart.Tag = "Pause";
+                if (!flagPauseIcon)
+                {
+                    soundPlayer.Play();
+                }
                 GameUnPause();
+            }
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            flagPauseIcon = false;
+            if (picSound.Tag.ToString() == "On")
+            {
+                picSound.Image = Resources.SoundOff;
+                picSound.Tag = "Off";
+                flagPauseIcon = true;
+                soundPlayer.Stop();
+            }
+            else
+            {
+                picSound.Image = Resources.SoundOn;
+                picSound.Tag = "On";
+                if (!flagSoundIcon)
+                { soundPlayer.Play(); }
             }
         }
 
@@ -1602,10 +1648,15 @@ namespace Bejeweled
         {
             if (Helper2)
             {
+                soundPlayer.Stop();
                 CallSnake();
                 Helper2 = false;
                 picSnakeHelper.Image = Resources.StarUsed;
                 picSnakeHelper.Enabled = false;
+                if (!flagSoundIcon)
+                {
+                    soundPlayer.Play();
+                }
             }
         }
 
@@ -1636,24 +1687,11 @@ namespace Bejeweled
             GameUnPause();
             picStart.Tag = "Pause";
             picStart.Image = Resources.Pause;
+            soundPlayer.Play();
         }
         private void button2_Click(object sender, EventArgs e)
         {
             newGame();
-        }
-
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-            if (picSound.Tag.ToString() == "On")
-            {
-                picSound.Image = Resources.SoundOff;
-                picSound.Tag = "Off";
-            }
-            else
-            {
-                picSound.Image = Resources.SoundOn;
-                picSound.Tag = "On";
-            }
         }
 
         public void CheckState()

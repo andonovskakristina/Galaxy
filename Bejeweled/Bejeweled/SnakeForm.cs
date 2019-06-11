@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
+using System.Media;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -14,14 +14,16 @@ namespace Bejeweled
     public partial class SnakeForm : Form
     {    
         Snake s;
-        int left, top, width, height;
+      //  int left, top, width, height;
         Timer moveTimer;
         Timer removeTimer;
         Timer TimeLeft;
         Rectangle bound;
+        SoundPlayer soundPlayer;
         int NumberTicks;
         public SnakeForm()
         {
+            soundPlayer = new SoundPlayer(Resources.On_Off_Snake);
             this.BackgroundImage = Resources.BG4;
             InitializeComponent();
             StartDialog();
@@ -44,7 +46,7 @@ namespace Bejeweled
             removeTimer = new Timer();
             removeTimer.Interval = 100;
             removeTimer.Tick += new EventHandler(removeTimer_Tick);
-            NumberTicks = 200;
+            NumberTicks = 150;
         }
 
         private void StartDialog()
@@ -53,6 +55,7 @@ namespace Bejeweled
             if(kh.ShowDialog() == DialogResult.OK)
             {
                 kh.Close();
+                soundPlayer.Play();
             }
             
         }
@@ -74,6 +77,7 @@ namespace Bejeweled
                 TimeLeft.Stop();
                 pbTimeLeft.Value = 0;
                 removeTimer.Start();
+                soundPlayer.Stop();
             }
             //ako istece vreme
             else if (pbTimeLeft.Value == 0)
@@ -81,6 +85,7 @@ namespace Bejeweled
                 moveTimer.Stop();
                 TimeLeft.Stop();
                 ShowPoints();
+                soundPlayer.Stop();
             }
         }
 

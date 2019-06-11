@@ -28,13 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnPlay = new System.Windows.Forms.Button();
             this.btnSkip = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txtSolution = new System.Windows.Forms.TextBox();
             this.btnCheck = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblPoints = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lblPoeni = new System.Windows.Forms.Label();
+            this.lblTime = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -84,15 +88,6 @@
             this.btnCheck.UseVisualStyleBackColor = true;
             this.btnCheck.Click += new System.EventHandler(this.btnCheck_Click);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Bejeweled.Properties.Resources.guessTheSong;
-            this.pictureBox1.Location = new System.Drawing.Point(24, 71);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(224, 218);
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
-            // 
             // lblPoints
             // 
             this.lblPoints.AutoSize = true;
@@ -101,11 +96,43 @@
             this.lblPoints.Size = new System.Drawing.Size(0, 13);
             this.lblPoints.TabIndex = 6;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Bejeweled.Properties.Resources.guessTheSong;
+            this.pictureBox1.Location = new System.Drawing.Point(24, 71);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(224, 225);
+            this.pictureBox1.TabIndex = 2;
+            this.pictureBox1.TabStop = false;
+            // 
+            // lblPoeni
+            // 
+            this.lblPoeni.AutoSize = true;
+            this.lblPoeni.Location = new System.Drawing.Point(154, 365);
+            this.lblPoeni.Name = "lblPoeni";
+            this.lblPoeni.Size = new System.Drawing.Size(0, 13);
+            this.lblPoeni.TabIndex = 7;
+            // 
+            // lblTime
+            // 
+            this.lblTime.AutoSize = true;
+            this.lblTime.Location = new System.Drawing.Point(24, 364);
+            this.lblTime.Name = "lblTime";
+            this.lblTime.Size = new System.Drawing.Size(0, 13);
+            this.lblTime.TabIndex = 8;
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // SoundForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(328, 392);
+            this.ClientSize = new System.Drawing.Size(272, 390);
+            this.Controls.Add(this.lblTime);
+            this.Controls.Add(this.lblPoeni);
             this.Controls.Add(this.lblPoints);
             this.Controls.Add(this.btnCheck);
             this.Controls.Add(this.txtSolution);
@@ -130,5 +157,8 @@
         private System.Windows.Forms.TextBox txtSolution;
         private System.Windows.Forms.Button btnCheck;
         private System.Windows.Forms.Label lblPoints;
+        private System.Windows.Forms.Label lblPoeni;
+        private System.Windows.Forms.Label lblTime;
+        private System.Windows.Forms.Timer timer1;
     }
 }

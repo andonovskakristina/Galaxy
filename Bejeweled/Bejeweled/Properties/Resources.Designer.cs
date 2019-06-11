@@ -63,6 +63,15 @@ namespace Bejeweled.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
+        internal static System.IO.UnmanagedMemoryStream _505 {
+            get {
+                return ResourceManager.GetStream("_505", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
         internal static System.IO.UnmanagedMemoryStream Atmosphere_04 {
             get {
                 return ResourceManager.GetStream("Atmosphere_04", resourceCulture);
@@ -160,6 +169,15 @@ namespace Bejeweled.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Englishman_In_New_York {
+            get {
+                return ResourceManager.GetStream("Englishman_In_New_York", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap gameOver {
@@ -210,6 +228,33 @@ namespace Bejeweled.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream I_Want_To_Break_Free {
+            get {
+                return ResourceManager.GetStream("I_Want_To_Break_Free", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream If_I_Know_You {
+            get {
+                return ResourceManager.GetStream("If_I_Know_You", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Igri_Bez_Granici {
+            get {
+                return ResourceManager.GetStream("Igri_Bez_Granici", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Jupiter {
@@ -226,6 +271,15 @@ namespace Bejeweled.Properties {
             get {
                 object obj = ResourceManager.GetObject("KeyboardArrows", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Love_of_my_life {
+            get {
+                return ResourceManager.GetStream("Love_of_my_life", resourceCulture);
             }
         }
         
@@ -266,6 +320,15 @@ namespace Bejeweled.Properties {
             get {
                 object obj = ResourceManager.GetObject("MoonUsed", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream On_Off_Snake {
+            get {
+                return ResourceManager.GetStream("On_Off_Snake", resourceCulture);
             }
         }
         
@@ -320,12 +383,30 @@ namespace Bejeweled.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Roxanne {
+            get {
+                return ResourceManager.GetStream("Roxanne", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Saturn {
             get {
                 object obj = ResourceManager.GetObject("Saturn", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Seven_Nation_Army {
+            get {
+                return ResourceManager.GetStream("Seven_Nation_Army", resourceCulture);
             }
         }
         
@@ -416,6 +497,15 @@ namespace Bejeweled.Properties {
             get {
                 object obj = ResourceManager.GetObject("three", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Toxicity {
+            get {
+                return ResourceManager.GetStream("Toxicity", resourceCulture);
             }
         }
         
