@@ -477,17 +477,25 @@ namespace Bejeweled
 
         private void GamePause()
         {
-            pictureBox1.MouseDown -= new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
-            pictureBox1.MouseMove -= new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
-            pictureBox1.MouseUp -= new System.Windows.Forms.MouseEventHandler(this.Form1_MouseUp);
+            pictureBox1.MouseDown -= new MouseEventHandler(this.Form1_MouseDown);
+            pictureBox1.MouseMove -= new MouseEventHandler(this.Form1_MouseMove);
+            pictureBox1.MouseUp -= new MouseEventHandler(this.Form1_MouseUp);
+            picSongHelper.Click -= new EventHandler(this.button1_Click);
+            picSnakeHelper.Click -= new EventHandler(picSnakeHelper_Click);
+            picAssociationsHelper.Click -= new EventHandler(btnHelp_Click);
+            picHint.Click -= new EventHandler(btnHint_Click);
             timer1.Stop();
         }
 
         private void GameUnPause()
         {
-            pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
-            pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
-            pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseUp);
+            pictureBox1.MouseDown += new MouseEventHandler(this.Form1_MouseDown);
+            pictureBox1.MouseMove += new MouseEventHandler(this.Form1_MouseMove);
+            pictureBox1.MouseUp += new MouseEventHandler(this.Form1_MouseUp);
+            picSongHelper.Click += new EventHandler(this.button1_Click);
+            picSnakeHelper.Click += new EventHandler(picSnakeHelper_Click);
+            picAssociationsHelper.Click += new EventHandler(btnHelp_Click);
+            picHint.Click += new EventHandler(btnHint_Click);
             timer1.Start();
         }
         private void CallSnake()
@@ -513,7 +521,7 @@ namespace Bejeweled
             }
             GameUnPause();
             this.Show();
-            if (!flagSoundIcon)
+            if (!flagSoundIcon && !flagPauseIcon)
             {
                 soundPlayer.Play();
                 this.Show();
@@ -1566,12 +1574,7 @@ namespace Bejeweled
                     picAssociationsHelper.Image = Resources.MoonUsed;
                     picAssociationsHelper.Enabled = false;
                 }
-                //GameUnPause();
-                //if (!flagSoundIcon)
-                //{
-                //    soundPlayer.Play();
-                //}
-               
+
             }
         }
         private void button1_Click(object sender, EventArgs e)
@@ -1596,9 +1599,8 @@ namespace Bejeweled
                 }
             }
             this.Show();
-            
             GameUnPause();
-            if (!flagSoundIcon)
+            if (!flagSoundIcon && !flagPauseIcon)
             {
                 soundPlayer.Play();
             }
@@ -1658,7 +1660,7 @@ namespace Bejeweled
                 picSnakeHelper.Image = Resources.StarUsed;
                 picSnakeHelper.Enabled = false;
                 this.Show();
-                if (!flagSoundIcon)
+                if (!flagSoundIcon && !flagPauseIcon)
                 {
                     soundPlayer.Play();
                 }

@@ -126,6 +126,7 @@ namespace Bejeweled
                 txtSolution.Visible = false;
                 timer1.Stop();
                 soundPlayer.Stop();
+                MessageBox.Show("Game over, you won: " + points);
                 this.Close();
             }
         }
