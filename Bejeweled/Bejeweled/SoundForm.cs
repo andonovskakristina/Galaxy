@@ -16,7 +16,7 @@ namespace Bejeweled
         List<int> indeksi;
         Sound song;
         int tick;
-
+        bool first, second, third;
         public SoundForm()
         {
             InitializeComponent();
@@ -27,72 +27,99 @@ namespace Bejeweled
             tick = 0;
             indeksi = new List<int>();
             song = new Sound();
+            lblP.Text = "Points: " + points.ToString();
+            lvlTime.Text = "Time left: 25";
             Name = "";
-            lblPoeni.Text = "Current points: " + points.ToString();
-            lblTime.Text = "Time left: 25";
+            first = false;
+            second = false;
+            third = false;
+        
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            txtSolution.Text = "";
-            index = r.Next(0, 7);
-            if (indeksi.Contains(index))
-            {
-                while (indeksi.Contains(index))
-                {
-                    index = r.Next(0, 7);
-                }
-            }
-            generateSong(index);
-            soundPlayer.Play();
-            txtSolution.Focus();
-            timer1.Start();
-
-        }
+    
 
         private void generateSong(int index)
         {
+            first = second = third = false;
 
             if (index == 0)
             {
                 soundPlayer = new SoundPlayer(Resources._505);
                 Name = "505".ToLower();
+                btnAnwser1.Text = "505";
+                btnAnwser2.Text = "Why do you only when you're high";
+                btnAnwser3.Text = "Do u wanna know?";
+                first = true;
+                second = third = false;
             }
             if (index == 1)
             {
                 soundPlayer = new SoundPlayer(Resources.I_Want_To_Break_Free);
                 Name = "I want to break free".ToLower();
+                btnAnwser1.Text = "A Kind Of Magic";
+                btnAnwser2.Text = "I Want To Break Free";
+                btnAnwser3.Text = "Another One Bites The Dust";
+                second = true;
+                first = third = false;
             }
             if (index == 2)
             {
                 soundPlayer = new SoundPlayer(Resources.Love_of_my_life);
                 Name = "Love of my life".ToLower();
+                btnAnwser1.Text = "Love of my life";
+                btnAnwser2.Text = "I Want to Break Free";
+                btnAnwser3.Text = "Another One Bites The Dust";
+                first = true;
+                second = third = false;
             }
             if (index == 3)
             {
                 soundPlayer = new SoundPlayer(Resources.Englishman_In_New_York);
                 Name = "Englishman in new york".ToLower();
+                btnAnwser1.Text = "Desert rose";
+                btnAnwser2.Text = "Englishman in new york";
+                btnAnwser3.Text = "Stolen car";
+                second = true;
+                first = third = false;
             }
             if (index == 4)
             {
                 soundPlayer = new SoundPlayer(Resources.Toxicity);
                 Name = "Toxicity".ToLower();
+                btnAnwser1.Text = "Prision song";
+                btnAnwser2.Text = "Toxicity";
+                btnAnwser3.Text = "Jet pilot";
+                second = true;
+                first = third = false;
             }
             if (index == 5)
             {
                 soundPlayer = new SoundPlayer(Resources.Roxanne);
                 Name = "Roxanne".ToLower();
+                btnAnwser1.Text = "Roxannee";
+                btnAnwser2.Text = "Just one lifetime";
+                btnAnwser3.Text = "Jet pilot";
+                first = true;
+                second = third = false;
             }
             if (index == 6)
             {
                 soundPlayer = new SoundPlayer(Resources.Igri_Bez_Granici);
                 Name = "Igri bez granici".ToLower();
+                btnAnwser1.Text = "Malechka";
+                btnAnwser2.Text = "Igri bez granici";
+                btnAnwser3.Text = "Polsko cvekje";
+                second = true;
+                first = third = false;
             }
         }
 
         private void btnSkip_Click(object sender, EventArgs e)
         {
-            txtSolution.Text = "";
+            refresh();
+        }
+        private void refresh()
+        {
             index = r.Next(0, 7);
             if (indeksi.Contains(index))
             {
@@ -105,54 +132,80 @@ namespace Bejeweled
             soundPlayer.Play();
             indeksi.Add(index);
         }
-
         private void btnCheck_Click(object sender, EventArgs e)
         {
-            soundPlayer.Stop();
-            if (txtSolution.Text != "")
+        }
+
+        private void btnAnwser1_Click(object sender, EventArgs e)
+        {
+            if(first)
             {
-                if (Name.ToLower().Equals(txtSolution.Text.ToLower()))
-                {
-                    MessageBox.Show("Well done!!");
-                    points += 5;
-                    lblPoeni.Text = "Current points: " + points.ToString();
-                }
-                else
-                {
-                    MessageBox.Show("Sorry,you missed :(");
-                }
+              MessageBox.Show("Well done!!");
+              points += 5;
+             lblP.Text = "Points: " + points.ToString();
+
             }
             else
             {
-                MessageBox.Show("Vnesete odgovor,pa kliknete na Guess!");
+                MessageBox.Show("Sorry,you missed :(" );
             }
-            txtSolution.Text = "";
-            index = r.Next(0, 7);
-            if (indeksi.Contains(index))
+
+            first = false;
+            refresh();
+        }
+
+        private void btnAnwser3_Click(object sender, EventArgs e)
+        {
+            if (third)
             {
-                while (indeksi.Contains(index))
-                {
-                    index = r.Next(0, 7);
-                }
+                MessageBox.Show("Well done!!");
+                points += 5;
+                lblP.Text = "Points: " + points.ToString();
             }
-            generateSong(index);
-            soundPlayer.Play();
-            indeksi.Add(index);
+            else
+            {
+                MessageBox.Show("Sorry,you missed :(");
+            }
+
+            third = false;
+            refresh();
+        }
+
+        private void btnAnwser2_Click(object sender, EventArgs e)
+        {
+            if (second)
+            {
+                MessageBox.Show("Well done!!");
+                points += 5;
+                lblP.Text = "Points: " + points.ToString();
+            }
+            else
+            {
+                MessageBox.Show("Sorry,you missed :(");
+            }
+            refresh();
+            second = false;
 
         }
 
+        private void btnPlay_Click(object sender, EventArgs e)
+        {
+            timer1.Start();
+            refresh();
+        }
         private void timer1_Tick(object sender, EventArgs e)
         {
             tick++;
-            lblTime.Text = "Time left: " + (25 - tick);
+            lvlTime.Text = "Time left: " + (25 - tick);
             if (tick == 25)
             {
                 timer1.Stop();
-                lblTime.Visible = false;
+                soundPlayer.Stop();
                 MessageBox.Show("Game over!!");
                 this.Close();
               
             }
         }
+
     }
 }

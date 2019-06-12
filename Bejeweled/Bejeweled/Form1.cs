@@ -4,7 +4,6 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Media;
 
-
 namespace Bejeweled
 {
     public partial class Form1 : Form
@@ -18,15 +17,12 @@ namespace Bejeweled
         Img[][] Images;
         Random random;
         Timer TimerForFive;
-        //Point FirstPoint;
-        //Point SecondPoint;
         Point PreviousPoint;
         int I, J, CurrentI, CurrentJ;
         bool Break;
         bool IsSwapped;
         bool flagSoundIcon = false;
         bool flagPauseIcon = false;
-        //  bool Delete;
         int timeElapsed;
         int time = 0;
         CustomProgressBar progress;
@@ -498,6 +494,7 @@ namespace Bejeweled
         {
             GamePause();
             SnakeForm sf = new SnakeForm();
+            this.Hide();
             if(sf.ShowDialog() == DialogResult.OK)
             {
                 sf.Close();
@@ -508,18 +505,20 @@ namespace Bejeweled
         private void CallAssociation()
         {
             GamePause();
+            this.Hide();
             AsocijacijaForm af = new AsocijacijaForm();
             if(af.ShowDialog() == DialogResult.OK)
             {
                 af.Close();
             }
             GameUnPause();
+            this.Show();
             if (!flagSoundIcon)
             {
                 soundPlayer.Play();
+                this.Show();
             }
         }
-
         public void RefreshSelected()
         {
             for (int i = 0; i < Images.Length; i++)
@@ -1084,7 +1083,8 @@ namespace Bejeweled
             lblVremeForFive.Text = string.Format("{0:00}:{1:00}", min, sec);
         }
 
-        public void DeleteForFour(int X, int Y) // ka kje se mrdne bombata
+        public void DeleteForFour(int X, int Y) 
+
         {
             if (X < MATRIX_HEIGHT-1) Images[X + 1][Y].IsForDeleting = true;
             if (X > 0) Images[X - 1][Y].IsForDeleting = true;
@@ -1121,9 +1121,10 @@ namespace Bejeweled
             time++;
             if(time % 28 == 0)
             {
-                // soundPlayer.Stop();
                 if (!flagPauseIcon && !flagSoundIcon)
-                { soundPlayer.Play(); }
+                {
+                    soundPlayer.Play();
+                }
             } 
             int left = 120 - time;
             int min = left / 60;
@@ -1135,13 +1136,11 @@ namespace Bejeweled
                 GamePause();
                 soundPlayer.Stop();
                 MessageBox.Show("GAME OVER!!");
-                
-                
+               
             }
             progress = new CustomProgressBar(time, s);
             Invalidate();
         }
-
         public void GenerateRandomDeletedImages()
         {
             for (int i = 0; i < MATRIX_HEIGHT; i++)
@@ -1563,6 +1562,7 @@ namespace Bejeweled
                 {
                     CallAssociation();
                     Helper3 = false;
+                    
                     picAssociationsHelper.Image = Resources.MoonUsed;
                     picAssociationsHelper.Enabled = false;
                 }
@@ -1580,10 +1580,12 @@ namespace Bejeweled
             {
                 soundPlayer.Stop();
                 GamePause();
+
                 if (MessageBox.Show("Guest the song  and add 5 sec to your time!", "Earn extra time", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                   
                     SoundForm af = new SoundForm();
+                    this.Hide();
                     if (af.ShowDialog() == DialogResult.OK)
                     {
                         af.Close();
@@ -1593,6 +1595,8 @@ namespace Bejeweled
                     picSongHelper.Image = Resources.SunUsed;
                 }
             }
+            this.Show();
+            
             GameUnPause();
             if (!flagSoundIcon)
             {
@@ -1653,6 +1657,7 @@ namespace Bejeweled
                 Helper2 = false;
                 picSnakeHelper.Image = Resources.StarUsed;
                 picSnakeHelper.Enabled = false;
+                this.Show();
                 if (!flagSoundIcon)
                 {
                     soundPlayer.Play();
@@ -1660,7 +1665,6 @@ namespace Bejeweled
             }
         }
 
-        //NEW GAME
         public void newGame()
         {
             GenerateRandomImages();

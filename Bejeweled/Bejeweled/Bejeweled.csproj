@@ -302,5 +302,8 @@
   <ItemGroup>
     <None Include="Resources\On_Off_Snae.wav" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Galaxy-600px-14fps.gif" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

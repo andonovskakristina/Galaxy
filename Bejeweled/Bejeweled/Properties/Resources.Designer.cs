@@ -180,6 +180,16 @@ namespace Bejeweled.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Galaxy_600px_14fps {
+            get {
+                object obj = ResourceManager.GetObject("Galaxy_600px_14fps", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap gameOver {
             get {
                 object obj = ResourceManager.GetObject("gameOver", resourceCulture);

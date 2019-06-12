@@ -51,15 +51,14 @@ namespace Bejeweled
             btnCheck.Visible = true;
             txtSolution.Focus();
         }
-
-        private void btnCheck_Click(object sender, EventArgs e)   //dava 5 poeni ili ti zema 10 sekundi
+        private void btnCheck_Click(object sender, EventArgs e) 
         { 
             {
                 if (txtSolution.Text != "")
                 {
                     if (txtSolution.Text.Equals(solutions[i]))
                     {
-                        MessageBox.Show("QUESS!!!  Well done!");
+                        MessageBox.Show("GUESS!!!  Well done!");
                         points += 5;
                         i++;
                         lblPoints.Text = "Current points: " + points.ToString();
@@ -128,7 +127,6 @@ namespace Bejeweled
                 timer1.Stop();
                 soundPlayer.Stop();
                 this.Close();
-              //  MessageBox.Show("You won " + points + "points!!");
             }
         }
 
@@ -136,7 +134,6 @@ namespace Bejeweled
         {
             UpdateTimer();
         }
-
         private void btnNext_Click(object sender, EventArgs e)
         {
             if (i == 2)

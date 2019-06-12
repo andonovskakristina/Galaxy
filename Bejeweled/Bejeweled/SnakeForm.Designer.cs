@@ -44,10 +44,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(389, 422);
             this.Controls.Add(this.pbTimeLeft);
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.Name = "SnakeForm";
             this.Text = "SnakeForm";
+            this.Load += new System.EventHandler(this.SnakeForm_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.ResumeLayout(false);
 
         }

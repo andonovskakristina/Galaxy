@@ -57,13 +57,20 @@ namespace Bejeweled
                 kh.Close();
                 soundPlayer.Play();
             }
-            
         }
 
         private void TimeLeft_Tick(object sender, EventArgs e)
         {
             NumberTicks--;
             pbTimeLeft.Value = NumberTicks / 2;
+            if(pbTimeLeft.Value == 0)
+            {
+                if (MessageBox.Show(String.Format("Total Points Earned: {0}", s.Points.ToString()), "Points") == DialogResult.OK)
+                {
+                    DialogResult = DialogResult.OK;
+                }
+                this.Close();
+            }
         }
 
         private void moveTimer_Tick(object sender, EventArgs e)
@@ -136,6 +143,11 @@ namespace Bejeweled
                 s.squares[0].position = Square.Position.Right;
             }
             Invalidate();
+        }
+
+        private void SnakeForm_Load(object sender, EventArgs e)
+        {
+            
         }
     }
 }
