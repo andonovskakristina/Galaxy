@@ -49,9 +49,9 @@
             this.btnAnwser3.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnAnwser3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnAnwser3.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnAnwser3.Location = new System.Drawing.Point(91, 396);
+            this.btnAnwser3.Location = new System.Drawing.Point(73, 396);
             this.btnAnwser3.Name = "btnAnwser3";
-            this.btnAnwser3.Size = new System.Drawing.Size(113, 32);
+            this.btnAnwser3.Size = new System.Drawing.Size(169, 32);
             this.btnAnwser3.TabIndex = 29;
             this.btnAnwser3.UseVisualStyleBackColor = false;
             this.btnAnwser3.Click += new System.EventHandler(this.btnAnwser3_Click);
@@ -61,9 +61,9 @@
             this.btnAnwser2.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnAnwser2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnAnwser2.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnAnwser2.Location = new System.Drawing.Point(91, 434);
+            this.btnAnwser2.Location = new System.Drawing.Point(73, 434);
             this.btnAnwser2.Name = "btnAnwser2";
-            this.btnAnwser2.Size = new System.Drawing.Size(113, 32);
+            this.btnAnwser2.Size = new System.Drawing.Size(169, 32);
             this.btnAnwser2.TabIndex = 28;
             this.btnAnwser2.UseVisualStyleBackColor = false;
             this.btnAnwser2.Click += new System.EventHandler(this.btnAnwser2_Click);
@@ -73,9 +73,9 @@
             this.btnAnwser1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnAnwser1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnAnwser1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnAnwser1.Location = new System.Drawing.Point(91, 358);
+            this.btnAnwser1.Location = new System.Drawing.Point(73, 358);
             this.btnAnwser1.Name = "btnAnwser1";
-            this.btnAnwser1.Size = new System.Drawing.Size(113, 32);
+            this.btnAnwser1.Size = new System.Drawing.Size(169, 32);
             this.btnAnwser1.TabIndex = 27;
             this.btnAnwser1.UseVisualStyleBackColor = false;
             this.btnAnwser1.Click += new System.EventHandler(this.btnAnwser1_Click);
@@ -86,7 +86,7 @@
             this.label1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.Location = new System.Drawing.Point(105, 328);
+            this.label1.Location = new System.Drawing.Point(122, 329);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(79, 16);
             this.label1.TabIndex = 26;

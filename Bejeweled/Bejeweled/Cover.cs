@@ -25,7 +25,9 @@ namespace Bejeweled
         private void button1_Click(object sender, EventArgs e)
         {
             Form1 form1 = new Form1();
-            form1.Show();
+            this.Hide();
+            form1.ShowDialog();
+            this.Close();
         }
     }
 }

@@ -19,7 +19,6 @@ C:\Users\pc\Desktop\novo3\Bejeweled\Bejeweled\Bejeweled\bin\Release\Bejeweled.pd
 C:\Users\pc\Desktop\novo3\Bejeweled\Bejeweled\Bejeweled\obj\Release\Bejeweled.csprojAssemblyReference.cache
 C:\Users\pc\Desktop\novo3\Bejeweled\Bejeweled\Bejeweled\obj\Release\Bejeweled.AsocijacijaForm.resources
 C:\Users\pc\Desktop\novo3\Bejeweled\Bejeweled\Bejeweled\obj\Release\Bejeweled.Form1.resources
-C:\Users\pc\Desktop\novo3\Bejeweled\Bejeweled\Bejeweled\obj\Release\Bejeweled.GuessTheSong.resources
 C:\Users\pc\Desktop\novo3\Bejeweled\Bejeweled\Bejeweled\obj\Release\Bejeweled.KeyboardHelper.resources
 C:\Users\pc\Desktop\novo3\Bejeweled\Bejeweled\Bejeweled\obj\Release\Bejeweled.Properties.Resources.resources
 C:\Users\pc\Desktop\novo3\Bejeweled\Bejeweled\Bejeweled\obj\Release\Bejeweled.SnakeForm.resources
@@ -58,3 +57,4 @@ C:\Users\User\Desktop\igra5\Bejeweled\Bejeweled\Bejeweled\obj\Release\Bejeweled.
 C:\Users\User\Desktop\igra5\Bejeweled\Bejeweled\Bejeweled\obj\Release\Bejeweled.exe
 C:\Users\User\Desktop\igra5\Bejeweled\Bejeweled\Bejeweled\obj\Release\Bejeweled.pdb
 C:\Users\User\Desktop\igra5\Bejeweled\Bejeweled\Bejeweled\obj\Release\Bejeweled.Cover.resources
+C:\Users\pc\Desktop\novo3\Bejeweled\Bejeweled\Bejeweled\obj\Release\Bejeweled.Cover.resources

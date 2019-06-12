@@ -237,21 +237,7 @@ namespace Bejeweled
                     if (Images[I][J].X == Images[I][J + 1].StartingPosition.X
                         && Images[I][J].Y == Images[I][J + 1].StartingPosition.Y)
                     {
-                        ////Proveri dali se dve bombi
-                        //if (Images[I][J].Type == Img.ImageType.Bomba4 && Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba4)
-                        //{
-
-                        //    Images[I][J].image = Resources.Earth;
-                        //    Images[I][J].Type = Img.ImageType.Earth;
-                        //    Images[CurrentI][CurrentJ].image = Resources.Mars;
-                        //    Images[CurrentI][CurrentJ].Type = Img.ImageType.Mars;
-                        //    Images[I][J].IsSelected = false;
-                        //    Images[CurrentI][CurrentJ].IsSelected = false;
-                        //    I = -1;
-                        //    J = -1;
-                        //    CallSnake();
-                        //}
-
+                       
                         //proveri bomba da ne e kliknata
                          if (Images[I][J].Type == Img.ImageType.Bomba5 || Images[I][J].Type == Img.ImageType.Bomba4 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba4 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba5)
                         {
@@ -268,6 +254,7 @@ namespace Bejeweled
                             else if (Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba4)
                             {
                                 DeleteForFour(CurrentI, CurrentJ);
+
                             }
                             else
                             {
@@ -506,7 +493,13 @@ namespace Bejeweled
             if(sf.ShowDialog() == DialogResult.OK)
             {
                 sf.Close();
+                time -= sf.TimeToAdd;
+                if(time < 0)
+                {
+                    time = 0;
+                }
             }
+            this.Show();
             GameUnPause();
 
         }
@@ -516,9 +509,10 @@ namespace Bejeweled
             this.Hide();
             AsocijacijaForm af = new AsocijacijaForm();
             if(af.ShowDialog() == DialogResult.OK)
-            {
+            {               
                 af.Close();
             }
+            AddRandomBombs(af.Guesses);
             GameUnPause();
             this.Show();
             if (!flagSoundIcon && !flagPauseIcon)
@@ -527,6 +521,19 @@ namespace Bejeweled
                 this.Show();
             }
         }
+
+        private void AddRandomBombs(int guesses)
+        {
+            for(int i = 0; i < guesses; i++)
+            {
+                int x = random.Next(0, MATRIX_WIDTH);
+                int y = random.Next(0, MATRIX_HEIGHT);
+                Images[x][y].image = Resources.Bomb4;
+                Images[x][y].Type = Img.ImageType.Bomba4; 
+            }
+            Invalidate();
+        }
+
         public void RefreshSelected()
         {
             for (int i = 0; i < Images.Length; i++)
@@ -1016,7 +1023,7 @@ namespace Bejeweled
             pictureBox1.MouseMove -= new MouseEventHandler(this.Form1_MouseMove);
             pictureBox1.MouseUp -= new MouseEventHandler(this.Form1_MouseUp);
             pictureBox1.MouseClick += new MouseEventHandler(this.Form1_MouseClick);
-            lblTimeLeftForFive.Text += "TIME LEFT";
+            lblTimeLeftForFive.Text = "TIME LEFT";
             TimerForFive = new Timer();
             TimerForFive.Tick += new EventHandler(TimerForFive_Tick);
             TimerForFive.Interval = 1000;
@@ -1074,12 +1081,14 @@ namespace Bejeweled
                     if (Images[i][j].IsSelected)
                     {
                         Images[i][j].IsSelected = false;
-
+                        Points += 50;
                     }
                 }
             }
             lblVremeForFive.Visible = false;
             DeleteSquares();
+            Points += 700;
+            lblPoints.Text = String.Format("{0:00000}", Points);
             Invalidate(true);
         }
 
@@ -1104,6 +1113,8 @@ namespace Bejeweled
             if (X > 0 && Y < MATRIX_HEIGHT - 1) Images[X - 1][Y + 1].IsForDeleting = true;
             if (Y > 0 && X < MATRIX_WIDTH - 1) Images[X + 1][Y - 1].IsForDeleting = true;
             DeleteSquares();
+            Points += 800;
+            lblPoints.Text = String.Format("{0:00000}", Points);
         }
 
         public void FallDown(int I, int J)
@@ -1190,6 +1201,8 @@ namespace Bejeweled
                 Images[i + 1][j].IsForDeleting = true;
                 Images[i + 2][j].IsForDeleting = true;
                 Images[i - 2][j].IsForDeleting = true;
+                Points += 500;
+                lblPoints.Text = String.Format("{0:00000}", Points);
                 return true;
             }
 
@@ -1201,6 +1214,8 @@ namespace Bejeweled
                 Images[i - 1][j].IsForDeleting = true;
                 Images[i + 1][j].IsForDeleting = true;
                 Images[i - 2][j].IsForDeleting = true;
+                Points += 300;
+                lblPoints.Text = String.Format("{0:00000}", Points);
                 return true;
             }
 
@@ -1211,6 +1226,8 @@ namespace Bejeweled
                 Images[i][j].IsForDeleting = true;
                 Images[i - 1][j].IsForDeleting = true;
                 Images[i + 1][j].IsForDeleting = true;
+                Points += 100;
+                lblPoints.Text = String.Format("{0:00000}", Points);
                 return true;
             }
 
@@ -1224,6 +1241,8 @@ namespace Bejeweled
                 Images[i][j + 1].IsForDeleting = true;
                 Images[i][j + 2].IsForDeleting = true;
                 Images[i][j - 2].IsForDeleting = true;
+                Points += 500;
+                lblPoints.Text = String.Format("{0:00000}", Points);
                 return true;
             }
 
@@ -1235,6 +1254,8 @@ namespace Bejeweled
                 Images[i][j - 1].IsForDeleting = true;
                 Images[i][j + 1].IsForDeleting = true;
                 Images[i][j - 2].IsForDeleting = true;
+                Points += 300;
+                lblPoints.Text = String.Format("{0:00000}", Points);
                 return true;
             }
 
@@ -1245,6 +1266,8 @@ namespace Bejeweled
                 Images[i][j].IsForDeleting = true;
                 Images[i][j - 1].IsForDeleting = true;
                 Images[i][j + 1].IsForDeleting = true;
+                Points += 100;
+                lblPoints.Text = String.Format("{0:00000}", Points);
                 return true;
             }
 
@@ -1264,6 +1287,8 @@ namespace Bejeweled
                 Images[i + 1][j].IsForDeleting = true;
                 Images[i + 2][j].IsForDeleting = true;
                 Images[i - 2][j].IsForDeleting = true;
+                Points += 500;
+                lblPoints.Text = String.Format("{0:00000}", Points);
             }
 
             // 4 vertikalno isto isto razl isto
@@ -1275,6 +1300,8 @@ namespace Bejeweled
                 Images[i - 1][j].IsForDeleting = true;
                 Images[i + 1][j].IsForDeleting = true;
                 Images[i - 2][j].IsForDeleting = true;
+                Points += 300;
+                lblPoints.Text = String.Format("{0:00000}", Points);
             }
 
             // 4 vertikalno isto razl isto isto
@@ -1286,16 +1313,43 @@ namespace Bejeweled
                 Images[i - 1][j].IsForDeleting = true;
                 Images[i + 1][j].IsForDeleting = true;
                 Images[i + 2][j].IsForDeleting = true;
+                Points += 300;
+                lblPoints.Text = String.Format("{0:00000}", Points);
             }
 
-            // 3 vertikalno
+            // 3 vertikalno isto (levo-desno) isto
             if (i > 0 && i < MATRIX_HEIGHT - 1 && Images[i][j].Type == Images[i + 1][j].Type
                 && Images[i][j].Type == Images[i - 1][j].Type)
             {
                 Images[i][j].IsForDeleting = true;
                 Images[i - 1][j].IsForDeleting = true;
                 Images[i + 1][j].IsForDeleting = true;
+                Points += 100;
+                lblPoints.Text = String.Format("{0:00000}",Points);
             }
+
+            // 3 vertikalno isto isto (levo-desno)
+            if (i > 1 && Images[i][j].Type == Images[i - 2][j].Type
+                && Images[i][j].Type == Images[i - 1][j].Type)
+            {
+                Images[i][j].IsForDeleting = true;
+                Images[i - 1][j].IsForDeleting = true;
+                Images[i - 2][j].IsForDeleting = true;
+                Points += 100;
+                lblPoints.Text = String.Format("{0:00000}", Points);
+            }
+
+            // 3 vertikalno (levo-desno) isto isto 
+            if (i < MATRIX_HEIGHT - 2 && Images[i][j].Type == Images[i + 2][j].Type
+                && Images[i][j].Type == Images[i + 1][j].Type)
+            {
+                Images[i][j].IsForDeleting = true;
+                Images[i + 1][j].IsForDeleting = true;
+                Images[i + 2][j].IsForDeleting = true;
+                Points += 100;
+                lblPoints.Text = String.Format("{0:00000}", Points);
+            }
+
 
             // 5 horizontalno
             if (j > 1 && j < MATRIX_WIDTH - 2 && Images[i][j].Type == Images[i][j + 1].Type &&
@@ -1308,6 +1362,8 @@ namespace Bejeweled
                 Images[i][j + 1].IsForDeleting = true;
                 Images[i][j + 2].IsForDeleting = true;
                 Images[i][j - 2].IsForDeleting = true;
+                Points += 500;
+                lblPoints.Text = String.Format("{0:00000}", Points);
             }
 
             // 4 horizontalno isto isto razl isto
@@ -1319,6 +1375,8 @@ namespace Bejeweled
                 Images[i][j - 1].IsForDeleting = true;
                 Images[i][j + 1].IsForDeleting = true;
                 Images[i][j - 2].IsForDeleting = true;
+                Points += 300;
+                lblPoints.Text = String.Format("{0:00000}", Points);
             }
             // 4 horizontalno isto razl isto isto
             if (j > 0 && j < MATRIX_WIDTH - 2 && Images[i][j].Type == Images[i][j + 1].Type &&
@@ -1329,31 +1387,39 @@ namespace Bejeweled
                 Images[i][j - 1].IsForDeleting = true;
                 Images[i][j + 1].IsForDeleting = true;
                 Images[i][j + 2].IsForDeleting = true;
+                Points += 300;
+                lblPoints.Text = String.Format("{0:00000}", Points);
             }
 
-            // 3 horizontalno
+            // 3 horizontalno isto (gore-dolu) isto
             if (j > 0 && j < MATRIX_WIDTH - 1 && Images[i][j].Type == Images[i][j + 1].Type
                 && Images[i][j].Type == Images[i][j - 1].Type)
             {
                 Images[i][j].IsForDeleting = true;
                 Images[i][j - 1].IsForDeleting = true;
                 Images[i][j + 1].IsForDeleting = true;
+                Points += 100;
+                lblPoints.Text = String.Format("{0:00000}", Points);
             }
-            //3 horizontalno - na rab desno
-            if (j == MATRIX_WIDTH - 1 && Images[i][j].Type == Images[i][j - 1].Type
+            //3 horizontalno isto isto (gore-dolu)
+            if (j > 1 && Images[i][j].Type == Images[i][j - 1].Type
                 && Images[i][j].Type == Images[i][j - 2].Type)
             {
                 Images[i][j].IsForDeleting = true;
                 Images[i][j - 1].IsForDeleting = true;
                 Images[i][j - 2].IsForDeleting = true;
+                Points += 100;
+                lblPoints.Text = String.Format("{0:00000}", Points);
             }
-            //3 horizontalno - na rab levo
-            if (j == 0 && Images[i][j].Type == Images[i][j + 1].Type
+            //3 horizontalno (gore-dolu) isto isto 
+            if (j < MATRIX_HEIGHT - 2 && Images[i][j].Type == Images[i][j + 1].Type
                 && Images[i][j].Type == Images[i][j + 2].Type)
             {
                 Images[i][j].IsForDeleting = true;
                 Images[i][j + 1].IsForDeleting = true;
                 Images[i][j + 2].IsForDeleting = true;
+                Points += 100;
+                lblPoints.Text = String.Format("{0:00000}", Points);
             }
         }
 
@@ -1566,7 +1632,7 @@ namespace Bejeweled
             {
                 soundPlayer.Stop();
                 GamePause();
-                if (MessageBox.Show("Guest the term behind the photo and add 5 sec to your time!", "Earn extra time", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (MessageBox.Show("Guest the term behind the photo and add bombs!", "Prize", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     CallAssociation();
                     Helper3 = false;
@@ -1584,7 +1650,7 @@ namespace Bejeweled
                 soundPlayer.Stop();
                 GamePause();
 
-                if (MessageBox.Show("Guest the song  and add 5 sec to your time!", "Earn extra time", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (MessageBox.Show("Guest the song  and get extra points!", "Earn extra time", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                   
                     SoundForm af = new SoundForm();
@@ -1592,7 +1658,9 @@ namespace Bejeweled
                     if (af.ShowDialog() == DialogResult.OK)
                     {
                         af.Close();
-                    }                 
+                    }
+                    Points += af.Points;
+                    lblPoints.Text = String.Format("{0:00000}", Points);
                     picSongHelper.Enabled = false;
                     Helper1 = false;
                     picSongHelper.Image = Resources.SunUsed;
@@ -1671,6 +1739,7 @@ namespace Bejeweled
         {
             GenerateRandomImages();
             Points = 0;
+            lblPoints.Text = String.Format("{0:00000}", Points);
             time = 0;
             Helper1 = true;
             Helper2 = true;
@@ -1690,10 +1759,14 @@ namespace Bejeweled
             lblVremeForFive.Text = "";
             lblNumHits.Text = "3";
             NoOfUsedHints = 0;
+            GamePause();
             GameUnPause();
             picStart.Tag = "Pause";
             picStart.Image = Resources.Pause;
-            soundPlayer.Play();
+            if (flagSoundIcon)
+            {
+                soundPlayer.Play();
+            }
         }
         private void button2_Click(object sender, EventArgs e)
         {

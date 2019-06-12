@@ -16,7 +16,7 @@ namespace Bejeweled
         public int AppleY { get; set; }
         public Random random { get; set; }
         public bool EndGame { get; set; }
-        public int Points { get; set; }
+        public int StarsEaten { get; set; }
         public Snake(Point p, Rectangle rect)
         {
             squares = new List<Square>();
@@ -28,7 +28,7 @@ namespace Bejeweled
             AppleX = random.Next(rect.Left + 15, rect.Width + rect.Left - 15);
             AppleY = random.Next(rect.Top + 15, rect.Height + rect.Top - 15);
             EndGame = false;
-            Points = 0;
+            StarsEaten = 0;
         }
 
         public void Add()
@@ -73,7 +73,7 @@ namespace Bejeweled
                 }
                 AppleX = random.Next(r.Left + 15, r.Width + r.Left - 15);
                 AppleY = random.Next(r.Top + 15, r.Height + r.Top - 15);
-                Points += 50;
+                StarsEaten++;
             }
             CheckIfEatSelf();
         }

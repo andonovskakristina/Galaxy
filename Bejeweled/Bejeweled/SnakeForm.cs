@@ -21,8 +21,10 @@ namespace Bejeweled
         Rectangle bound;
         SoundPlayer soundPlayer;
         int NumberTicks;
+        public int TimeToAdd;
         public SnakeForm()
         {
+            TimeToAdd = 0;
             soundPlayer = new SoundPlayer(Resources.On_Off_Snake);
             this.BackgroundImage = Resources.BG4;
             InitializeComponent();
@@ -65,10 +67,7 @@ namespace Bejeweled
             pbTimeLeft.Value = NumberTicks / 2;
             if(pbTimeLeft.Value == 0)
             {
-                if (MessageBox.Show(String.Format("Total Points Earned: {0}", s.Points.ToString()), "Points") == DialogResult.OK)
-                {
-                    DialogResult = DialogResult.OK;
-                }
+                ShowPoints();
                 this.Close();
             }
         }
@@ -91,7 +90,7 @@ namespace Bejeweled
             {
                 moveTimer.Stop();
                 TimeLeft.Stop();
-                ShowPoints();
+             //   ShowPoints();
                 soundPlayer.Stop();
             }
         }
@@ -111,10 +110,11 @@ namespace Bejeweled
         }
         public void ShowPoints()
         {
-            if (MessageBox.Show(String.Format("Total Points Earned: {0}", s.Points.ToString()), "Points") == DialogResult.OK)
+            if (MessageBox.Show(String.Format("{0} sec added to game", s.StarsEaten * 5), "Prize") == DialogResult.OK)
             {
+                TimeToAdd = s.StarsEaten * 5;
                 DialogResult = DialogResult.OK;
-            }          
+            }
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)

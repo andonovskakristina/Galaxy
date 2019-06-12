@@ -16,7 +16,7 @@ namespace Bejeweled
         public string[] solutions = { "planet", "comet", "star" };
         public int i;
         int t;
-        int points;
+        public int Guesses;
         SoundPlayer soundPlayer;
         bool flag = true;
         bool flag1 = false;
@@ -28,7 +28,7 @@ namespace Bejeweled
             timer1.Start();
             i = 0;
             lblVreme.Text = "Time left: 20";
-            points = 0;
+            Guesses = 0;
             t = 0;
             soundPlayer = new SoundPlayer(Resources.If_I_Know_You);
             soundPlayer.Play();
@@ -36,7 +36,7 @@ namespace Bejeweled
         private void StartDialog()
         {
            
-           if(MessageBox.Show("Earn extra time","Guest the term behind the photo and and 5 sec to your time!",MessageBoxButtons.YesNo) == DialogResult.OK)
+           if(MessageBox.Show("Earn extra bombs","Guest the term behind the photo and get bombs!",MessageBoxButtons.YesNo) == DialogResult.OK)
             {
                 timer1.Start();
                
@@ -59,9 +59,9 @@ namespace Bejeweled
                     if (txtSolution.Text.Equals(solutions[i]))
                     {
                         MessageBox.Show("GUESS!!!  Well done!");
-                        points += 5;
+                        Guesses++;
                         i++;
-                        lblPoints.Text = "Current points: " + points.ToString();
+                        lblPoints.Text = "Current Guesses: " + Guesses.ToString();
                         txtSolution.Text = "";
                         if (i == 3)
                         {
@@ -70,7 +70,7 @@ namespace Bejeweled
                             btnNext.Visible = false;
                             txtSolution.Visible = false;
                             lblVreme.Text = string.Format("Time left:  0:00");
-                            MessageBox.Show("You won " + points + "points!!");
+                            MessageBox.Show("You won " + Guesses + "Bombs!!");
                             soundPlayer.Stop();
                             timer1.Stop();
                             this.Close();
@@ -126,7 +126,7 @@ namespace Bejeweled
                 txtSolution.Visible = false;
                 timer1.Stop();
                 soundPlayer.Stop();
-                MessageBox.Show("Game over, you won: " + points);
+                MessageBox.Show("Game over, you won: " + Guesses + " bombs");
                 this.Close();
             }
         }

@@ -11,23 +11,23 @@ namespace Bejeweled
         private SoundPlayer soundPlayer;
         Random r;
         int index;
-        int points;
         string Name;
         List<int> indeksi;
         Sound song;
         int tick;
         bool first, second, third;
+        public int Points;
         public SoundForm()
         {
             InitializeComponent();
             soundPlayer = new SoundPlayer();
             r = new Random();
+            Points = 0;
             index = 0;
-            points = 0;
             tick = 0;
             indeksi = new List<int>();
             song = new Sound();
-            lblP.Text = "Points: " + points.ToString();
+            lblP.Text = "Points: " + Points.ToString();
             lvlTime.Text = "Time left: 25";
             Name = "";
             first = false;
@@ -141,8 +141,8 @@ namespace Bejeweled
             if(first)
             {
               MessageBox.Show("Well done!!");
-              points += 5;
-             lblP.Text = "Points: " + points.ToString();
+                Points += 300;
+             lblP.Text = "Points: " + Points.ToString();
 
             }
             else
@@ -159,8 +159,8 @@ namespace Bejeweled
             if (third)
             {
                 MessageBox.Show("Well done!!");
-                points += 5;
-                lblP.Text = "Points: " + points.ToString();
+                Points += 300;
+                lblP.Text = "Points: " + Points.ToString();
             }
             else
             {
@@ -176,8 +176,8 @@ namespace Bejeweled
             if (second)
             {
                 MessageBox.Show("Well done!!");
-                points += 5;
-                lblP.Text = "Points: " + points.ToString();
+                Points += 300;
+                lblP.Text = "Points: " + Points.ToString();
             }
             else
             {
