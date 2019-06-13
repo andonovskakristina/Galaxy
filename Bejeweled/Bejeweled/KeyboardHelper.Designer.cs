@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(KeyboardHelper));
             this.btnOkej = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -70,6 +71,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnOkej);
             this.Controls.Add(this.pictureBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "KeyboardHelper";
             this.Text = "KeyboardHelper";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

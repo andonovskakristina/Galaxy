@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.lblNumOfHits = new System.Windows.Forms.Label();
             this.lblVremeForFive = new System.Windows.Forms.Label();
@@ -37,6 +38,14 @@
             this.button2 = new System.Windows.Forms.Button();
             this.lblHelpers = new System.Windows.Forms.Label();
             this.lblPoints = new System.Windows.Forms.Label();
+            this.lblGameHover = new System.Windows.Forms.Label();
+            this.lblSoundHover = new System.Windows.Forms.Label();
+            this.lblAsociaciiHover = new System.Windows.Forms.Label();
+            this.lblSnakeHover = new System.Windows.Forms.Label();
+            this.lblSongsHover = new System.Windows.Forms.Label();
+            this.lblHintHover = new System.Windows.Forms.Label();
+            this.lblHome = new System.Windows.Forms.Label();
+            this.picHome = new System.Windows.Forms.PictureBox();
             this.picAssociationsHelper = new System.Windows.Forms.PictureBox();
             this.picSnakeHelper = new System.Windows.Forms.PictureBox();
             this.picSongHelper = new System.Windows.Forms.PictureBox();
@@ -44,6 +53,7 @@
             this.picHint = new System.Windows.Forms.PictureBox();
             this.picStart = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.picHome)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAssociationsHelper)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picSnakeHelper)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picSongHelper)).BeginInit();
@@ -134,6 +144,109 @@
             this.lblPoints.TabIndex = 22;
             this.lblPoints.Text = "00000";
             // 
+            // lblGameHover
+            // 
+            this.lblGameHover.AutoSize = true;
+            this.lblGameHover.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblGameHover.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblGameHover.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lblGameHover.Location = new System.Drawing.Point(537, 255);
+            this.lblGameHover.Name = "lblGameHover";
+            this.lblGameHover.Size = new System.Drawing.Size(39, 15);
+            this.lblGameHover.TabIndex = 35;
+            this.lblGameHover.Text = "game";
+            this.lblGameHover.Visible = false;
+            // 
+            // lblSoundHover
+            // 
+            this.lblSoundHover.AutoSize = true;
+            this.lblSoundHover.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblSoundHover.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblSoundHover.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lblSoundHover.Location = new System.Drawing.Point(537, 334);
+            this.lblSoundHover.Name = "lblSoundHover";
+            this.lblSoundHover.Size = new System.Drawing.Size(80, 15);
+            this.lblSoundHover.TabIndex = 34;
+            this.lblSoundHover.Text = "Sound On/Off";
+            this.lblSoundHover.Visible = false;
+            // 
+            // lblAsociaciiHover
+            // 
+            this.lblAsociaciiHover.AutoSize = true;
+            this.lblAsociaciiHover.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblAsociaciiHover.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblAsociaciiHover.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.lblAsociaciiHover.Location = new System.Drawing.Point(235, -2);
+            this.lblAsociaciiHover.Name = "lblAsociaciiHover";
+            this.lblAsociaciiHover.Size = new System.Drawing.Size(61, 18);
+            this.lblAsociaciiHover.TabIndex = 33;
+            this.lblAsociaciiHover.Text = "surprise";
+            this.lblAsociaciiHover.Visible = false;
+            // 
+            // lblSnakeHover
+            // 
+            this.lblSnakeHover.AutoSize = true;
+            this.lblSnakeHover.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblSnakeHover.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblSnakeHover.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.lblSnakeHover.Location = new System.Drawing.Point(149, -2);
+            this.lblSnakeHover.Name = "lblSnakeHover";
+            this.lblSnakeHover.Size = new System.Drawing.Size(134, 18);
+            this.lblSnakeHover.TabIndex = 32;
+            this.lblSnakeHover.Text = "earn extra seconds";
+            this.lblSnakeHover.Visible = false;
+            // 
+            // lblSongsHover
+            // 
+            this.lblSongsHover.AutoSize = true;
+            this.lblSongsHover.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblSongsHover.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblSongsHover.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.lblSongsHover.Location = new System.Drawing.Point(108, -2);
+            this.lblSongsHover.Name = "lblSongsHover";
+            this.lblSongsHover.Size = new System.Drawing.Size(112, 18);
+            this.lblSongsHover.TabIndex = 31;
+            this.lblSongsHover.Text = "add extra points";
+            this.lblSongsHover.Visible = false;
+            // 
+            // lblHintHover
+            // 
+            this.lblHintHover.AutoSize = true;
+            this.lblHintHover.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblHintHover.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblHintHover.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lblHintHover.Location = new System.Drawing.Point(558, 161);
+            this.lblHintHover.Name = "lblHintHover";
+            this.lblHintHover.Size = new System.Drawing.Size(29, 15);
+            this.lblHintHover.TabIndex = 30;
+            this.lblHintHover.Text = "Hint";
+            this.lblHintHover.Visible = false;
+            // 
+            // lblHome
+            // 
+            this.lblHome.AutoSize = true;
+            this.lblHome.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblHome.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblHome.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.lblHome.Location = new System.Drawing.Point(538, -2);
+            this.lblHome.Name = "lblHome";
+            this.lblHome.Size = new System.Drawing.Size(49, 18);
+            this.lblHome.TabIndex = 37;
+            this.lblHome.Text = "Home";
+            this.lblHome.Visible = false;
+            // 
+            // picHome
+            // 
+            this.picHome.Image = global::Bejeweled.Properties.Resources.transparent;
+            this.picHome.Location = new System.Drawing.Point(540, 24);
+            this.picHome.Name = "picHome";
+            this.picHome.Size = new System.Drawing.Size(56, 38);
+            this.picHome.TabIndex = 36;
+            this.picHome.TabStop = false;
+            this.picHome.Click += new System.EventHandler(this.pictureBox2_Click_1);
+            this.picHome.MouseLeave += new System.EventHandler(this.pictureBox2_MouseLeave);
+            this.picHome.MouseHover += new System.EventHandler(this.pictureBox2_MouseHover);
+            // 
             // picAssociationsHelper
             // 
             this.picAssociationsHelper.Image = global::Bejeweled.Properties.Resources.MoonHelper;
@@ -143,6 +256,8 @@
             this.picAssociationsHelper.TabIndex = 21;
             this.picAssociationsHelper.TabStop = false;
             this.picAssociationsHelper.Click += new System.EventHandler(this.btnHelp_Click);
+            this.picAssociationsHelper.MouseLeave += new System.EventHandler(this.picAssociationsHelper_MouseLeave);
+            this.picAssociationsHelper.MouseHover += new System.EventHandler(this.picAssociationsHelper_MouseHover);
             // 
             // picSnakeHelper
             // 
@@ -153,6 +268,8 @@
             this.picSnakeHelper.TabIndex = 20;
             this.picSnakeHelper.TabStop = false;
             this.picSnakeHelper.Click += new System.EventHandler(this.picSnakeHelper_Click);
+            this.picSnakeHelper.MouseLeave += new System.EventHandler(this.picSnakeHelper_MouseLeave);
+            this.picSnakeHelper.MouseHover += new System.EventHandler(this.picSnakeHelper_MouseHover);
             // 
             // picSongHelper
             // 
@@ -163,6 +280,8 @@
             this.picSongHelper.TabIndex = 19;
             this.picSongHelper.TabStop = false;
             this.picSongHelper.Click += new System.EventHandler(this.button1_Click);
+            this.picSongHelper.MouseLeave += new System.EventHandler(this.picSongHelper_MouseLeave);
+            this.picSongHelper.MouseHover += new System.EventHandler(this.picSongHelper_MouseHover);
             // 
             // picSound
             // 
@@ -173,6 +292,8 @@
             this.picSound.TabIndex = 17;
             this.picSound.TabStop = false;
             this.picSound.Click += new System.EventHandler(this.pictureBox2_Click);
+            this.picSound.MouseLeave += new System.EventHandler(this.picSound_MouseLeave);
+            this.picSound.MouseHover += new System.EventHandler(this.picSound_MouseHover);
             // 
             // picHint
             // 
@@ -183,6 +304,8 @@
             this.picHint.TabIndex = 16;
             this.picHint.TabStop = false;
             this.picHint.Click += new System.EventHandler(this.btnHint_Click);
+            this.picHint.MouseLeave += new System.EventHandler(this.picHint_MouseLeave);
+            this.picHint.MouseHover += new System.EventHandler(this.picHint_MouseHover);
             // 
             // picStart
             // 
@@ -193,6 +316,8 @@
             this.picStart.TabIndex = 15;
             this.picStart.TabStop = false;
             this.picStart.Click += new System.EventHandler(this.picStart_Click);
+            this.picStart.MouseLeave += new System.EventHandler(this.picStart_MouseLeave_1);
+            this.picStart.MouseHover += new System.EventHandler(this.picStart_MouseHover);
             // 
             // pictureBox1
             // 
@@ -212,6 +337,14 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(623, 608);
+            this.Controls.Add(this.lblHome);
+            this.Controls.Add(this.picHome);
+            this.Controls.Add(this.lblGameHover);
+            this.Controls.Add(this.lblSoundHover);
+            this.Controls.Add(this.lblAsociaciiHover);
+            this.Controls.Add(this.lblSnakeHover);
+            this.Controls.Add(this.lblSongsHover);
+            this.Controls.Add(this.lblHintHover);
             this.Controls.Add(this.lblPoints);
             this.Controls.Add(this.picAssociationsHelper);
             this.Controls.Add(this.picSnakeHelper);
@@ -226,11 +359,13 @@
             this.Controls.Add(this.lblVremeForFive);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblNumOfHits);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Bejeweled";
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseUp);
+            ((System.ComponentModel.ISupportInitialize)(this.picHome)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAssociationsHelper)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picSnakeHelper)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picSongHelper)).EndInit();
@@ -259,6 +394,14 @@
         private System.Windows.Forms.PictureBox picSnakeHelper;
         private System.Windows.Forms.PictureBox picAssociationsHelper;
         private System.Windows.Forms.Label lblPoints;
+        private System.Windows.Forms.Label lblGameHover;
+        private System.Windows.Forms.Label lblSoundHover;
+        private System.Windows.Forms.Label lblAsociaciiHover;
+        private System.Windows.Forms.Label lblSnakeHover;
+        private System.Windows.Forms.Label lblSongsHover;
+        private System.Windows.Forms.Label lblHintHover;
+        private System.Windows.Forms.PictureBox picHome;
+        private System.Windows.Forms.Label lblHome;
     }
 }
 

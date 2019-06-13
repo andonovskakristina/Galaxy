@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SoundForm));
             this.btnAnwser3 = new System.Windows.Forms.Button();
             this.btnAnwser2 = new System.Windows.Forms.Button();
             this.btnAnwser1 = new System.Windows.Forms.Button();
@@ -180,6 +181,7 @@
             this.Controls.Add(this.btnSkip);
             this.Controls.Add(this.btnPlay);
             this.Controls.Add(this.pictureBox2);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SoundForm";
             this.Text = "SoundForm";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

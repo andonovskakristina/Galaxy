@@ -28,6 +28,7 @@ namespace Bejeweled
         CustomProgressBar progress;
         int NoOfUsedHints;
         int Points;
+        Cover cover = new Cover();
         public Form1()
         {
             InitializeComponent();
@@ -66,7 +67,9 @@ namespace Bejeweled
             pictureBox1.Controls.Add(picSongHelper);
             pictureBox1.Controls.Add(picSnakeHelper);
             pictureBox1.Controls.Add(picAssociationsHelper);
+            pictureBox1.Controls.Add(picHome);
             picAssociationsHelper.BackColor = Color.Transparent;
+            picHome.BackColor = Color.Transparent;
             picSnakeHelper.BackColor = Color.Transparent;
             picSongHelper.BackColor = Color.Transparent;
             picSound.BackColor = Color.Transparent;
@@ -1733,6 +1736,98 @@ namespace Bejeweled
                     soundPlayer.Play();
                 }
             }
+        }
+
+        private void picSongHelper_MouseHover(object sender, EventArgs e)
+        {
+            lblSongsHover.Visible = true;
+        }
+
+      
+
+        private void picSnakeHelper_MouseLeave(object sender, EventArgs e)
+        {
+            lblSnakeHover.Visible = false;
+        }
+
+        private void picSnakeHelper_MouseHover(object sender, EventArgs e)
+        {
+            lblSnakeHover.Visible = true;
+        }
+
+        private void picAssociationsHelper_MouseHover(object sender, EventArgs e)
+        {
+            lblAsociaciiHover.Visible = true;
+        }
+        private void picAssociationsHelper_MouseLeave(object sender, EventArgs e)
+        {
+            lblAsociaciiHover.Visible = false;
+        }
+
+        private void picHint_MouseHover(object sender, EventArgs e)
+        {
+            lblHintHover.Visible = true;
+        }
+        private void picHint_MouseLeave(object sender, EventArgs e)
+        {
+            lblHintHover.Visible = false;
+        }
+
+        private void picSongHelper_MouseLeave(object sender, EventArgs e)
+        {
+            lblSongsHover.Visible = false;
+        }
+
+        private void picSound_MouseHover(object sender, EventArgs e)
+        {
+            lblSoundHover.Visible = true;
+        }
+
+        private void picSound_MouseLeave(object sender, EventArgs e)
+        {
+            lblSoundHover.Visible = false;
+        }
+
+        private void picStart_MouseHover(object sender, EventArgs e)
+        {
+            if (picStart.Tag.Equals("Start"))
+            {
+                lblGameHover.Text = "Resume Game";
+                lblGameHover.Visible = true;
+            }
+            else
+            {
+                lblGameHover.Text = "Pause Game";
+                lblGameHover.Visible = true;
+
+            }
+        }
+        private void picStart_MouseLeave(object sender, EventArgs e)
+            {
+                lblGameHover.Visible = false;
+            }
+
+        private void picStart_MouseLeave_1(object sender, EventArgs e)
+        {
+            lblGameHover.Visible = false;
+        }
+
+        private void pictureBox2_Click_1(object sender, EventArgs e)
+        {
+             this.Hide();
+            cover.ShowDialog();
+            this.Close();
+
+        }
+
+        private void pictureBox2_MouseHover(object sender, EventArgs e)
+        {
+            lblHome.Visible = true;
+        }
+
+        private void pictureBox2_MouseLeave(object sender, EventArgs e)
+        {
+            lblHome.Visible = false;
         }
 
         public void newGame()

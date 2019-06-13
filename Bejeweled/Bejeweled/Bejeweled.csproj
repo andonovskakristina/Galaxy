@@ -305,5 +305,17 @@
   <ItemGroup>
     <None Include="Resources\Galaxy-600px-14fps.gif" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home-home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home-icon-silhouette.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\house.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\transparent.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
