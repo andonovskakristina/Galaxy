@@ -13,6 +13,8 @@ namespace Bejeweled
         public static int IMAGE_SIZE = 50;
         private static readonly int TIME = 4;
         private bool Helper1, Helper2, Helper3;
+        // 0 - right, 1 -left, 2 - bottom, 3 - top, -1 - start
+        int FlagMove;
         Scores HS;
         public SoundPlayer soundPlayer;
         Img[][] Images;
@@ -33,6 +35,7 @@ namespace Bejeweled
         public Form1()
         {
             InitializeComponent();
+            FlagMove = -1;
             Points = 0;
             Helper1 = true;
             Helper2 = true;
@@ -210,6 +213,7 @@ namespace Bejeweled
                 I = -1;
                 J = -1;
             }
+            FlagMove = -1;
             RefreshSelected();
             Invalidate(true);
         }
@@ -225,11 +229,11 @@ namespace Bejeweled
 
                 // move right one square
                 //Current Square for putting back in place if no swap happens
-                if (J < (Images[I].Length - 1) && newX <= (Images[I][J].StartingPosition.X + 5 + IMAGE_SIZE) &&
+                if ((FlagMove == -1 || FlagMove == 0) && J < (Images[I].Length - 1) && newX <= (Images[I][J].StartingPosition.X + 5 + IMAGE_SIZE) &&
                     newX >= Images[I][J].StartingPosition.X
                     && newY == Images[I][J].StartingPosition.Y)
                 {
-
+                    FlagMove = 0;
                     Images[I][J].X = Images[I][J].X + dX;
                     Images[I][J].Y = Images[I][J].Y;
                     Images[I][J + 1].X = Images[I][J + 1].X - dX;
@@ -243,7 +247,7 @@ namespace Bejeweled
                     {
                         Images[I][J].X = Images[I][J + 1].StartingPosition.X;
                         Images[I][J + 1].X = Images[I][J].StartingPosition.X;
-
+                        FlagMove = -1;
                         //proveri bomba da ne e kliknata
                         if (Images[I][J].Type == Img.ImageType.Bomba5 || Images[I][J].Type == Img.ImageType.Bomba4 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba4 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba5)
                         {
@@ -285,6 +289,8 @@ namespace Bejeweled
                         }
                         else
                         {
+                            Images[I][J].X = Images[I][J].StartingPosition.X;
+                            Images[I][J + 1].X = Images[I][J + 1].StartingPosition.X;
                             RefreshSelected();
                             I = -1;
                             J = -1;
@@ -293,7 +299,7 @@ namespace Bejeweled
                 }
 
                 // move left one square
-                else if (J > 0 && newX <= Images[I][J].StartingPosition.X
+                else if ((FlagMove == -1 || FlagMove == 1) && J > 0 && newX <= Images[I][J].StartingPosition.X
                     && newX >= (Images[I][J].StartingPosition.X - 5 - IMAGE_SIZE)
                     && newY == Images[I][J].StartingPosition.Y)
                 {
@@ -304,11 +310,13 @@ namespace Bejeweled
                     Images[I][J - 1].IsSelected = true;
                     CurrentI = I;
                     CurrentJ = J - 1;
+                    FlagMove = 1;
                     if (Images[I][J].X <= Images[I][J - 1].StartingPosition.X + 20
                          && Images[I][J].Y == Images[I][J - 1].StartingPosition.Y)
                     {
                         Images[I][J].X = Images[I][J - 1].StartingPosition.X;
                         Images[I][J - 1].X = Images[I][J].StartingPosition.X;
+                        FlagMove = -1;
                         //proveri bomba da ne e kliknata
                         if (Images[I][J].Type == Img.ImageType.Bomba4 || Images[I][J].Type == Img.ImageType.Bomba5 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba4 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba5)
                         {
@@ -350,6 +358,8 @@ namespace Bejeweled
                         else
                         {
                             RefreshSelected();
+                            Images[I][J].X = Images[I][J].StartingPosition.X;
+                            Images[I][J - 1].X = Images[I][J - 1].StartingPosition.X;
                             I = -1;
                             J = -1;
                         }
@@ -358,7 +368,7 @@ namespace Bejeweled
                 }
 
                 // move bottom one square
-                else if (I < (Images.Length - 1) && newY <= (Images[I][J].StartingPosition.Y + 5 + IMAGE_SIZE)
+                else if ((FlagMove == -1 || FlagMove == 2) && I < (Images.Length - 1) && newY <= (Images[I][J].StartingPosition.Y + 5 + IMAGE_SIZE)
                     && newY >= Images[I][J].StartingPosition.Y
                     && newX == Images[I][J].StartingPosition.X)
                 {
@@ -369,11 +379,13 @@ namespace Bejeweled
                     Images[I + 1][J].IsSelected = true;
                     CurrentI = I + 1;
                     CurrentJ = J;
+                    FlagMove = 2;
                     if (Images[I][J].X == Images[I + 1][J].StartingPosition.X
                         && Images[I][J].Y >= Images[I + 1][J].StartingPosition.Y - 20)
                     {
                         Images[I][J].Y = Images[I + 1][J].StartingPosition.Y;
                         Images[I + 1][J].Y = Images[I][J].StartingPosition.Y;
+                        FlagMove = -1;
                         //proveri bomba da ne e kliknata
                         if (Images[I][J].Type == Img.ImageType.Bomba4 || Images[I][J].Type == Img.ImageType.Bomba5 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba4 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba5)
                         {
@@ -415,6 +427,8 @@ namespace Bejeweled
                         else
                         {
                             RefreshSelected();
+                            Images[I][J].Y = Images[I][J].StartingPosition.Y;
+                            Images[I + 1][J].Y = Images[I + 1][J].StartingPosition.Y;
                             I = -1;
                             J = -1;
                         }
@@ -422,7 +436,7 @@ namespace Bejeweled
                 }
 
                 // move top one square
-                else if (I > 0 && newY >= (Images[I][J].StartingPosition.Y - 5 - IMAGE_SIZE)
+                else if ((FlagMove == -1 || FlagMove == 3) && I > 0 && newY >= (Images[I][J].StartingPosition.Y - 5 - IMAGE_SIZE)
                      && newY <= Images[I][J].StartingPosition.Y
                      && newX == Images[I][J].StartingPosition.X)
                 {
@@ -433,11 +447,13 @@ namespace Bejeweled
                     Images[I - 1][J].IsSelected = true;
                     CurrentI = I - 1;
                     CurrentJ = J;
+                    FlagMove = 3;
                     if (Images[I][J].X == Images[I - 1][J].StartingPosition.X
                         && Images[I][J].Y <= Images[I - 1][J].StartingPosition.Y + 20)
                     {
                         Images[I][J].Y = Images[I - 1][J].StartingPosition.Y;
                         Images[I - 1][J].Y = Images[I][J].StartingPosition.Y;
+                        FlagMove = -1;
                         //proveri bomba da ne e kliknata
                         if (Images[I][J].Type == Img.ImageType.Bomba4 || Images[I][J].Type == Img.ImageType.Bomba5 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba4 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba5)
                         {
@@ -479,9 +495,13 @@ namespace Bejeweled
                         else
                         {
                             RefreshSelected();
+                            Images[I][J].Y = Images[I][J].StartingPosition.Y;
+                            Images[I - 1][J].Y = Images[I - 1][J].StartingPosition.Y;
                             I = -1;
                             J = -1;
+
                         }
+                       
 
                     }
                 }
