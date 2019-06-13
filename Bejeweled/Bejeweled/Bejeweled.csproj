@@ -329,5 +329,8 @@
   <ItemGroup>
     <None Include="Resources\transparent.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\HomeIcon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

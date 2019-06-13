@@ -228,7 +228,7 @@
             this.lblHome.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lblHome.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lblHome.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.lblHome.Location = new System.Drawing.Point(538, -2);
+            this.lblHome.Location = new System.Drawing.Point(555, 9);
             this.lblHome.Name = "lblHome";
             this.lblHome.Size = new System.Drawing.Size(49, 18);
             this.lblHome.TabIndex = 37;
@@ -237,10 +237,10 @@
             // 
             // picHome
             // 
-            this.picHome.Image = global::Bejeweled.Properties.Resources.transparent;
-            this.picHome.Location = new System.Drawing.Point(540, 24);
+            this.picHome.Image = global::Bejeweled.Properties.Resources.HomeIcon;
+            this.picHome.Location = new System.Drawing.Point(558, 33);
             this.picHome.Name = "picHome";
-            this.picHome.Size = new System.Drawing.Size(56, 38);
+            this.picHome.Size = new System.Drawing.Size(43, 38);
             this.picHome.TabIndex = 36;
             this.picHome.TabStop = false;
             this.picHome.Click += new System.EventHandler(this.pictureBox2_Click_1);

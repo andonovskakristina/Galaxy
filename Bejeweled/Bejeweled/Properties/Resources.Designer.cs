@@ -111,26 +111,6 @@ namespace Bejeweled.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Black {
-            get {
-                object obj = ResourceManager.GetObject("Black", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Blue {
-            get {
-                object obj = ResourceManager.GetObject("Blue", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Bomb4 {
             get {
                 object obj = ResourceManager.GetObject("Bomb4", resourceCulture);
@@ -200,26 +180,6 @@ namespace Bejeweled.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Gray {
-            get {
-                object obj = ResourceManager.GetObject("Gray", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Green {
-            get {
-                object obj = ResourceManager.GetObject("Green", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap guessTheSong {
             get {
                 object obj = ResourceManager.GetObject("guessTheSong", resourceCulture);
@@ -240,29 +200,9 @@ namespace Bejeweled.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap home_home {
+        internal static System.Drawing.Bitmap HomeIcon {
             get {
-                object obj = ResourceManager.GetObject("home_home", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap home_icon_silhouette {
-            get {
-                object obj = ResourceManager.GetObject("home_icon_silhouette", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap house {
-            get {
-                object obj = ResourceManager.GetObject("house", resourceCulture);
+                object obj = ResourceManager.GetObject("HomeIcon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -385,39 +325,9 @@ namespace Bejeweled.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Orange {
-            get {
-                object obj = ResourceManager.GetObject("Orange", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Pause {
             get {
                 object obj = ResourceManager.GetObject("Pause", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Purple {
-            get {
-                object obj = ResourceManager.GetObject("Purple", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Red {
-            get {
-                object obj = ResourceManager.GetObject("Red", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -552,16 +462,6 @@ namespace Bejeweled.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap transparent {
-            get {
-                object obj = ResourceManager.GetObject("transparent", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap two {
             get {
                 object obj = ResourceManager.GetObject("two", resourceCulture);
@@ -575,16 +475,6 @@ namespace Bejeweled.Properties {
         internal static System.Drawing.Bitmap White {
             get {
                 object obj = ResourceManager.GetObject("White", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Yellow {
-            get {
-                object obj = ResourceManager.GetObject("Yellow", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

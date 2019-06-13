@@ -238,12 +238,14 @@ namespace Bejeweled
                     CurrentI = I;
                     CurrentJ = J + 1;
                     //check if square moved to end, then swap
-                    if (Images[I][J].X == Images[I][J + 1].StartingPosition.X
+                    if (Images[I][J].X >= (Images[I][J + 1].StartingPosition.X - 20)
                         && Images[I][J].Y == Images[I][J + 1].StartingPosition.Y)
                     {
-                       
+                        Images[I][J].X = Images[I][J + 1].StartingPosition.X;
+                        Images[I][J + 1].X = Images[I][J].StartingPosition.X;
+
                         //proveri bomba da ne e kliknata
-                         if (Images[I][J].Type == Img.ImageType.Bomba5 || Images[I][J].Type == Img.ImageType.Bomba4 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba4 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba5)
+                        if (Images[I][J].Type == Img.ImageType.Bomba5 || Images[I][J].Type == Img.ImageType.Bomba4 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba4 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba5)
                         {
                             SwapSquare(I, J + 1);
                             Point t = Images[I][J].StartingPosition;
@@ -267,7 +269,7 @@ namespace Bejeweled
                             I = -1;
                             J = -1;
                         }
-                       else if(IsSwapPossible(I, J, CurrentI, CurrentJ))
+                        else if (IsSwapPossible(I, J, CurrentI, CurrentJ))
                         {
                             SwapSquare(I, J + 1);
                             Point t = Images[I][J].StartingPosition;
@@ -278,6 +280,12 @@ namespace Bejeweled
                             IsSwapped = true;
                             CheckAndAddBomb(I, J);
                             CheckAndAddBomb(CurrentI, CurrentJ);
+                            I = -1;
+                            J = -1;
+                        }
+                        else
+                        {
+                            RefreshSelected();
                             I = -1;
                             J = -1;
                         }
@@ -296,12 +304,13 @@ namespace Bejeweled
                     Images[I][J - 1].IsSelected = true;
                     CurrentI = I;
                     CurrentJ = J - 1;
-                    if (Images[I][J].X == Images[I][J - 1].StartingPosition.X
+                    if (Images[I][J].X <= Images[I][J - 1].StartingPosition.X + 20
                          && Images[I][J].Y == Images[I][J - 1].StartingPosition.Y)
                     {
-                        
+                        Images[I][J].X = Images[I][J - 1].StartingPosition.X;
+                        Images[I][J - 1].X = Images[I][J].StartingPosition.X;
                         //proveri bomba da ne e kliknata
-                         if (Images[I][J].Type == Img.ImageType.Bomba4 || Images[I][J].Type == Img.ImageType.Bomba5 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba4 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba5)
+                        if (Images[I][J].Type == Img.ImageType.Bomba4 || Images[I][J].Type == Img.ImageType.Bomba5 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba4 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba5)
                         {
                             SwapSquare(I, J - 1);
                             Point t = Images[I][J].StartingPosition;
@@ -338,7 +347,12 @@ namespace Bejeweled
                             I = -1;
                             J = -1;
                         }
-
+                        else
+                        {
+                            RefreshSelected();
+                            I = -1;
+                            J = -1;
+                        }
 
                     }
                 }
@@ -356,11 +370,12 @@ namespace Bejeweled
                     CurrentI = I + 1;
                     CurrentJ = J;
                     if (Images[I][J].X == Images[I + 1][J].StartingPosition.X
-                        && Images[I][J].Y == Images[I + 1][J].StartingPosition.Y)
+                        && Images[I][J].Y >= Images[I + 1][J].StartingPosition.Y - 20)
                     {
-                       
+                        Images[I][J].Y = Images[I + 1][J].StartingPosition.Y;
+                        Images[I + 1][J].Y = Images[I][J].StartingPosition.Y;
                         //proveri bomba da ne e kliknata
-                         if(Images[I][J].Type == Img.ImageType.Bomba4 || Images[I][J].Type == Img.ImageType.Bomba5 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba4 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba5)
+                        if (Images[I][J].Type == Img.ImageType.Bomba4 || Images[I][J].Type == Img.ImageType.Bomba5 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba4 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba5)
                         {
                             SwapSquare(I + 1, J);
                             Point t = Images[I][J].StartingPosition;
@@ -383,7 +398,7 @@ namespace Bejeweled
                             I = -1;
                             J = -1;
                         }
-                        else if (IsSwapPossible(I,J,CurrentI,CurrentJ))
+                        else if (IsSwapPossible(I, J, CurrentI, CurrentJ))
                         {
                             SwapSquare(I + 1, J);
                             Point t = Images[I][J].StartingPosition;
@@ -394,6 +409,12 @@ namespace Bejeweled
                             IsSwapped = true;
                             CheckAndAddBomb(I, J);
                             CheckAndAddBomb(CurrentI, CurrentJ);
+                            I = -1;
+                            J = -1;
+                        }
+                        else
+                        {
+                            RefreshSelected();
                             I = -1;
                             J = -1;
                         }
@@ -413,11 +434,12 @@ namespace Bejeweled
                     CurrentI = I - 1;
                     CurrentJ = J;
                     if (Images[I][J].X == Images[I - 1][J].StartingPosition.X
-                        && Images[I][J].Y == Images[I - 1][J].StartingPosition.Y)
+                        && Images[I][J].Y <= Images[I - 1][J].StartingPosition.Y + 20)
                     {
-                        
+                        Images[I][J].Y = Images[I - 1][J].StartingPosition.Y;
+                        Images[I - 1][J].Y = Images[I][J].StartingPosition.Y;
                         //proveri bomba da ne e kliknata
-                        if(Images[I][J].Type == Img.ImageType.Bomba4 || Images[I][J].Type == Img.ImageType.Bomba5 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba4 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba5)
+                        if (Images[I][J].Type == Img.ImageType.Bomba4 || Images[I][J].Type == Img.ImageType.Bomba5 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba4 || Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba5)
                         {
                             SwapSquare(I - 1, J);
                             Point t = Images[I][J].StartingPosition;
@@ -429,7 +451,7 @@ namespace Bejeweled
                             {
                                 DeleteForFive();
                             }
-                            else if(Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba4)
+                            else if (Images[CurrentI][CurrentJ].Type == Img.ImageType.Bomba4)
                             {
                                 DeleteForFour(CurrentI, CurrentJ);
                             }
@@ -454,7 +476,13 @@ namespace Bejeweled
                             I = -1;
                             J = -1;
                         }
-                       
+                        else
+                        {
+                            RefreshSelected();
+                            I = -1;
+                            J = -1;
+                        }
+
                     }
                 }
                 if (IsSwapped)
