@@ -66,6 +66,14 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="HighScores.cs" />
+    <Compile Include="High_Scores_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="High_Scores_Form.Designer.cs">
+      <DependentUpon>High_Scores_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HighScoreItem.cs" />
     <Compile Include="Img.cs" />
     <Compile Include="KeyboardHelper.cs">
       <SubType>Form</SubType>
@@ -80,6 +88,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Scores.cs" />
     <Compile Include="Snake.cs" />
     <Compile Include="SnakeForm.cs">
       <SubType>Form</SubType>
@@ -103,6 +112,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="High_Scores_Form.resx">
+      <DependentUpon>High_Scores_Form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="KeyboardHelper.resx">
       <DependentUpon>KeyboardHelper.cs</DependentUpon>

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AsocijacijaForm));
             this.btnCheck = new System.Windows.Forms.Button();
             this.txtSolution = new System.Windows.Forms.TextBox();
             this.lblPoints = new System.Windows.Forms.Label();
@@ -116,8 +117,9 @@
             this.Controls.Add(this.lblPoints);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.picture);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AsocijacijaForm";
-            this.Text = "AsocijacijaFormcs";
+            this.Text = "AsocijacijaForm";
             ((System.ComponentModel.ISupportInitialize)(this.picture)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

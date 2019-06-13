@@ -13,7 +13,8 @@ namespace Bejeweled
         public static int IMAGE_SIZE = 50;
         private static readonly int TIME = 4;
         private bool Helper1, Helper2, Helper3;
-        private SoundPlayer soundPlayer;
+        Scores HS;
+        public SoundPlayer soundPlayer;
         Img[][] Images;
         Random random;
         Timer TimerForFive;
@@ -21,8 +22,8 @@ namespace Bejeweled
         int I, J, CurrentI, CurrentJ;
         bool Break;
         bool IsSwapped;
-        bool flagSoundIcon = false;
-        bool flagPauseIcon = false;
+        public bool flagSoundIcon = false;
+        public bool flagPauseIcon = false;
         int timeElapsed;
         int time = 0;
         CustomProgressBar progress;
@@ -473,7 +474,12 @@ namespace Bejeweled
             picSongHelper.Click -= new EventHandler(this.button1_Click);
             picSnakeHelper.Click -= new EventHandler(picSnakeHelper_Click);
             picAssociationsHelper.Click -= new EventHandler(btnHelp_Click);
+            picSongHelper.MouseHover -= new EventHandler (picSongHelper_MouseHover);
+            picSnakeHelper.MouseHover -= new EventHandler(picSnakeHelper_MouseHover);
+            picAssociationsHelper.MouseHover -= new EventHandler(picAssociationsHelper_MouseHover);
+            picHint.MouseHover -= new EventHandler(picHint_MouseHover);
             picHint.Click -= new EventHandler(btnHint_Click);
+            picSound.MouseHover -= new EventHandler(picSound_MouseHover);
             timer1.Stop();
         }
 
@@ -486,11 +492,17 @@ namespace Bejeweled
             picSnakeHelper.Click += new EventHandler(picSnakeHelper_Click);
             picAssociationsHelper.Click += new EventHandler(btnHelp_Click);
             picHint.Click += new EventHandler(btnHint_Click);
+            picSongHelper.MouseHover += new EventHandler(picSongHelper_MouseHover);
+            picSnakeHelper.MouseHover += new EventHandler(picSnakeHelper_MouseHover);
+            picAssociationsHelper.MouseHover += new EventHandler(picAssociationsHelper_MouseHover);
+            picHint.MouseHover += new EventHandler(picHint_MouseHover);
+            picSound.MouseHover += new EventHandler(picSound_MouseHover);
             timer1.Start();
         }
         private void CallSnake()
         {
             GamePause();
+            soundPlayer.Stop();
             SnakeForm sf = new SnakeForm();
             this.Hide();
             if(sf.ShowDialog() == DialogResult.OK)
@@ -1119,6 +1131,12 @@ namespace Bejeweled
             Points += 800;
             lblPoints.Text = String.Format("{0:00000}", Points);
         }
+        public void submitHighScore(string name, int ticks)
+        {
+            HighScoreItem item = new HighScoreItem();
+            item.player = name;
+            HS.add(item);
+        }
 
         public void FallDown(int I, int J)
         {
@@ -1158,7 +1176,10 @@ namespace Bejeweled
                 GamePause();
                 soundPlayer.Stop();
                 MessageBox.Show("GAME OVER!!");
-               
+                High_Scores_From form2 = new High_Scores_From(this, Points);
+                form2.Show();
+                form2.name.Focus();
+
             }
             progress = new CustomProgressBar(time, s);
             Invalidate();

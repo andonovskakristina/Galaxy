@@ -73,3 +73,4 @@ C:\Users\User\Desktop\konecna\Bejeweled\Bejeweled\Bejeweled\obj\Release\Bejewele
 C:\Users\User\Desktop\konecna\Bejeweled\Bejeweled\Bejeweled\obj\Release\Bejeweled.csproj.CoreCompileInputs.cache
 C:\Users\User\Desktop\konecna\Bejeweled\Bejeweled\Bejeweled\obj\Release\Bejeweled.exe
 C:\Users\User\Desktop\konecna\Bejeweled\Bejeweled\Bejeweled\obj\Release\Bejeweled.pdb
+C:\Users\User\Desktop\konecna\Bejeweled\Bejeweled\Bejeweled\obj\Release\Bejeweled.High_Scores_From.resources
