@@ -79,9 +79,9 @@
             // 
             this.btnNext.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.btnNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnNext.Location = new System.Drawing.Point(338, 416);
+            this.btnNext.Location = new System.Drawing.Point(341, 397);
             this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(63, 26);
+            this.btnNext.Size = new System.Drawing.Size(60, 35);
             this.btnNext.TabIndex = 8;
             this.btnNext.Text = "Skip";
             this.btnNext.UseVisualStyleBackColor = false;
@@ -126,7 +126,7 @@
             this.lblText.AutoSize = true;
             this.lblText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lblText.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.lblText.Location = new System.Drawing.Point(47, 331);
+            this.lblText.Location = new System.Drawing.Point(43, 331);
             this.lblText.Name = "lblText";
             this.lblText.Size = new System.Drawing.Size(45, 16);
             this.lblText.TabIndex = 16;
@@ -158,6 +158,8 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AsocijacijaForm";
             this.Text = "AsocijacijaForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AsocijacijaForm_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AsocijacijaForm_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.picture)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

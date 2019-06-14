@@ -24,14 +24,14 @@ namespace Bejeweled
         List<int> indeksi;
         int index;
         Random r;
-        int poeni;
+        int brojac;
        
         public AsocijacijaForm()
         {
             InitializeComponent();
             timer1.Start();
             i = 0;
-            lblTime.Text = "Time left: 30"; 
+            lblTime.Text = "Time left: 20"; 
             Guesses = 0;
             t = 0;
             r = new Random();
@@ -40,18 +40,10 @@ namespace Bejeweled
             soundPlayerAsos = new SoundPlayer();
             refresh();
             generateImage(index);
-        
+            brojac = 0;
         }
-        private void StartDialog()
-        {
-           
-           if(MessageBox.Show("Earn extra bombs","Guest the term behind the photo and get bombs!",MessageBoxButtons.YesNo) == DialogResult.OK)
-            {
-                timer1.Start();
-               
-            }
 
-        }
+        
 
         private void btnGuess_Click(object sender, EventArgs e)
         {
@@ -72,29 +64,47 @@ namespace Bejeweled
                 {
                     soundPlayerAsos = new SoundPlayer(Resources.Correct_Answer);
                     soundPlayerAsos.Play();
-                    Task.Delay(3000);
                     Guesses++;
                     lblPoints.Text = "Current guesses: " + Guesses;
-                    soundPlayerAsos.Stop();
                     refresh();
-                    generateImage(index);
-
+                    brojac++;
+                    if (brojac == 7)
+                    {
+                        timer1.Stop();
+                        soundPlayerAsos.Stop();
+                        this.Close();
+                    }
+                    else
+                    {
+                        generateImage(index);
+                    }
                 }
                 else
                 {
                     soundPlayerAsos = new SoundPlayer(Resources.Wrong_answer);
                     soundPlayerAsos.Play();
-                    Task.Delay(3000);
-                    // soundPlayerAsos.Stop();////
+            
                     refresh();
-                    generateImage(index);
+                    brojac++;
+                    if (brojac == 7)
+                    {
+                        timer1.Stop();
+                        soundPlayerAsos.Stop();
+
+                        this.Close();
+                    }
+                    else
+                    {
+                        generateImage(index);
+                    }
+                    //generateImage(index);
 
                 }
             }
                 else
                 {
                     MessageBox.Show("Внесете го Вашето решение па кликнете на копчето Guess");
-                    timer1.Start();
+                   // timer1.Start();
                 }
           
             txtSolution.Text = "";
@@ -105,25 +115,32 @@ namespace Bejeweled
         private void timer1_Tick(object sender, EventArgs e)
         {
             t++;
-            int left = 30 - t;
+            int left = 20 - t;
             lblTime.Text = string.Format("Time left:  {0:00}", left);
             if (left == 0)
             {
-                soundPlayerAsos.Stop();
-                picture.Image = Resources.gameOver;
+               //picture.Image = Resources.gameOver;
                 btnCheck.Visible = false;
                 btnNext.Visible = false;
                 txtSolution.Visible = false;
+                soundPlayerAsos.Stop();
+
                 timer1.Stop();
-                MessageBox.Show("Game over, you won: " + Guesses + " bombs");
                 this.Close();
             }
         }
         private void btnNext_Click(object sender, EventArgs e)
         {
             refresh();
-            generateImage(index);
-          
+            if (brojac == 6)
+            {
+                btnNext.Enabled = false;
+              //  this.Close();
+            }
+            else
+            {
+                generateImage(index);
+            }
         }
        
         private void refresh()
@@ -152,7 +169,7 @@ namespace Bejeweled
             {
                 picture.BackgroundImage = Resources.sun1;
                 lblText.Text = "The brightest star:";
-                solution = "the sun";
+                solution = "sun";
             }
             if (index == 2)
             {
@@ -164,7 +181,7 @@ namespace Bejeweled
             {
                 picture.BackgroundImage = Resources.moon;
                 lblText.Text = "Our satallite: ";
-                solution = "the moon";
+                solution = "moon";
             }
             if (index == 4)
             {
@@ -188,15 +205,17 @@ namespace Bejeweled
             {
                 picture.BackgroundImage = Resources.blackHole;
                 lblText.Text = "Has the strongest \n gravitational pull:";
-                solution = "a black hole";
+                solution = "black hole";
             }
 
         }
 
         private void txtSolution_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Enter)
+            
+            if (e.KeyCode == Keys.Enter)
             {
+              
                 if (txtSolution.Text != "")
                 {
                     string x = txtSolution.Text.Trim().ToLower();
@@ -209,7 +228,6 @@ namespace Bejeweled
                         soundPlayerAsos.Play();
                         Guesses++;
                         lblPoints.Text = "Current guesses: " + Guesses;
-                        soundPlayerAsos.Stop();
                         refresh();
                         generateImage(index);
 
@@ -218,10 +236,21 @@ namespace Bejeweled
                     {
                         soundPlayerAsos = new SoundPlayer(Resources.Wrong_answer);
                         soundPlayerAsos.Play();
-                       // soundPlayerAsos.Stop();////
                         refresh();
                         generateImage(index);
 
+                    }
+                    brojac++;
+                    if (brojac == 7)
+                    {
+                        timer1.Stop();
+                        soundPlayerAsos.Stop();
+
+                        this.Close();
+                    }
+                    else
+                    {
+                        generateImage(index);
                     }
                 }
                 else
@@ -231,8 +260,21 @@ namespace Bejeweled
                 }
 
                 txtSolution.Text = "";
+               
             }
                     
+        }
+
+        private void AsocijacijaForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void AsocijacijaForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult = DialogResult.OK;
+            timer1.Stop();
+            soundPlayerAsos.Stop();
         }
     }
 }

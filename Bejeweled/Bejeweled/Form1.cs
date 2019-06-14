@@ -34,7 +34,7 @@ namespace Bejeweled
         int NoOfUsedHints;
         public int Points;
         Cover cover = new Cover();
-        bool isSoundOn;
+
         public Form1()
         {
             InitializeComponent();
@@ -53,7 +53,7 @@ namespace Bejeweled
             IsSwapped = false;
             lblVremeForFive.Text = "";
             time = 0;
-            isSoundOn = true;
+            //isSoundOn = true;
             NoOfUsedHints = 0;  
             progress = new CustomProgressBar(0, "");
             timer1.Start();
@@ -557,10 +557,7 @@ namespace Bejeweled
             SnakeForm sf = new SnakeForm();
 
             this.Hide();
-            if (isSoundOn)
-            {
-                sf.soundPlayerSnake.Play();
-            }
+          
             if (sf.ShowDialog() == DialogResult.OK)
             {
                 sf.Close();
@@ -579,10 +576,6 @@ namespace Bejeweled
             GamePause();
             this.Hide();
             AsocijacijaForm af = new AsocijacijaForm();
-            if (isSoundOn)
-            {
-                af.soundPlayerAsos.Play();
-            }
             if (af.ShowDialog() == DialogResult.OK)
             {
                 af.Close();
@@ -590,7 +583,7 @@ namespace Bejeweled
             AddRandomBombs(af.Guesses);
             GameUnPause();
             this.Show();
-            if (!flagSoundIcon && !flagPauseIcon)
+            if (flagSoundIcon)
             {
                 soundPlayer.Play();
                 this.Show();
@@ -1222,7 +1215,7 @@ namespace Bejeweled
             time++;
             if(time % 28 == 0)
             {
-                if (!flagPauseIcon && flagSoundIcon)
+                if ( flagSoundIcon)
                 {
                     soundPlayer.Play();
                 }
@@ -1231,7 +1224,7 @@ namespace Bejeweled
             int min = left / 60;
             int sec = left % 60;
             string s = String.Format("Time left: {0:00}:{1:00} ", min, sec);
-            if (time > 60)
+            if (time > 120)
             {
                 timer1.Stop();
                 GamePause();
@@ -1748,7 +1741,7 @@ namespace Bejeweled
             }
             this.Show();
             GameUnPause();
-            if (flagSoundIcon && !flagPauseIcon)
+            if (flagSoundIcon)
             {
                 soundPlayer.Play();
             }
@@ -1814,7 +1807,7 @@ namespace Bejeweled
                 picSnakeHelper.Image = Resources.StarUsed;
                 picSnakeHelper.Enabled = false;
                 this.Show();
-                if (!flagSoundIcon && !flagPauseIcon)
+                if (flagSoundIcon)
                 {
                     soundPlayer.Play();
                 }

@@ -385,5 +385,8 @@
   <ItemGroup>
     <None Include="Resources\xMarkSmall.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\WRONG_answer-[AudioTrimmer.com].wav" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

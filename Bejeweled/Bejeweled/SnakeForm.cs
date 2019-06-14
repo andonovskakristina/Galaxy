@@ -28,7 +28,7 @@ namespace Bejeweled
             soundPlayerSnake = new SoundPlayer(Resources.On_Off_Snake);
             this.BackgroundImage = Resources.BG4;
             InitializeComponent();
-            StartDialog();
+           // StartDialog();
             int top = 10;
             int left = 10;
             int width = this.Width - left * 4;
@@ -49,17 +49,26 @@ namespace Bejeweled
             removeTimer.Interval = 100;
             removeTimer.Tick += new EventHandler(removeTimer_Tick);
             NumberTicks = 150;
+            checkSound();
         }
 
-        private void StartDialog()
+        private void checkSound()
         {
-            KeyboardHelper kh = new KeyboardHelper();
-            if(kh.ShowDialog() == DialogResult.OK)
+            if (Form1.flagSoundIcon)
             {
-                kh.Close();
-              //  soundPlayerSnake.Play();
+                soundPlayerSnake.Play();
             }
         }
+
+        //private void StartDialog()
+        //{
+        //    KeyboardHelper kh = new KeyboardHelper();
+        //    if (kh.ShowDialog() == DialogResult.OK)
+        //    {
+        //        kh.Close();
+        //        soundPlayerSnake.Play();
+        //    }
+        //}
 
         private void TimeLeft_Tick(object sender, EventArgs e)
         {
@@ -110,11 +119,10 @@ namespace Bejeweled
         }
         public void ShowPoints()
         {
-            if (MessageBox.Show(String.Format("{0} sec added to game", s.StarsEaten * 5), "Prize") == DialogResult.OK)
-            {
+           
                 TimeToAdd = s.StarsEaten * 5;
                 DialogResult = DialogResult.OK;
-            }
+           
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
@@ -147,7 +155,19 @@ namespace Bejeweled
 
         private void SnakeForm_Load(object sender, EventArgs e)
         {
-            
+           
+        }
+
+        private void SnakeForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void SnakeForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult = DialogResult.OK;
+            TimeLeft.Stop();
+            soundPlayerSnake.Stop();
         }
     }
 }

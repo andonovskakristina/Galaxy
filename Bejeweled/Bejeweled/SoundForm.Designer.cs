@@ -56,7 +56,7 @@
             this.btnAnwser3.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnAnwser3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnAnwser3.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnAnwser3.Location = new System.Drawing.Point(73, 396);
+            this.btnAnwser3.Location = new System.Drawing.Point(73, 434);
             this.btnAnwser3.Name = "btnAnwser3";
             this.btnAnwser3.Size = new System.Drawing.Size(169, 32);
             this.btnAnwser3.TabIndex = 29;
@@ -68,7 +68,7 @@
             this.btnAnwser2.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnAnwser2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnAnwser2.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnAnwser2.Location = new System.Drawing.Point(73, 434);
+            this.btnAnwser2.Location = new System.Drawing.Point(73, 396);
             this.btnAnwser2.Name = "btnAnwser2";
             this.btnAnwser2.Size = new System.Drawing.Size(169, 32);
             this.btnAnwser2.TabIndex = 28;
@@ -219,7 +219,9 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SoundForm";
             this.Text = "SoundForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SoundForm_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SoundForm_FormClosed);
+            this.Leave += new System.EventHandler(this.SoundForm_Leave);
             ((System.ComponentModel.ISupportInitialize)(this.pbThird)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbSecond)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbFirst)).EndInit();
