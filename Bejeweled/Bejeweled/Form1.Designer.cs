@@ -127,7 +127,7 @@
             this.lblHelpers.AutoSize = true;
             this.lblHelpers.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
             this.lblHelpers.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblHelpers.Location = new System.Drawing.Point(152, 56);
+            this.lblHelpers.Location = new System.Drawing.Point(147, 56);
             this.lblHelpers.Name = "lblHelpers";
             this.lblHelpers.Size = new System.Drawing.Size(105, 29);
             this.lblHelpers.TabIndex = 18;
@@ -169,6 +169,7 @@
             this.lblSoundHover.TabIndex = 34;
             this.lblSoundHover.Text = "Sound On/Off";
             this.lblSoundHover.Visible = false;
+            this.lblSoundHover.Click += new System.EventHandler(this.lblSoundHover_Click);
             // 
             // lblAsociaciiHover
             // 
@@ -250,7 +251,7 @@
             // picAssociationsHelper
             // 
             this.picAssociationsHelper.Image = global::Bejeweled.Properties.Resources.MoonHelper;
-            this.picAssociationsHelper.Location = new System.Drawing.Point(235, 15);
+            this.picAssociationsHelper.Location = new System.Drawing.Point(235, 19);
             this.picAssociationsHelper.Name = "picAssociationsHelper";
             this.picAssociationsHelper.Size = new System.Drawing.Size(45, 47);
             this.picAssociationsHelper.TabIndex = 21;
@@ -262,7 +263,7 @@
             // picSnakeHelper
             // 
             this.picSnakeHelper.Image = global::Bejeweled.Properties.Resources.StarHelper;
-            this.picSnakeHelper.Location = new System.Drawing.Point(186, 13);
+            this.picSnakeHelper.Location = new System.Drawing.Point(186, 19);
             this.picSnakeHelper.Name = "picSnakeHelper";
             this.picSnakeHelper.Size = new System.Drawing.Size(43, 49);
             this.picSnakeHelper.TabIndex = 20;
@@ -274,7 +275,7 @@
             // picSongHelper
             // 
             this.picSongHelper.Image = global::Bejeweled.Properties.Resources.Sun;
-            this.picSongHelper.Location = new System.Drawing.Point(131, 12);
+            this.picSongHelper.Location = new System.Drawing.Point(131, 19);
             this.picSongHelper.Name = "picSongHelper";
             this.picSongHelper.Size = new System.Drawing.Size(49, 50);
             this.picSongHelper.TabIndex = 19;
@@ -362,6 +363,8 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "Bejeweled";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseUp);

@@ -34,13 +34,19 @@
             this.btnAnwser2 = new System.Windows.Forms.Button();
             this.btnAnwser1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnSkip = new System.Windows.Forms.Button();
             this.btnPlay = new System.Windows.Forms.Button();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.lvlTime = new System.Windows.Forms.Label();
             this.lblP = new System.Windows.Forms.Label();
+            this.pbThird = new System.Windows.Forms.PictureBox();
+            this.pbSecond = new System.Windows.Forms.PictureBox();
+            this.pbFirst = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pbThird)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbSecond)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbFirst)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
@@ -93,15 +99,6 @@
             this.label1.TabIndex = 26;
             this.label1.Text = "Your guess:";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Bejeweled.Properties.Resources.guessTheSong;
-            this.pictureBox1.Location = new System.Drawing.Point(46, 86);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(224, 225);
-            this.pictureBox1.TabIndex = 25;
-            this.pictureBox1.TabStop = false;
-            // 
             // btnSkip
             // 
             this.btnSkip.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
@@ -127,17 +124,6 @@
             this.btnPlay.Text = "Play";
             this.btnPlay.UseVisualStyleBackColor = false;
             this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-  //          this.pictureBox2.Image = global::Bejeweled.Properties.Resources.Black;
-            this.pictureBox2.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(311, 540);
-            this.pictureBox2.TabIndex = 22;
-            this.pictureBox2.TabStop = false;
             // 
             // timer1
             // 
@@ -166,11 +152,60 @@
             this.lblP.Size = new System.Drawing.Size(0, 16);
             this.lblP.TabIndex = 31;
             // 
+            // pbThird
+            // 
+            this.pbThird.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.pbThird.Location = new System.Drawing.Point(248, 434);
+            this.pbThird.Name = "pbThird";
+            this.pbThird.Size = new System.Drawing.Size(36, 32);
+            this.pbThird.TabIndex = 34;
+            this.pbThird.TabStop = false;
+            // 
+            // pbSecond
+            // 
+            this.pbSecond.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.pbSecond.Location = new System.Drawing.Point(248, 396);
+            this.pbSecond.Name = "pbSecond";
+            this.pbSecond.Size = new System.Drawing.Size(36, 32);
+            this.pbSecond.TabIndex = 33;
+            this.pbSecond.TabStop = false;
+            // 
+            // pbFirst
+            // 
+            this.pbFirst.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.pbFirst.Location = new System.Drawing.Point(248, 358);
+            this.pbFirst.Name = "pbFirst";
+            this.pbFirst.Size = new System.Drawing.Size(36, 32);
+            this.pbFirst.TabIndex = 32;
+            this.pbFirst.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Bejeweled.Properties.Resources.guessTheSong;
+            this.pictureBox1.Location = new System.Drawing.Point(46, 86);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(224, 225);
+            this.pictureBox1.TabIndex = 25;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox2.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(311, 540);
+            this.pictureBox2.TabIndex = 22;
+            this.pictureBox2.TabStop = false;
+            // 
             // SoundForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(311, 540);
+            this.Controls.Add(this.pbThird);
+            this.Controls.Add(this.pbSecond);
+            this.Controls.Add(this.pbFirst);
             this.Controls.Add(this.lblP);
             this.Controls.Add(this.lvlTime);
             this.Controls.Add(this.btnAnwser3);
@@ -184,6 +219,10 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SoundForm";
             this.Text = "SoundForm";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SoundForm_FormClosed);
+            ((System.ComponentModel.ISupportInitialize)(this.pbThird)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbSecond)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbFirst)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
@@ -204,5 +243,8 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label lvlTime;
         private System.Windows.Forms.Label lblP;
+        private System.Windows.Forms.PictureBox pbFirst;
+        private System.Windows.Forms.PictureBox pbSecond;
+        private System.Windows.Forms.PictureBox pbThird;
     }
 }

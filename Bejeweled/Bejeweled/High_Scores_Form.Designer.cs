@@ -71,6 +71,7 @@
             this.saveScore.TabIndex = 9;
             this.saveScore.Text = "Save";
             this.saveScore.UseVisualStyleBackColor = true;
+            this.saveScore.Click += new System.EventHandler(this.saveScore_Click);
             // 
             // label2
             // 
@@ -91,7 +92,7 @@
             this.label1.TabIndex = 7;
             this.label1.Text = "Congratulations!";
             // 
-            // High_Scores
+            // High_Scores_From
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -102,7 +103,7 @@
             this.Controls.Add(this.saveScore);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "High_Scores";
+            this.Name = "High_Scores_From";
             this.Text = "High Scores";
             this.ResumeLayout(false);
             this.PerformLayout();

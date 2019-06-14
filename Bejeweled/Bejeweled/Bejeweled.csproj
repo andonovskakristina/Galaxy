@@ -66,6 +66,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Grid.cs" />
     <Compile Include="HighScores.cs" />
     <Compile Include="High_Scores_Form.cs">
       <SubType>Form</SubType>
@@ -80,6 +81,13 @@
     </Compile>
     <Compile Include="KeyboardHelper.Designer.cs">
       <DependentUpon>KeyboardHelper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Player.cs" />
+    <Compile Include="PrintForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PrintForm.Designer.cs">
+      <DependentUpon>PrintForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -118,6 +126,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="KeyboardHelper.resx">
       <DependentUpon>KeyboardHelper.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PrintForm.resx">
+      <DependentUpon>PrintForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -331,6 +342,48 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\HomeIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\earth.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mars.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\saturn.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\solarSystem.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sun.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\moon.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blackHole.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\aplauzz.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Correct Answer Sound Cropped.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Incorrecet.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\WRONG_answer.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\correctMarkSmall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blackCorrectMarkSmall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\xMarkSmall.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

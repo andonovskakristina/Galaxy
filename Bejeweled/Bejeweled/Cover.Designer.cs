@@ -28,13 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Cover));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.lblSoundHover = new System.Windows.Forms.Label();
+            this.picSound = new System.Windows.Forms.PictureBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picSound)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -99,11 +104,44 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "Beleweled 2.0";
             // 
+            // lblSoundHover
+            // 
+            this.lblSoundHover.AutoSize = true;
+            this.lblSoundHover.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblSoundHover.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblSoundHover.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lblSoundHover.Location = new System.Drawing.Point(-3, 0);
+            this.lblSoundHover.Name = "lblSoundHover";
+            this.lblSoundHover.Size = new System.Drawing.Size(80, 15);
+            this.lblSoundHover.TabIndex = 36;
+            this.lblSoundHover.Text = "Sound On/Off";
+            this.lblSoundHover.Visible = false;
+            // 
+            // picSound
+            // 
+            this.picSound.Image = global::Bejeweled.Properties.Resources.SoundOn;
+            this.picSound.Location = new System.Drawing.Point(12, 18);
+            this.picSound.Name = "picSound";
+            this.picSound.Size = new System.Drawing.Size(37, 38);
+            this.picSound.TabIndex = 35;
+            this.picSound.TabStop = false;
+            this.picSound.Click += new System.EventHandler(this.picSound_Click);
+            this.picSound.MouseLeave += new System.EventHandler(this.picSound_MouseLeave);
+            this.picSound.MouseHover += new System.EventHandler(this.picSound_MouseHover);
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // Cover
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(572, 338);
+            this.Controls.Add(this.lblSoundHover);
+            this.Controls.Add(this.picSound);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -112,7 +150,9 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Cover";
             this.Text = "Bejeweled 2.0";
+            this.Load += new System.EventHandler(this.Cover_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picSound)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -125,5 +165,8 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblSoundHover;
+        private System.Windows.Forms.PictureBox picSound;
+        private System.Windows.Forms.Timer timer1;
     }
 }

@@ -19,13 +19,13 @@ namespace Bejeweled
         Timer removeTimer;
         Timer TimeLeft;
         Rectangle bound;
-        SoundPlayer soundPlayer;
+      public  SoundPlayer soundPlayerSnake;
         int NumberTicks;
         public int TimeToAdd;
         public SnakeForm()
         {
             TimeToAdd = 0;
-            soundPlayer = new SoundPlayer(Resources.On_Off_Snake);
+            soundPlayerSnake = new SoundPlayer(Resources.On_Off_Snake);
             this.BackgroundImage = Resources.BG4;
             InitializeComponent();
             StartDialog();
@@ -57,7 +57,7 @@ namespace Bejeweled
             if(kh.ShowDialog() == DialogResult.OK)
             {
                 kh.Close();
-                soundPlayer.Play();
+              //  soundPlayerSnake.Play();
             }
         }
 
@@ -83,15 +83,15 @@ namespace Bejeweled
                 TimeLeft.Stop();
                 pbTimeLeft.Value = 0;
                 removeTimer.Start();
-                soundPlayer.Stop();
+                soundPlayerSnake.Stop();
             }
             //ako istece vreme
             else if (pbTimeLeft.Value == 0)
             {
                 moveTimer.Stop();
                 TimeLeft.Stop();
-             //   ShowPoints();
-                soundPlayer.Stop();
+                //   ShowPoints();
+                soundPlayerSnake.Stop();
             }
         }
 

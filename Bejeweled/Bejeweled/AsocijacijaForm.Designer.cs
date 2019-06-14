@@ -36,6 +36,9 @@
             this.btnNext = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.lblVreme = new System.Windows.Forms.Label();
+            this.lblTime = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblText = new System.Windows.Forms.Label();
             this.picture = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.picture)).BeginInit();
             this.SuspendLayout();
@@ -44,7 +47,7 @@
             // 
             this.btnCheck.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.btnCheck.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnCheck.Location = new System.Drawing.Point(235, 292);
+            this.btnCheck.Location = new System.Drawing.Point(326, 317);
             this.btnCheck.Name = "btnCheck";
             this.btnCheck.Size = new System.Drawing.Size(75, 37);
             this.btnCheck.TabIndex = 11;
@@ -54,30 +57,31 @@
             // 
             // txtSolution
             // 
-            this.txtSolution.Location = new System.Drawing.Point(87, 292);
+            this.txtSolution.Location = new System.Drawing.Point(180, 327);
             this.txtSolution.Margin = new System.Windows.Forms.Padding(5);
-            this.txtSolution.Multiline = true;
             this.txtSolution.Name = "txtSolution";
-            this.txtSolution.Size = new System.Drawing.Size(127, 30);
+            this.txtSolution.Size = new System.Drawing.Size(127, 20);
             this.txtSolution.TabIndex = 10;
+            this.txtSolution.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSolution_KeyDown);
             // 
             // lblPoints
             // 
             this.lblPoints.AutoSize = true;
             this.lblPoints.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblPoints.Location = new System.Drawing.Point(84, 365);
+            this.lblPoints.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.lblPoints.Location = new System.Drawing.Point(114, 416);
             this.lblPoints.Name = "lblPoints";
-            this.lblPoints.Size = new System.Drawing.Size(119, 16);
+            this.lblPoints.Size = new System.Drawing.Size(140, 16);
             this.lblPoints.TabIndex = 9;
-            this.lblPoints.Text = "Current points: 0";
+            this.lblPoints.Text = "Current guesses : 0";
             // 
             // btnNext
             // 
             this.btnNext.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.btnNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnNext.Location = new System.Drawing.Point(235, 355);
+            this.btnNext.Location = new System.Drawing.Point(338, 416);
             this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(75, 35);
+            this.btnNext.Size = new System.Drawing.Size(63, 26);
             this.btnNext.TabIndex = 8;
             this.btnNext.Text = "Skip";
             this.btnNext.UseVisualStyleBackColor = false;
@@ -97,12 +101,42 @@
             this.lblVreme.Size = new System.Drawing.Size(0, 13);
             this.lblVreme.TabIndex = 13;
             // 
+            // lblTime
+            // 
+            this.lblTime.AutoSize = true;
+            this.lblTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblTime.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.lblTime.Location = new System.Drawing.Point(13, 13);
+            this.lblTime.Name = "lblTime";
+            this.lblTime.Size = new System.Drawing.Size(41, 15);
+            this.lblTime.TabIndex = 14;
+            this.lblTime.Text = "label1";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(18, 327);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 15;
+            this.label1.Text = "label1";
+            // 
+            // lblText
+            // 
+            this.lblText.AutoSize = true;
+            this.lblText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblText.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.lblText.Location = new System.Drawing.Point(47, 331);
+            this.lblText.Name = "lblText";
+            this.lblText.Size = new System.Drawing.Size(45, 16);
+            this.lblText.TabIndex = 16;
+            this.lblText.Text = "label2";
+            // 
             // picture
             // 
-            this.picture.Image = global::Bejeweled.Properties.Resources.one;
-            this.picture.Location = new System.Drawing.Point(87, 44);
+            this.picture.Location = new System.Drawing.Point(133, 42);
             this.picture.Name = "picture";
-            this.picture.Size = new System.Drawing.Size(223, 231);
+            this.picture.Size = new System.Drawing.Size(223, 218);
             this.picture.TabIndex = 12;
             this.picture.TabStop = false;
             // 
@@ -110,7 +144,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(400, 404);
+            this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.ClientSize = new System.Drawing.Size(484, 461);
+            this.Controls.Add(this.lblText);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblTime);
             this.Controls.Add(this.lblVreme);
             this.Controls.Add(this.btnCheck);
             this.Controls.Add(this.txtSolution);
@@ -135,5 +173,8 @@
         private System.Windows.Forms.PictureBox picture;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label lblVreme;
+        private System.Windows.Forms.Label lblTime;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblText;
     }
 }

@@ -3,6 +3,8 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Media;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Bejeweled
 {
@@ -24,14 +26,15 @@ namespace Bejeweled
         int I, J, CurrentI, CurrentJ;
         bool Break;
         bool IsSwapped;
-        public bool flagSoundIcon = false;
-        public bool flagPauseIcon = false;
+        public static bool flagSoundIcon = true;
+        public bool flagPauseIcon = true;
         int timeElapsed;
         int time = 0;
         CustomProgressBar progress;
         int NoOfUsedHints;
-        int Points;
+        public int Points;
         Cover cover = new Cover();
+        bool isSoundOn;
         public Form1()
         {
             InitializeComponent();
@@ -41,8 +44,7 @@ namespace Bejeweled
             Helper2 = true;
             Helper3 = true;
             random = new Random();
-            soundPlayer = new SoundPlayer(Resources.Atmosphere_04);
-            soundPlayer.Play();
+            soundPlayer = new SoundPlayer(Resources.Atmosphere_04);      
             I = -1;
             J = -1;
             CurrentI = -1;
@@ -51,6 +53,7 @@ namespace Bejeweled
             IsSwapped = false;
             lblVremeForFive.Text = "";
             time = 0;
+            isSoundOn = true;
             NoOfUsedHints = 0;  
             progress = new CustomProgressBar(0, "");
             timer1.Start();
@@ -552,12 +555,17 @@ namespace Bejeweled
             GamePause();
             soundPlayer.Stop();
             SnakeForm sf = new SnakeForm();
+
             this.Hide();
-            if(sf.ShowDialog() == DialogResult.OK)
+            if (isSoundOn)
+            {
+                sf.soundPlayerSnake.Play();
+            }
+            if (sf.ShowDialog() == DialogResult.OK)
             {
                 sf.Close();
                 time -= sf.TimeToAdd;
-                if(time < 0)
+                if (time < 0)
                 {
                     time = 0;
                 }
@@ -571,8 +579,12 @@ namespace Bejeweled
             GamePause();
             this.Hide();
             AsocijacijaForm af = new AsocijacijaForm();
-            if(af.ShowDialog() == DialogResult.OK)
-            {               
+            if (isSoundOn)
+            {
+                af.soundPlayerAsos.Play();
+            }
+            if (af.ShowDialog() == DialogResult.OK)
+            {
                 af.Close();
             }
             AddRandomBombs(af.Guesses);
@@ -1183,6 +1195,7 @@ namespace Bejeweled
         {
             HighScoreItem item = new HighScoreItem();
             item.player = name;
+            item.score = Points;
             HS.add(item);
         }
 
@@ -1209,7 +1222,7 @@ namespace Bejeweled
             time++;
             if(time % 28 == 0)
             {
-                if (!flagPauseIcon && !flagSoundIcon)
+                if (!flagPauseIcon && flagSoundIcon)
                 {
                     soundPlayer.Play();
                 }
@@ -1218,7 +1231,7 @@ namespace Bejeweled
             int min = left / 60;
             int sec = left % 60;
             string s = String.Format("Time left: {0:00}:{1:00} ", min, sec);
-            if (time > 120)
+            if (time > 60)
             {
                 timer1.Stop();
                 GamePause();
@@ -1704,14 +1717,13 @@ namespace Bejeweled
             {
                 soundPlayer.Stop();
                 GamePause();
-                if (MessageBox.Show("Guest the term behind the photo and add bombs!", "Prize", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
+               
                     CallAssociation();
                     Helper3 = false;
                     
                     picAssociationsHelper.Image = Resources.MoonUsed;
                     picAssociationsHelper.Enabled = false;
-                }
+              
 
             }
         }
@@ -1721,30 +1733,26 @@ namespace Bejeweled
             {
                 soundPlayer.Stop();
                 GamePause();
-
-                if (MessageBox.Show("Guest the song  and get extra points!", "Earn extra time", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
-                  
-                    SoundForm af = new SoundForm();
-                    this.Hide();
+                SoundForm af = new SoundForm();
+                this.Hide();
                     if (af.ShowDialog() == DialogResult.OK)
                     {
                         af.Close();
                     }
-                    Points += af.Points;
-                    lblPoints.Text = String.Format("{0:00000}", Points);
-                    picSongHelper.Enabled = false;
-                    Helper1 = false;
-                    picSongHelper.Image = Resources.SunUsed;
-                }
+                Points += af.Points;
+                lblPoints.Text = String.Format("{0:00000}", Points);
+                picSongHelper.Enabled = false;
+                Helper1 = false;
+                picSongHelper.Image = Resources.SunUsed;
+                
             }
             this.Show();
             GameUnPause();
-            if (!flagSoundIcon && !flagPauseIcon)
+            if (flagSoundIcon && !flagPauseIcon)
             {
                 soundPlayer.Play();
             }
-           
+
 
         }
 
@@ -1771,22 +1779,28 @@ namespace Bejeweled
             }
         }
 
-        private void pictureBox2_Click(object sender, EventArgs e)
+        private void pictureBox2_Click(object sender, EventArgs e) ////////////////
         {
             flagPauseIcon = false;
+          
             if (picSound.Tag.ToString() == "On")
             {
                 picSound.Image = Resources.SoundOff;
                 picSound.Tag = "Off";
                 flagPauseIcon = true;
+                flagSoundIcon = false;
                 soundPlayer.Stop();
             }
             else
             {
                 picSound.Image = Resources.SoundOn;
                 picSound.Tag = "On";
-                if (!flagSoundIcon)
-                { soundPlayer.Play(); }
+
+                flagSoundIcon = true;
+            }
+            if (flagSoundIcon)
+            {
+                soundPlayer.Play();
             }
         }
 
@@ -1811,8 +1825,6 @@ namespace Bejeweled
         {
             lblSongsHover.Visible = true;
         }
-
-      
 
         private void picSnakeHelper_MouseLeave(object sender, EventArgs e)
         {
@@ -1883,6 +1895,11 @@ namespace Bejeweled
 
         private void pictureBox2_Click_1(object sender, EventArgs e)
         {
+            timer1.Stop();
+            if (flagPauseIcon)
+            {
+                cover.flag = false;
+            }
              this.Hide();
             cover.ShowDialog();
             this.Close();
@@ -1897,6 +1914,16 @@ namespace Bejeweled
         private void pictureBox2_MouseLeave(object sender, EventArgs e)
         {
             lblHome.Visible = false;
+        }
+
+        private void lblSoundHover_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+          //  BinarySerializeScores(HS);
         }
 
         public void newGame()
@@ -1949,6 +1976,28 @@ namespace Bejeweled
                         Invalidate();
                     }
                 }
+            }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            if (Form1.flagSoundIcon)
+            {
+                picSound.Image = Resources.SoundOn;
+                picSound.Tag = "On";
+            }
+            else
+            {
+                picSound.Image = Resources.SoundOff;
+                picSound.Tag = "Off";
+            }
+            if (flagSoundIcon)
+            {
+                soundPlayer.Play();
+            }
+            else
+            {
+                soundPlayer.Stop();
             }
         }
 
@@ -2229,6 +2278,56 @@ namespace Bejeweled
               //  MessageBox.Show("No more possible moves.. Shuffle");
                 GenerateRandomImages();
             }
+        }
+        private static void BinarySerializeScores(Scores HS)
+        {
+            //string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            //using (FileStream str = File.Create(path + "\\igra.hs"))
+            //{
+            //    File.SetAttributes(path + "\\igra.hs", File.GetAttributes(path + "\\igra.hs") | FileAttributes.Hidden);
+            //    BinaryFormatter bf = new BinaryFormatter();
+            //    bf.Serialize(str, HS);
+            //}
+        }
+
+       // private static Scores BinaryDeserializeScores()
+        //{
+            //string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            //Scores HS = null;
+            //try
+            //{
+
+            //    using (FileStream str = File.OpenRead(path + "\\igra.hs"))
+            //    {
+            //        BinaryFormatter bf = new BinaryFormatter();
+            //        HS = (Scores)bf.Deserialize(str);
+            //    }
+
+            //    File.Delete(path + "\\igra.hs");
+
+            //    return HS;
+            //}
+            //catch (FileNotFoundException)
+            //{
+            //    return new Scores();
+            //}
+        //}
+
+        public void setHighScoresPanel()
+        {
+           
+
+            
+        }
+        public void changeView(int view)
+        {
+           if (view == 2) //High Scores Panel is Visible
+            {
+                this.Text = "Sudoku - HighScores";
+              
+                picHome.Visible = true;
+            }
+         
         }
     }
 }
