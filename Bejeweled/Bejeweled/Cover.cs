@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Media;
 using System.Threading.Tasks;
@@ -36,7 +37,12 @@ namespace Bejeweled
 
         private void button3_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            HighScores hs = new HighScores();
+            FileStream fileStream = new FileStream("HighScores.txt", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None);
+            hs.ReadScores(fileStream);
+            hs.ShowDialog();
+            this.Close();
         }
 
         private void button1_Click(object sender, EventArgs e)

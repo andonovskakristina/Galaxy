@@ -66,15 +66,18 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Grid.cs" />
-    <Compile Include="HighScores.cs" />
-    <Compile Include="High_Scores_Form.cs">
+    <Compile Include="GameOverForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="High_Scores_Form.Designer.cs">
-      <DependentUpon>High_Scores_Form.cs</DependentUpon>
+    <Compile Include="GameOverForm.Designer.cs">
+      <DependentUpon>GameOverForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="HighScoreItem.cs" />
+    <Compile Include="HighScores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HighScores.Designer.cs">
+      <DependentUpon>HighScores.cs</DependentUpon>
+    </Compile>
     <Compile Include="Img.cs" />
     <Compile Include="KeyboardHelper.cs">
       <SubType>Form</SubType>
@@ -83,12 +86,6 @@
       <DependentUpon>KeyboardHelper.cs</DependentUpon>
     </Compile>
     <Compile Include="Player.cs" />
-    <Compile Include="PrintForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PrintForm.Designer.cs">
-      <DependentUpon>PrintForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -96,7 +93,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Scores.cs" />
+    <Compile Include="Score.cs" />
     <Compile Include="Snake.cs" />
     <Compile Include="SnakeForm.cs">
       <SubType>Form</SubType>
@@ -121,14 +118,14 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="High_Scores_Form.resx">
-      <DependentUpon>High_Scores_Form.cs</DependentUpon>
+    <EmbeddedResource Include="GameOverForm.resx">
+      <DependentUpon>GameOverForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HighScores.resx">
+      <DependentUpon>HighScores.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="KeyboardHelper.resx">
       <DependentUpon>KeyboardHelper.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PrintForm.resx">
-      <DependentUpon>PrintForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

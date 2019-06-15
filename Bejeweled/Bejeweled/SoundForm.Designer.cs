@@ -102,6 +102,7 @@
             // btnSkip
             // 
             this.btnSkip.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnSkip.Enabled = false;
             this.btnSkip.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnSkip.ForeColor = System.Drawing.SystemColors.Control;
             this.btnSkip.Location = new System.Drawing.Point(204, 37);

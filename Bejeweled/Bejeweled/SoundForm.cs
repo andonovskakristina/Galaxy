@@ -27,7 +27,7 @@ namespace Bejeweled
         public SoundForm()
         {
             InitializeComponent();
-            musicPlayer = new SoundPlayer();
+            //musicPlayer = new SoundPlayer();
             r = new Random();
             delay = new Timer();
             delay.Interval = 100;
@@ -201,7 +201,6 @@ namespace Bejeweled
             }
            
             generateSong(index);
-        
             musicPlayer.Play();
             indeksi.Add(index);
 
@@ -235,7 +234,6 @@ namespace Bejeweled
             }
                   
             third = false;
-
             delay.Start();
             tri.Start();
         }
@@ -247,10 +245,8 @@ namespace Bejeweled
             {
                 Points += 300;
                 lblP.Text = "Points: " + Points.ToString(); 
-              
                 //Sound correct
             }
-         
             delay.Start();
             tri.Start();
             second = false;
@@ -270,7 +266,6 @@ namespace Bejeweled
             timer1.Stop();
             DialogResult = DialogResult.OK;
             musicPlayer.Stop();
-           
         }
 
         private void SoundForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -285,6 +280,7 @@ namespace Bejeweled
             pbThird.Visible = false;
             timer1.Start();
             refresh();
+            btnSkip.Enabled = true;
            
         }
         private void timer1_Tick(object sender, EventArgs e)

@@ -17,7 +17,7 @@ namespace Bejeweled
         private bool Helper1, Helper2, Helper3;
         // 0 - right, 1 -left, 2 - bottom, 3 - top, -1 - start
         int FlagMove;
-        Scores HS;
+       
         public SoundPlayer soundPlayer;
         Img[][] Images;
         Random random;
@@ -32,7 +32,7 @@ namespace Bejeweled
         int time = 0;
         CustomProgressBar progress;
         int NoOfUsedHints;
-        public int Points;
+        public static int Points;
         Cover cover = new Cover();
 
         public Form1()
@@ -84,6 +84,7 @@ namespace Bejeweled
             picHint.BackColor = Color.Transparent;
             picStart.Tag = "Pause";
             picSound.Tag = "On";
+            
         }
 
         public void GenerateRandomImages()
@@ -753,13 +754,7 @@ namespace Bejeweled
             Points += 800;
             lblPoints.Text = String.Format("{0:00000}", Points);
         }
-        public void submitHighScore(string name, int ticks)
-        {
-            HighScoreItem item = new HighScoreItem();
-            item.player = name;
-            item.score = Points;
-            HS.add(item);
-        }
+       
 
         public void FallDown(int I, int J)
         {
@@ -789,20 +784,36 @@ namespace Bejeweled
                     soundPlayer.Play();
                 }              
             } 
-            int left = 120 - time;
-            int min = left / 60;
-            int sec = left % 60;
+            int left =20 - time;
+            int min = left / 20;
+            int sec = left % 20;
             string s = String.Format("Time left: {0:00}:{1:00} ", min, sec);
-            if (time > 120)
+            if (time > 20)
             {
                 timer1.Stop();
                 GamePause();
                 soundPlayer.Stop();
-                MessageBox.Show("GAME OVER!!");
-                High_Scores_From form2 = new High_Scores_From(this, Points);
-                form2.Show();
-                form2.name.Focus();
 
+
+
+                GameOverForm over = new GameOverForm();
+                this.Hide();
+               
+                over.ShowDialog();
+              //  this.Close();
+
+
+
+                //Score score = new Score("Marija", Points);
+                //HighScores highScore = new HighScores(this);
+                //FileStream fileStream = new FileStream("HighScore.txt", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None);
+                //highScore.ReadScores(fileStream);
+                //highScore.sortHighScore(score);
+                //highScore.Show();
+                //fileStream.Close();
+                //highScore.WriteScores("HighScore.txt");
+                //fileStream.Close();
+           
             }
             progress = new CustomProgressBar(time, s);
             if (!flagSoundIcon)
@@ -1300,7 +1311,8 @@ namespace Bejeweled
                 soundPlayer.Stop();
                 GamePause();
                 SoundForm af = new SoundForm();
-                this.Hide();
+                this.Hide(); 
+                this.Close();
                     if (af.ShowDialog() == DialogResult.OK)
                     {
                         af.Close();
@@ -1345,7 +1357,7 @@ namespace Bejeweled
             }
         }
 
-        private void pictureBox2_Click(object sender, EventArgs e) ////////////////
+        private void pictureBox2_Click(object sender, EventArgs e) 
         {
           
             if (picSound.Tag.ToString() == "On")
@@ -1480,7 +1492,7 @@ namespace Bejeweled
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
-          //  BinarySerializeScores(HS);
+        
         }
 
         public void newGame()
@@ -1516,6 +1528,69 @@ namespace Bejeweled
                 soundPlayer.Play();
             }
         }
+        bool pauseF = true;
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.N)
+            {
+                newGame();
+            }
+            if(e.KeyCode == Keys.P)
+            {
+
+                if (picStart.Tag.ToString() == "Pause")
+                {
+                    picStart.Image = Resources.Start;
+                    picStart.Tag = "Start";
+                    soundPlayer.Stop();
+                    GamePause();
+                }
+                else
+                {
+                    picStart.Image = Resources.Pause;
+                    picStart.Tag = "Pause";
+                    if (flagSoundIcon)
+                    {
+                        soundPlayer.Play();
+                    }
+
+                    GameUnPause();
+                }
+
+            }
+            if(e.KeyCode == Keys.H)
+            {
+                Hint();
+                NoOfUsedHints++;
+                int x = 3 - NoOfUsedHints;
+                lblNumHits.Text = String.Format("{0}", x);
+                if (NoOfUsedHints == 3)
+                {
+                    picHint.Enabled = false;
+                }
+            }
+            if(e.KeyCode == Keys.S)
+            {
+
+                if (picSound.Tag.ToString() == "On")
+                {
+                    picSound.Image = Resources.SoundOff;
+                    picSound.Tag = "Off";
+                    flagPauseIcon = true;
+                    flagSoundIcon = false;
+                    soundPlayer.Stop();
+                }
+                else
+                {
+                    picSound.Image = Resources.SoundOn;
+                    picSound.Tag = "On";
+                    soundPlayer.Play();
+                    flagSoundIcon = true;
+                }
+
+            }
+        }
+
         private void button2_Click(object sender, EventArgs e)
         {
             newGame();
@@ -1831,55 +1906,8 @@ namespace Bejeweled
                 GenerateRandomImages();
             }
         }
-        private static void BinarySerializeScores(Scores HS)
-        {
-            //string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-            //using (FileStream str = File.Create(path + "\\igra.hs"))
-            //{
-            //    File.SetAttributes(path + "\\igra.hs", File.GetAttributes(path + "\\igra.hs") | FileAttributes.Hidden);
-            //    BinaryFormatter bf = new BinaryFormatter();
-            //    bf.Serialize(str, HS);
-            //}
-        }
+       
 
-       // private static Scores BinaryDeserializeScores()
-        //{
-            //string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-            //Scores HS = null;
-            //try
-            //{
-
-            //    using (FileStream str = File.OpenRead(path + "\\igra.hs"))
-            //    {
-            //        BinaryFormatter bf = new BinaryFormatter();
-            //        HS = (Scores)bf.Deserialize(str);
-            //    }
-
-            //    File.Delete(path + "\\igra.hs");
-
-            //    return HS;
-            //}
-            //catch (FileNotFoundException)
-            //{
-            //    return new Scores();
-            //}
-        //}
-
-        public void setHighScoresPanel()
-        {
-           
-
-            
-        }
-        public void changeView(int view)
-        {
-           if (view == 2) //High Scores Panel is Visible
-            {
-                this.Text = "Sudoku - HighScores";
-              
-                picHome.Visible = true;
-            }
-         
-        }
+       
     }
 }
