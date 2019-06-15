@@ -53,11 +53,11 @@
             // lblText
             // 
             this.lblText.AutoSize = true;
-            this.lblText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lblText.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblText.Location = new System.Drawing.Point(71, 286);
+            this.lblText.Location = new System.Drawing.Point(69, 373);
             this.lblText.Name = "lblText";
-            this.lblText.Size = new System.Drawing.Size(35, 20);
+            this.lblText.Size = new System.Drawing.Size(34, 17);
             this.lblText.TabIndex = 2;
             this.lblText.Text = "text";
             // 
@@ -65,7 +65,7 @@
             // 
             this.btnNext.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnNext.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnNext.Location = new System.Drawing.Point(311, 352);
+            this.btnNext.Location = new System.Drawing.Point(309, 473);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(75, 34);
             this.btnNext.TabIndex = 4;
@@ -77,7 +77,7 @@
             // 
             this.btnPrev.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnPrev.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnPrev.Location = new System.Drawing.Point(75, 352);
+            this.btnPrev.Location = new System.Drawing.Point(73, 473);
             this.btnPrev.Name = "btnPrev";
             this.btnPrev.Size = new System.Drawing.Size(75, 34);
             this.btnPrev.TabIndex = 5;
@@ -89,7 +89,7 @@
             // 
             this.btnSkip.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnSkip.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnSkip.Location = new System.Drawing.Point(392, 352);
+            this.btnSkip.Location = new System.Drawing.Point(390, 473);
             this.btnSkip.Name = "btnSkip";
             this.btnSkip.Size = new System.Drawing.Size(75, 34);
             this.btnSkip.TabIndex = 6;
@@ -99,9 +99,9 @@
             // 
             // pbSlika
             // 
-            this.pbSlika.Location = new System.Drawing.Point(75, 54);
+            this.pbSlika.Location = new System.Drawing.Point(73, 65);
             this.pbSlika.Name = "pbSlika";
-            this.pbSlika.Size = new System.Drawing.Size(392, 216);
+            this.pbSlika.Size = new System.Drawing.Size(392, 272);
             this.pbSlika.TabIndex = 3;
             this.pbSlika.TabStop = false;
             // 
@@ -111,7 +111,7 @@
             this.pictureBox1.Image = global::Bejeweled.Properties.Resources.BG4;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(543, 423);
+            this.pictureBox1.Size = new System.Drawing.Size(543, 533);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
@@ -119,7 +119,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(543, 423);
+            this.ClientSize = new System.Drawing.Size(543, 533);
             this.Controls.Add(this.btnSkip);
             this.Controls.Add(this.btnPrev);
             this.Controls.Add(this.btnNext);
@@ -129,6 +129,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Name = "HowToPlay";
             this.Text = "HowToPlay";
+//            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.HowToPlay_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.pbSlika)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

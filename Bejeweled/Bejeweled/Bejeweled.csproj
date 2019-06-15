@@ -394,5 +394,44 @@
   <ItemGroup>
     <None Include="Properties\SounOnMainMenu.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\hint - pause - soundo.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Slika2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Slika3.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Slika4.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Slika5.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Slika6.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Slika7.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Slika8.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Slika9.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Slika10.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Slika11.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Slika12.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Slika13.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
