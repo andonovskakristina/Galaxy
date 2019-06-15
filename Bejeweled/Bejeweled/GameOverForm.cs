@@ -38,7 +38,7 @@ namespace Bejeweled
 
         private void btnPlay_Click(object sender, EventArgs e)
         {   if (textBox1.Text.Trim().Length != 0)
-                {
+            {
                     Score score = new Score(textBox1.Text, Form1.Points);
                     HighScores highScore = new HighScores(Parent);
                     FileStream fileStream = new FileStream("HighScores.txt", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None);
@@ -53,7 +53,7 @@ namespace Bejeweled
             Form1  f = new Form1();
             this.Hide();
             f.ShowDialog();
-            this.Close();
+            //this.Close();
         }
 
         private void btnMenu_Click(object sender, EventArgs e)
@@ -75,7 +75,7 @@ namespace Bejeweled
             Cover f = new Cover();
             this.Hide();
             f.ShowDialog();
-            this.Close();
+           // this.Close();
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -111,7 +111,7 @@ namespace Bejeweled
                     this.Hide();
                     Cover c = new Cover();
                     c.ShowDialog();
-                    this.Close();
+                  //  this.Close();
                 }
 
             }

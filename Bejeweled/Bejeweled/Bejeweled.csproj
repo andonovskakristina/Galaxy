@@ -78,13 +78,13 @@
     <Compile Include="HighScores.Designer.cs">
       <DependentUpon>HighScores.cs</DependentUpon>
     </Compile>
-    <Compile Include="Img.cs" />
-    <Compile Include="KeyboardHelper.cs">
+    <Compile Include="HowToPlay.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="KeyboardHelper.Designer.cs">
-      <DependentUpon>KeyboardHelper.cs</DependentUpon>
+    <Compile Include="HowToPlay.Designer.cs">
+      <DependentUpon>HowToPlay.cs</DependentUpon>
     </Compile>
+    <Compile Include="Img.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -124,8 +124,8 @@
     <EmbeddedResource Include="HighScores.resx">
       <DependentUpon>HighScores.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="KeyboardHelper.resx">
-      <DependentUpon>KeyboardHelper.cs</DependentUpon>
+    <EmbeddedResource Include="HowToPlay.resx">
+      <DependentUpon>HowToPlay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -384,6 +384,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\WRONG_answer-[AudioTrimmer.com].wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Slika1.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\SoundOffMainMenu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\SounOnMainMenu.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

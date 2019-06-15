@@ -24,12 +24,12 @@ namespace Bejeweled
             InitializeComponent();
             soundPlayerCover = new SoundPlayer(Resources.Atmosphere_04);
             soundPlayerCover.Play();
-             picSound.Image = Resources.SoundOn;
+            picSound.Image = Resources.SounOnMainMenu;
             picSound.Tag = "On";
            /// Form1.flagSoundIcon = true;
             flag = true;
             tick = 0;
-            pictureBox1.Controls.Add(picSound); ////////SMENANO
+            pictureBox1.Controls.Add(picSound); 
             picSound.BackColor = Color.Transparent;
 
            
@@ -58,7 +58,7 @@ namespace Bejeweled
         {
             if (picSound.Tag.ToString() == "On")
             {
-                picSound.Image = Resources.SoundOff;
+                picSound.Image = Resources.SoundOffMainMenu;
                 soundPlayerCover.Stop();
                 Form1.flagSoundIcon = false;
                 flag = false;
@@ -66,7 +66,7 @@ namespace Bejeweled
             }
             else
             {
-                picSound.Image = Resources.SoundOn;
+                picSound.Image = Resources.SounOnMainMenu;
                 Form1.flagSoundIcon = true;
                 soundPlayerCover.Play();
                 flag = true;
@@ -102,14 +102,22 @@ namespace Bejeweled
         {
             if (!Form1.flagSoundIcon)
             {
-                picSound.Image = Resources.SoundOff;
+                picSound.Image = Resources.SoundOffMainMenu;
                 picSound.Tag = "Off";
             }
             else
             {
-                picSound.Image = Resources.SoundOn;
+                picSound.Image = Resources.SounOnMainMenu;
                 picSound.Tag = "On";
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            HowToPlay h = new HowToPlay();
+            this.Hide();
+            h.ShowDialog();
+            this.Close();
         }
     }
 }

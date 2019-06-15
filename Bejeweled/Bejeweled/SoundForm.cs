@@ -10,7 +10,7 @@ namespace Bejeweled
     public partial class SoundForm : Form
     {
         private SoundPlayer musicPlayer;
-       // private musicPlayer musicPlayer;
+        // private musicPlayer musicPlayer;
         Random r;
         int index;
         List<int> indeksi;
@@ -23,12 +23,13 @@ namespace Bejeweled
         bool Start;
         Timer tri;
         int brojac;
-
+        int clicked;
         public SoundForm()
         {
             InitializeComponent();
-            //musicPlayer = new SoundPlayer();
+            // musicPlayer = new SoundPlayer();
             r = new Random();
+            clicked = -1;
             delay = new Timer();
             delay.Interval = 100;
             delay.Tick += delay_Tick;
@@ -48,18 +49,18 @@ namespace Bejeweled
             second = false;
             third = false;
             ticks = 0;
-           pbFirst.Visible = pbSecond.Visible = pbThird.Visible = false;
-           Start = true;
+            pbFirst.Visible = pbSecond.Visible = pbThird.Visible = false;
+            Start = true;
 
         }
 
         private void tri_Tick(object sender, EventArgs e)
         {
-           brojac++;
-            
+            brojac++;
+
             if (brojac == 1)
             {
-               tri.Stop();
+                tri.Stop();
                 brojac = 0;
                 refresh();
             }
@@ -69,34 +70,72 @@ namespace Bejeweled
         {
             ticks++;
             ShowAnswer();
-            if(ticks == 7)
+            if (ticks == 7)
             {
                 delay.Stop();
                 HideAnswer();
                 ticks = 0;
-                Start = true;
+                //  Start = true;
             }
 
         }
 
         private void HideAnswer()
         {
-            pbFirst.Visible = false;
-            pbSecond.Visible = false;
-            pbThird.Visible = false;
+            //pbFirst.Visible = false;
+            //pbSecond.Visible = false;
+            //pbThird.Visible = false;
+            btnAnwser1.BackColor = System.Drawing.Color.Black;
+            btnAnwser2.BackColor = System.Drawing.Color.Black;
+            btnAnwser3.BackColor = System.Drawing.Color.Black;
         }
 
         private void ShowAnswer()
         {
-            pbFirst.Visible = true;
-            pbSecond.Visible = true;
-            pbThird.Visible = true;
+            //pbFirst.Visible = true;
+            //pbSecond.Visible = true;
+            //pbThird.Visible = true;
+            if (third)
+            {
+                btnAnwser3.BackColor = System.Drawing.Color.Green;
+            }
+            else
+            {
+                if (clicked == 3)
+                {
+                    btnAnwser3.BackColor = System.Drawing.Color.Red;
+                }
+            }
+            if (second)
+            {
+                btnAnwser2.BackColor = System.Drawing.Color.Green;
+            }
+            else
+            {
+                if (clicked == 2)
+                {
+                    btnAnwser2.BackColor = System.Drawing.Color.Red;
+                }
+            }
+            if (first)
+            {
+                btnAnwser1.BackColor = System.Drawing.Color.Green;
+            }
+            else
+            {
+                if (clicked == 1)
+                {
+                    btnAnwser1.BackColor = System.Drawing.Color.Red;
+                }
+            }
+
+
         }
 
         private void generateSong(int index)
         {
             first = second = third = false;
-           
+
             if (index == 0)
             {
                 musicPlayer = new SoundPlayer(Resources._505);
@@ -181,7 +220,7 @@ namespace Bejeweled
                 pbSecond.Image = Resources.blackCorrectMarkSmall;
                 pbThird.Image = Resources.xMarkSmall;
                 first = third = false;
-            }    
+            }
         }
 
         private void btnSkip_Click(object sender, EventArgs e)
@@ -190,8 +229,8 @@ namespace Bejeweled
             tri.Start();
         }
         private void refresh()
-        {      
-            index = r.Next(0, 7);           
+        {
+            index = r.Next(0, 7);
             if (indeksi.Contains(index))
             {
                 while (indeksi.Contains(index))
@@ -199,8 +238,9 @@ namespace Bejeweled
                     index = r.Next(0, 7);
                 }
             }
-           
+
             generateSong(index);
+
             musicPlayer.Play();
             indeksi.Add(index);
 
@@ -216,56 +256,59 @@ namespace Bejeweled
             {
                 Points += 300;
                 lblP.Text = "Points: " + Points.ToString();
-            }          
-            first = false;
+            }
+            clicked = 1;
             delay.Start();
             tri.Start();
+            //     first = false;
 
         }
 
-       
+
         private void btnAnwser3_Click(object sender, EventArgs e)
         {
-        
+
             if (third)
             {
                 Points += 300;
                 lblP.Text = "Points: " + Points.ToString();
             }
-                  
-            third = false;
+
+
+            clicked = 3;
             delay.Start();
             tri.Start();
+            //   third = false;
         }
 
         private void btnAnwser2_Click(object sender, EventArgs e)
         {
-           
+
             if (second)
             {
                 Points += 300;
-                lblP.Text = "Points: " + Points.ToString(); 
+                lblP.Text = "Points: " + Points.ToString();
+
                 //Sound correct
             }
+            clicked = 2;
             delay.Start();
             tri.Start();
-            second = false;
+            //  second = false;
 
         }
 
         private void SoundForm_Leave(object sender, EventArgs e)
         {
-            timer1.Stop();
-            DialogResult = DialogResult.OK;
-            musicPlayer.Stop();
-            this.Close();
+
         }
 
         private void SoundForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            timer1.Stop();
-            DialogResult = DialogResult.OK;
-            musicPlayer.Stop();
+            //timer1.Stop();
+            ////DialogResult = DialogResult.OK;
+            //musicPlayer.Stop();
+
         }
 
         private void SoundForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -278,10 +321,10 @@ namespace Bejeweled
             pbFirst.Visible = false;
             pbSecond.Visible = false;
             pbThird.Visible = false;
+            btnSkip.Enabled = true;
             timer1.Start();
             refresh();
-            btnSkip.Enabled = true;
-           
+
         }
         private void timer1_Tick(object sender, EventArgs e)
         {

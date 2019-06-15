@@ -459,6 +459,16 @@ namespace Bejeweled.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Slika1 {
+            get {
+                object obj = ResourceManager.GetObject("Slika1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
         internal static System.IO.UnmanagedMemoryStream snakeEaten {
@@ -490,9 +500,29 @@ namespace Bejeweled.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap SoundOffMainMenu {
+            get {
+                object obj = ResourceManager.GetObject("SoundOffMainMenu", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap SoundOn {
             get {
                 object obj = ResourceManager.GetObject("SoundOn", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SounOnMainMenu {
+            get {
+                object obj = ResourceManager.GetObject("SounOnMainMenu", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

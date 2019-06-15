@@ -38,6 +38,7 @@ namespace Bejeweled
         public Form1()
         {
             InitializeComponent();
+            KeyPreview = true;
             FlagMove = -1;
             Points = 0;
             Helper1 = true;
@@ -1528,7 +1529,7 @@ namespace Bejeweled
                 soundPlayer.Play();
             }
         }
-        bool pauseF = true;
+   
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             if(e.KeyCode == Keys.N)
@@ -1591,6 +1592,7 @@ namespace Bejeweled
             }
         }
 
+        
         private void button2_Click(object sender, EventArgs e)
         {
             newGame();
