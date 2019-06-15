@@ -128,6 +128,10 @@ namespace Bejeweled
                 timer1.Stop();
                 this.Close();
             }
+            if (!Form1.flagSoundIcon)
+            {
+                soundPlayerAsos.Stop();
+            }
         }
         private void btnNext_Click(object sender, EventArgs e)
         {

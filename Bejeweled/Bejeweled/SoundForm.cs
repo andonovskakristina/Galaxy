@@ -9,8 +9,8 @@ namespace Bejeweled
 {
     public partial class SoundForm : Form
     {
-        private SoundPlayer soundPlayer;
-       // private SoundPlayer musicPlayer;
+        private SoundPlayer musicPlayer;
+       // private musicPlayer musicPlayer;
         Random r;
         int index;
         List<int> indeksi;
@@ -27,7 +27,7 @@ namespace Bejeweled
         public SoundForm()
         {
             InitializeComponent();
-            soundPlayer = new SoundPlayer();
+            musicPlayer = new SoundPlayer();
             r = new Random();
             delay = new Timer();
             delay.Interval = 100;
@@ -99,7 +99,7 @@ namespace Bejeweled
            
             if (index == 0)
             {
-                soundPlayer = new SoundPlayer(Resources._505);
+                musicPlayer = new SoundPlayer(Resources._505);
                 btnAnwser1.Text = "505";
                 btnAnwser2.Text = "Why do you only when you're high";
                 btnAnwser3.Text = "Do u wanna know?";
@@ -112,7 +112,7 @@ namespace Bejeweled
             }
             if (index == 1)
             {
-                soundPlayer = new SoundPlayer(Resources.I_Want_To_Break_Free);
+                musicPlayer = new SoundPlayer(Resources.I_Want_To_Break_Free);
                 btnAnwser1.Text = "A Kind Of Magic";
                 btnAnwser2.Text = "I Want To Break Free";
                 btnAnwser3.Text = "Another One Bites The Dust";
@@ -124,7 +124,7 @@ namespace Bejeweled
             }
             if (index == 2)
             {
-                soundPlayer = new SoundPlayer(Resources.Love_of_my_life);
+                musicPlayer = new SoundPlayer(Resources.Love_of_my_life);
                 btnAnwser1.Text = "Love of my life";
                 btnAnwser2.Text = "I Want to Break Free";
                 btnAnwser3.Text = "Another One Bites The Dust";
@@ -136,7 +136,7 @@ namespace Bejeweled
             }
             if (index == 3)
             {
-                soundPlayer = new SoundPlayer(Resources.Englishman_In_New_York);
+                musicPlayer = new SoundPlayer(Resources.Englishman_In_New_York);
                 btnAnwser1.Text = "Desert rose";
                 btnAnwser2.Text = "Englishman in new york";
                 btnAnwser3.Text = "Stolen car";
@@ -148,7 +148,7 @@ namespace Bejeweled
             }
             if (index == 4)
             {
-                soundPlayer = new SoundPlayer(Resources.Toxicity);
+                musicPlayer = new SoundPlayer(Resources.Toxicity);
                 btnAnwser1.Text = "Prision song";
                 btnAnwser2.Text = "Jet pilot";
                 btnAnwser3.Text = "Toxicity";
@@ -160,7 +160,7 @@ namespace Bejeweled
             }
             if (index == 5)
             {
-                soundPlayer = new SoundPlayer(Resources.Roxanne);
+                musicPlayer = new SoundPlayer(Resources.Roxanne);
                 btnAnwser1.Text = "Roxannee";
                 btnAnwser2.Text = "Just one lifetime";
                 btnAnwser3.Text = "Jet pilot";
@@ -172,7 +172,7 @@ namespace Bejeweled
             }
             if (index == 6)
             {
-                soundPlayer = new SoundPlayer(Resources.Igri_Bez_Granici);
+                musicPlayer = new SoundPlayer(Resources.Igri_Bez_Granici);
                 btnAnwser1.Text = "Malechka";
                 btnAnwser2.Text = "Igri bez granici";
                 btnAnwser3.Text = "Polsko cvekje";
@@ -190,12 +190,8 @@ namespace Bejeweled
             tri.Start();
         }
         private void refresh()
-        {
-
-        
-            index = r.Next(0, 7);
-
-           
+        {      
+            index = r.Next(0, 7);           
             if (indeksi.Contains(index))
             {
                 while (indeksi.Contains(index))
@@ -206,7 +202,7 @@ namespace Bejeweled
            
             generateSong(index);
         
-            soundPlayer.Play();
+            musicPlayer.Play();
             indeksi.Add(index);
 
 
@@ -237,11 +233,7 @@ namespace Bejeweled
                 Points += 300;
                 lblP.Text = "Points: " + Points.ToString();
             }
-            else
-            {
-               
-            }
-          
+                  
             third = false;
 
             delay.Start();
@@ -269,7 +261,7 @@ namespace Bejeweled
         {
             timer1.Stop();
             DialogResult = DialogResult.OK;
-            soundPlayer.Stop();
+            musicPlayer.Stop();
             this.Close();
         }
 
@@ -277,7 +269,7 @@ namespace Bejeweled
         {
             timer1.Stop();
             DialogResult = DialogResult.OK;
-            soundPlayer.Stop();
+            musicPlayer.Stop();
            
         }
 
@@ -302,12 +294,10 @@ namespace Bejeweled
             if (tick == 25)
             {
                 timer1.Stop();
-                soundPlayer.Stop();
+                musicPlayer.Stop();
                 DialogResult = DialogResult.OK;
                 this.Close();
                 //game over sound
-
-
             }
         }
 

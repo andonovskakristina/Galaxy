@@ -550,10 +550,10 @@ namespace Bejeweled
             picSound.MouseHover += new EventHandler(picSound_MouseHover);
             timer1.Start();
         }
+
         private void CallSnake()
         {
             GamePause();
-            soundPlayer.Stop();
             SnakeForm sf = new SnakeForm();
 
             this.Hide();
@@ -569,6 +569,14 @@ namespace Bejeweled
             }
             this.Show();
             GameUnPause();
+            if (flagSoundIcon)
+            {
+                soundPlayer.Play();
+            }
+            else
+            {
+                soundPlayer.Stop();
+            }
 
         }
         private void CallAssociation()
@@ -585,9 +593,13 @@ namespace Bejeweled
             this.Show();
             if (flagSoundIcon)
             {
-                soundPlayer.Play();
-                this.Show();
+                soundPlayer.Play();               
             }
+            else
+            {
+                soundPlayer.Stop();
+            }
+           
         }
 
         private void AddRandomBombs(int guesses)
@@ -612,449 +624,6 @@ namespace Bejeweled
                 }
             }
         }
-
-        //public bool NotDiagonal()
-        //{
-        //    int i1, i2, j1, j2;
-        //    i1 = i2 = j1 = j2 = -1;
-
-        //    for (int i = 0; i < MATRIX_HEIGHT; i++)
-        //    {
-        //        for (int j = 0; j < MATRIX_WIDTH; j++)
-        //        {
-        //            if(Images[i][j].IsHit(FirstPoint.X, FirstPoint.Y))
-        //            {
-        //                i1 = i;
-        //                j1 = j;
-        //            }
-        //            else if (Images[i][j].IsHit(SecondPoint.X, SecondPoint.Y))
-        //            {
-        //                i2 = i;
-        //                j2 = j;
-        //            }
-        //        }
-        //    }
-
-        //    if(i1 != -1 && i2 != -1 && j1 != -1 && j2 != -1)
-        //    {
-        //        if(i2 == i1 - 1 && j2 == j1)
-        //        {
-        //            // nad
-        //            return true;
-        //        }
-        //        else if(i2 == i1 + 1 && j2 == j1)
-        //        {
-        //            // pod
-        //            return true;
-        //        }
-        //        else if(i2 == i1 && j2 == j1 - 1)
-        //        {
-        //            // levo
-        //            return true;
-        //        }
-        //        else if(i2 == i1 && j2 == j1 + 1)
-        //        {
-        //            // desno
-        //            return true;
-        //        }
-        //    }
-
-        //    return false;
-        //}
-
-        //public bool SwapNeeded(int a, int b, int a1, int b1)
-        //{
-        //    // x = j * IMAGE_SIZE + 5 * j
-        //    // y = i * IMAGE_SIZE + 5 * i
-
-        //    //int i1 = FirstPoint.Y / (IMAGE_SIZE + 5);
-        //    //int j1 = FirstPoint.X / (IMAGE_SIZE + 5);
-        //    //int i2 = SecondPoint.Y / (IMAGE_SIZE + 5);
-        //    //int j2 = SecondPoint.X / (IMAGE_SIZE + 5);
-        //    int i1 = a;
-        //    int j1 = b;
-        //    int i2 = a1;
-        //    int j2 = b1;
-        //    Delete = false;
-
-        //    if (j1 == j2 && J != -1)
-        //    {
-        //        // nad pod - horizontala
-
-        //        // isto isto (first ili second) isto isto
-        //        if (j1 > 1 && j1 < MATRIX_WIDTH - 2)
-        //        {
-        //            // sobira 5
-        //            if ((Images[i1][j1 - 2].Type == Images[i1][j1 - 1].Type) && (Images[i1][j1 - 2].Type == Images[i2][j2].Type) && (Images[i1][j1 - 2].Type == Images[i1][j1 + 1].Type) && (Images[i1][j1 - 2].Type == Images[i1][j1 + 2].Type))
-        //            {
-        //                Images[i1][j1 - 2].IsForDeleting = true;
-        //                Images[i1][j1 - 1].IsForDeleting = true;
-        //                //Images[i2][j2].IsForDeleting = true;
-        //                Images[i1][j1 + 1].IsForDeleting = true;
-        //                Images[i1][j1 + 2].IsForDeleting = true;
-        //                Images[i2][j2].Bomba5 = true;
-        //                Delete = true;
-        //                //MessageBox.Show("5");
-        //            }
-        //            else if ((Images[i2][j2 - 2].Type == Images[i2][j2 - 1].Type) && (Images[i2][j2 - 2].Type == Images[i1][j1].Type) && (Images[i2][j2 - 2].Type == Images[i2][j2 + 1].Type) && (Images[i2][j2 - 2].Type == Images[i2][j2 + 2].Type))
-        //            {
-        //                Images[i2][j2 - 2].IsForDeleting = true;
-        //                Images[i2][j2 - 1].IsForDeleting = true;
-        //                //Images[i1][j1].IsForDeleting = true;
-        //                Images[i1][j1 + 1].IsForDeleting = true;
-        //                Images[i1][j1 + 2].IsForDeleting = true;
-        //                Images[i1][j1].Bomba5 = true;
-        //                Delete = true;
-        //                //  MessageBox.Show("5");
-        //            }
-        //        }
-
-        //        // isto isto (first ili second) isto
-        //        if (j1 > 1 && j1 < MATRIX_WIDTH - 1 && j2 > 1)
-        //        {
-        //            if ((Images[i1][j1 - 2].Type == Images[i1][j1 - 1].Type) && (Images[i1][j1 - 2].Type == Images[i2][j2].Type) && (Images[i1][j1 - 2].Type == Images[i1][j1 + 1].Type))
-        //            {
-        //                Images[i1][j1 - 2].IsForDeleting = true;
-        //                Images[i1][j1 - 1].IsForDeleting = true;
-        //                //Images[i2][j2].IsForDeleting = true;
-        //                Images[i1][j1 + 1].IsForDeleting = true;
-        //                Images[i2][j2].Bomba4 = true;
-        //                Delete = true;
-        //                //  MessageBox.Show("4");
-        //            }
-        //            else if ((Images[i2][j2 - 2].Type == Images[i2][j2 - 1].Type) && (Images[i2][j2 - 2].Type == Images[i1][j1].Type) && (Images[i2][j2 - 2].Type == Images[i2][j2 + 1].Type))
-        //            {
-        //                Images[i2][j2 - 2].IsForDeleting = true;
-        //                Images[i2][j2 - 1].IsForDeleting = true;
-        //                //Images[i1][j1].IsForDeleting = true;
-        //                Images[i2][j2 + 1].IsForDeleting = true;
-        //                Images[i1][j1].Bomba4 = true;
-        //                Delete = true;
-        //                //  MessageBox.Show("4");
-        //            }
-        //        }
-
-        //        // isto (first ili second) isto isto
-        //        if (j1 > 0 && j1 < MATRIX_WIDTH - 2)
-        //        {
-        //            if ((Images[i1][j1 - 1].Type == Images[i2][j2].Type) && (Images[i1][j1 - 1].Type == Images[i1][j1 + 1].Type) && (Images[i1][j1 - 1].Type == Images[i1][j1 + 2].Type))
-        //            {
-        //                Images[i1][j1 - 1].IsForDeleting = true;
-        //                //Images[i2][j2].IsForDeleting = true;
-        //                Images[i1][j1 + 1].IsForDeleting = true;
-        //                Images[i1][j1 + 2].IsForDeleting = true;
-        //                Images[i2][j2].Bomba4 = true;
-        //                Delete = true;
-        //                //    MessageBox.Show("4");
-        //            }
-        //            else if ((Images[i2][j2 - 1].Type == Images[i1][j1].Type) && (Images[i2][j2 - 1].Type == Images[i2][j2 + 1].Type) && (Images[i2][j2 - 1].Type == Images[i2][j2 + 2].Type))
-        //            {
-        //                Images[i2][j2 - 1].IsForDeleting = true;
-        //                //Images[i1][j1].IsForDeleting = true;
-        //                Images[i2][j2 + 1].IsForDeleting = true;
-        //                Images[i2][j2 + 2].IsForDeleting = true;
-        //                Images[i1][j1].Bomba4 = true;
-        //                Delete = true;
-        //                //  MessageBox.Show("4");
-        //            }
-        //        }
-
-        //        // (first ili second) isto isto
-        //        if (j1 >= 0 && j1 < MATRIX_WIDTH - 2)
-        //        {
-        //            if ((Images[i2][j2].Type == Images[i1][j1 + 1].Type) && (Images[i2][j2].Type == Images[i1][j1 + 2].Type))
-        //            {
-        //                Images[i2][j2].IsForDeleting = true;
-        //                Images[i1][j1 + 1].IsForDeleting = true;
-        //                Images[i1][j1 + 2].IsForDeleting = true;
-        //                Delete = true;
-        //                // MessageBox.Show("3");
-        //            }
-        //            else if ((Images[i1][j1].Type == Images[i2][j2 + 1].Type) && (Images[i1][j1].Type == Images[i2][j2 + 2].Type))
-        //            {
-        //                Images[i1][j1].IsForDeleting = true;
-        //                Images[i2][j2 + 1].IsForDeleting = true;
-        //                Images[i2][j2 + 2].IsForDeleting = true;
-        //                Delete = true;
-        //                //   MessageBox.Show("3");
-        //            }
-        //        }
-
-        //        // isto (first ili second) isto
-        //        if (j1 > 0 && j1 < MATRIX_WIDTH - 1)
-        //        {
-        //            if ((Images[i1][j1 - 1].Type == Images[i2][j2].Type) && (Images[i1][j1 - 1].Type == Images[i1][j1 + 1].Type))
-        //            {
-        //                Images[i1][j1 - 1].IsForDeleting = true;
-        //                Images[i2][j2].IsForDeleting = true;
-        //                Images[i1][j1 + 1].IsForDeleting = true;
-        //                Delete = true;
-        //                // MessageBox.Show("3");
-        //            }
-        //            else if ((Images[i2][j2 - 1].Type == Images[i1][j1].Type) && (Images[i2][j2 - 1].Type == Images[i2][j2 + 1].Type))
-        //            {
-        //                Images[i2][j2 - 1].IsForDeleting = true;
-        //                Images[i1][j1].IsForDeleting = true;
-        //                Images[i2][j2 + 1].IsForDeleting = true;
-        //                Delete = true;
-        //                //  MessageBox.Show("3");
-        //            }
-        //        }
-
-        //        // isto isto (first ili second)
-        //        if (j1 > 1 && j1 < MATRIX_WIDTH)
-        //        {
-        //            if ((Images[i1][j1 - 2].Type == Images[i1][j1 - 1].Type) && (Images[i1][j1 - 2].Type == Images[i2][j2].Type))
-        //            {
-        //                Images[i1][j1 - 2].IsForDeleting = true;
-        //                Images[i1][j1 - 1].IsForDeleting = true;
-        //                Images[i2][j2].IsForDeleting = true;
-        //                Delete = true;
-        //                //  MessageBox.Show("3");
-        //            }
-        //            else if ((Images[i2][j2 - 2].Type == Images[i2][j2 - 1].Type) && (Images[i2][j2 - 2].Type == Images[i1][j1].Type))
-        //            {
-        //                Images[i2][j2 - 2].IsForDeleting = true;
-        //                Images[i2][j2 - 1].IsForDeleting = true;
-        //                Images[i1][j1].IsForDeleting = true;
-        //                Delete = true;
-        //                //   MessageBox.Show("3");
-        //            }
-        //        }
-        //    }
-        //    else if (i1 == i2 && I != -1)
-        //    {
-        //        // levo desno - vertikala
-
-        //        // isto isto (first ili second) isto isto
-        //        if (i1 > 1 && i1 < MATRIX_HEIGHT - 2)
-        //        {
-        //            if ((Images[i2 - 2][j2].Type == Images[i2 - 1][j2].Type) && (Images[i2 - 2][j2].Type == Images[i1][j1].Type) && (Images[i2 - 2][j2].Type == Images[i2 + 1][j2].Type) && (Images[i2 - 2][j2].Type == Images[i2 + 2][j2].Type))
-        //            {
-        //                Images[i2 - 2][j2].IsForDeleting = true;
-        //                Images[i2 - 1][j2].IsForDeleting = true;
-        //                Images[i1][j1].IsForDeleting = true;
-        //                Images[i2 + 1][j2].IsForDeleting = true;
-        //                //Images[i2 + 2][j2].IsForDeleting = true;
-        //                Delete = true;
-        //                Images[i2 + 2][j2].Bomba5 = true;
-        //                //  MessageBox.Show("5");
-        //            }
-        //            else if ((Images[i1 - 2][j1].Type == Images[i1 - 1][j1].Type) && (Images[i1 - 2][j1].Type == Images[i2][j2].Type) && (Images[i1 - 2][j1].Type == Images[i1 + 1][j1].Type) && (Images[i1 - 2][j1].Type == Images[i1 + 2][j1].Type))
-        //            {
-        //                Images[i1 - 2][j1].IsForDeleting = true;
-        //                Images[i1 - 1][j1].IsForDeleting = true;
-        //                Images[i2][j2].IsForDeleting = true;
-        //                Images[i1 + 1][j1].IsForDeleting = true;
-        //                //Images[i1 + 2][j1].IsForDeleting = true;
-        //                Images[i1 + 2][j1].Bomba5 = true;
-        //                Delete = true;
-        //                //   MessageBox.Show("5");
-        //            }
-        //        }
-
-        //        // isto isto (first ili second) isto
-        //        if (i1 > 1 && i1 < MATRIX_HEIGHT - 1)
-        //        {
-        //            if ((Images[i2 - 2][j2].Type == Images[i2 - 1][j2].Type) && (Images[i2 - 2][j2].Type == Images[i1][j1].Type) && (Images[i2 - 2][j2].Type == Images[i2 + 1][j2].Type))
-        //            {
-        //                Images[i2 - 2][j2].IsForDeleting = true;
-        //                Images[i2 - 1][j2].IsForDeleting = true;
-        //                Images[i1][j1].IsForDeleting = true;
-        //                //Images[i2 + 1][j2].IsForDeleting = true;
-        //                Images[i2 + 1][j1 - 1].Bomba4 = true;
-        //                Delete = true;
-        //                //   MessageBox.Show("4");
-        //            }
-        //            else if ((Images[i1 - 2][j1].Type == Images[i1 - 1][j1].Type) && (Images[i1 - 2][j1].Type == Images[i2][j2].Type) && (Images[i1 - 2][j1].Type == Images[i1 + 1][j1].Type))
-        //            {
-        //                Images[i1 - 2][j1].IsForDeleting = true;
-        //                Images[i1 - 1][j1].IsForDeleting = true;
-        //                Images[i2][j2].IsForDeleting = true;
-        //                //Images[i1 + 1][j1].IsForDeleting = true;
-        //                Images[i1 + 1][j1].Bomba4 = true;
-        //                Delete = true;
-        //                //   MessageBox.Show("4");
-        //            }
-        //        }
-
-        //        // isto (first ili second) isto isto
-        //        if (i1 > 0 && i1 < MATRIX_HEIGHT - 2)
-        //        {
-        //            if ((Images[i2 - 1][j2].Type == Images[i1][j1].Type) && (Images[i2 - 1][j2].Type == Images[i2 + 1][j2].Type) && (Images[i2 - 1][j2].Type == Images[i2 + 2][j2].Type))
-        //            {
-        //                Images[i2 - 1][j2].IsForDeleting = true;
-        //                Images[i1][j1].IsForDeleting = true;
-        //                Images[i2 + 1][j2].IsForDeleting = true;
-        //                //Images[i2 + 2][j2].IsForDeleting = true;
-        //                Images[i2 + 2][j2].Bomba4 = true;
-        //                Delete = true;
-        //                //  MessageBox.Show("4");
-        //            }
-        //            else if ((Images[i1 - 1][j1].Type == Images[i2][j2].Type) && (Images[i1 - 1][j1].Type == Images[i1 + 1][j1].Type) && (Images[i1 - 1][j1].Type == Images[i1 + 2][j1].Type))
-        //            {
-        //                Images[i1 - 1][j1].IsForDeleting = true;
-        //                Images[i2][j2].IsForDeleting = true;
-        //                Images[i1 + 1][j1].IsForDeleting = true;
-        //                //Images[i1 + 2][j1].IsForDeleting = true;
-        //                Images[i1 + 2][j1].Bomba4 = true;
-        //                Delete = true;
-        //                //   MessageBox.Show("4");
-        //            }
-        //        }
-
-        //        // (first ili second) isto isto
-        //        if (i1 >= 0 && i1 < MATRIX_HEIGHT - 2)
-        //        {
-        //            if ((Images[i1][j1].Type == Images[i2 + 1][j2].Type) && (Images[i2 + 1][j2].Type == Images[i2 + 2][j2].Type))
-        //            {
-        //                Images[i1][j1].IsForDeleting = true;
-        //                Images[i2 + 1][j2].IsForDeleting = true;
-        //                Images[i2 + 2][j2].IsForDeleting = true;
-        //                Delete = true;
-        //                //   MessageBox.Show("3");
-        //            }
-        //            else if ((Images[i2][j2].Type == Images[i1 + 1][j1].Type) && (Images[i1 + 1][j1].Type == Images[i1 + 2][j1].Type))
-        //            {
-        //                Images[i2][j2].IsForDeleting = true;
-        //                Images[i1 + 1][j1].IsForDeleting = true;
-        //                Images[i1 + 2][j1].IsForDeleting = true;
-        //                Delete = true;
-        //                //    MessageBox.Show("3");
-        //            }
-        //        }
-
-        //        // isto (first ili second) isto
-        //        if (i1 > 0 && i1 < MATRIX_HEIGHT - 1)
-        //        {
-        //            if ((Images[i2 - 1][j2].Type == Images[i1][j1].Type) && (Images[i2 - 1][j2].Type == Images[i2 + 1][j2].Type))
-        //            {
-        //                Images[i2 - 1][j2].IsForDeleting = true;
-        //                Images[i1][j1].IsForDeleting = true;
-        //                Images[i2 + 1][j2].IsForDeleting = true;
-        //                Delete = true;
-        //                //   MessageBox.Show("3");
-        //            }
-        //            else if ((Images[i1 - 1][j1].Type == Images[i2][j2].Type) && (Images[i1 - 1][j1].Type == Images[i1 + 1][j1].Type))
-        //            {
-        //                Images[i1 - 1][j1].IsForDeleting = true;
-        //                Images[i2][j2].IsForDeleting = true;
-        //                Images[i1 + 1][j1].IsForDeleting = true;
-        //                Delete = true;
-        //                //  MessageBox.Show("3");
-        //            }
-        //        }
-
-        //        // isto isto (first ili second)
-        //        if (i1 > 1 && i1 < MATRIX_HEIGHT)
-        //        {
-        //            if ((Images[i2 - 2][j2].Type == Images[i2 - 1][j2].Type) && (Images[i2 - 2][j2].Type == Images[i1][j1].Type))
-        //            {
-        //                Images[i2 - 2][j2].IsForDeleting = true;
-        //                Images[i2 - 1][j2].IsForDeleting = true;
-        //                Images[i1][j1].IsForDeleting = true;
-
-        //                Delete = true;
-        //                // MessageBox.Show("3");
-        //            }
-        //            else if ((Images[i1 - 2][j1].Type == Images[i1 - 1][j1].Type) && (Images[i1 - 2][j1].Type == Images[i2][j2].Type))
-        //            {
-        //                Images[i1 - 2][j1].IsForDeleting = true;
-        //                Images[i1 - 1][j1].IsForDeleting = true;
-        //                Images[i2][j2].IsForDeleting = true;
-        //                Delete = true;
-        //                //   MessageBox.Show("3");
-        //            }
-        //        }
-        //    }
-
-        //    // isto razlicno isto isto - horizontalno
-        //    if (i1 == i2 && ((j1 == j2 - 1 && j1 >= 0 && j1 < MATRIX_WIDTH - 3) || (j1 == j2 + 1 && j2 >= 0 && j2 < MATRIX_WIDTH - 3)))
-        //    {
-        //        if ((Images[i1][j1].Type != Images[i2][j2].Type) && (Images[i1][j1].Type == Images[i1][j1 + 2].Type) && (Images[i1][j1].Type == Images[i1][j1 + 3].Type))
-        //        {
-        //            Images[i1][j1].IsForDeleting = true;
-        //            Images[i1][j1 + 2].IsForDeleting = true;
-        //            Images[i1][j1 + 3].IsForDeleting = true;
-        //            Delete = true;
-        //            //  MessageBox.Show("3");
-        //        }
-        //        else if ((Images[i2][j2].Type != Images[i1][j1].Type) && (Images[i2][j2].Type == Images[i2][j2 + 2].Type) && (Images[i2][j2].Type == Images[i2][j2 + 3].Type))
-        //        {
-        //            Images[i2][j2].IsForDeleting = true;
-        //            Images[i2][j2 + 2].IsForDeleting = true;
-        //            Images[i2][j2 + 3].IsForDeleting = true;
-        //            Delete = true;
-        //            //  MessageBox.Show("3");
-        //        }
-        //    }
-
-        //    // isto isto razlicno isto - horizontalno
-        //    if (i1 == i2 && ((j1 == j2 - 1 && j1 > 1 && j1 < MATRIX_WIDTH - 1) || (j1 == j2 + 1 && j2 > 2 && j2 < MATRIX_WIDTH)))
-        //    {
-        //        if ((Images[i1][j1 - 2].Type == Images[i1][j1 - 1].Type) && (Images[i1][j1 - 2].Type != Images[i1][j1].Type) && (Images[i1][j1 - 2].Type == Images[i2][j2].Type))
-        //        {
-        //            Images[i1][j1 - 2].IsForDeleting = true;
-        //            Images[i1][j1 - 1].IsForDeleting = true;
-        //            Images[i2][j2].IsForDeleting = true;
-        //            Delete = true;
-        //            //  MessageBox.Show("3");
-        //        }
-        //        else if ((Images[i2][j2 - 2].Type == Images[i2][j2 - 1].Type) && (Images[i2][j2 - 2].Type != Images[i2][j2].Type) && (Images[i2][j2 - 2].Type == Images[i1][j1].Type))
-        //        {
-        //            Images[i2][j2 - 2].IsForDeleting = true;
-        //            Images[i2][j2 - 1].IsForDeleting = true;
-        //            Images[i1][j1].IsForDeleting = true;
-        //            Delete = true;
-        //            //  MessageBox.Show("3");
-        //        }
-        //    }
-
-        //    // isto razlicno isto isto - vertikalno
-        //    if (j1 == j2 && ((i1 == i2 - 1 && i1 >= 0 && i1 < MATRIX_HEIGHT - 3) || (i1 == i2 + 1 && i2 >= 0 && i2 < MATRIX_HEIGHT - 3)))
-        //    {
-        //        if ((Images[i1][j1].Type != Images[i2][j2].Type) && (Images[i1][j1].Type == Images[i1 + 2][j1].Type) && (Images[i1][j1].Type == Images[i1 + 3][j1].Type))
-        //        {
-        //            Images[i1][j1].IsForDeleting = true;
-        //            Images[i1 + 2][j1].IsForDeleting = true;
-        //            Images[i1 + 3][j1].IsForDeleting = true;
-        //            Delete = true;
-        //            //  MessageBox.Show("3");
-        //        }
-        //        else if ((Images[i2][j2].Type != Images[i1][j1].Type) && (Images[i2][j2].Type == Images[i2 + 2][j2].Type) && (Images[i2][j2].Type == Images[i2 + 3][j2].Type))
-        //        {
-
-        //            Images[i2][j2].IsForDeleting = true;
-        //            Images[i2 + 2][j2].IsForDeleting = true;
-        //            Images[i2 + 3][j2].IsForDeleting = true;
-        //            Delete = true;
-        //            //  MessageBox.Show("3");
-        //        }
-        //    }
-
-        //    // isto isto razlicno isto - vertikalno
-        //    if (j1 == j2 && ((i1 == i2 - 1 && i1 > 1 && i1 < MATRIX_HEIGHT - 1) || (i1 == i2 + 1 && i2 > 2 && i2 < MATRIX_HEIGHT)))
-        //    {
-        //        if ((Images[i1 - 2][j1].Type == Images[i1 - 1][j1].Type) && (Images[i1 - 2][j1].Type != Images[i1][j1].Type) && (Images[i1 - 2][j1].Type == Images[i2][j2].Type))
-        //        {
-        //            Images[i1 - 2][j1].IsForDeleting = true;
-        //            Images[i1 - 1][j1].IsForDeleting = true;
-        //            Images[i2][j2].IsForDeleting = true;
-        //            Delete = true;
-        //            //  MessageBox.Show("3");
-        //        }
-        //        else if ((Images[i2 - 2][j2].Type == Images[i2 - 1][j2].Type) && (Images[i2 - 2][j2].Type != Images[i2][j2].Type) && (Images[i2 - 2][j2].Type == Images[i1][j1].Type))
-        //        {
-        //            Images[i2 - 2][j2].IsForDeleting = true;
-        //            Images[i2 - 1][j2].IsForDeleting = true;
-        //            Images[i1][j1].IsForDeleting = true;
-        //            Delete = true;
-        //            //   MessageBox.Show("3");
-        //        }
-        //    }
-
-        //    return Delete;
-        //}
 
         public void DeleteSquares()
         {
@@ -1215,10 +784,10 @@ namespace Bejeweled
             time++;
             if(time % 28 == 0)
             {
-                if ( flagSoundIcon)
+                if (flagSoundIcon)
                 {
                     soundPlayer.Play();
-                }
+                }              
             } 
             int left = 120 - time;
             int min = left / 60;
@@ -1236,6 +805,10 @@ namespace Bejeweled
 
             }
             progress = new CustomProgressBar(time, s);
+            if (!flagSoundIcon)
+            {
+                soundPlayer.Stop();
+            }
             Invalidate();
         }
         public void GenerateRandomDeletedImages()
@@ -1751,30 +1324,29 @@ namespace Bejeweled
 
         private void picStart_Click(object sender, EventArgs e)
         {
-            flagSoundIcon = false;
+          
             if (picStart.Tag.ToString() == "Pause")
             {
                 picStart.Image = Resources.Start;
                 picStart.Tag = "Start";
                 soundPlayer.Stop();
-                flagSoundIcon = true;
                 GamePause();
             }
             else
             {            
                 picStart.Image = Resources.Pause;
                 picStart.Tag = "Pause";
-                if (!flagPauseIcon)
+                if (flagSoundIcon)
                 {
                     soundPlayer.Play();
                 }
+                
                 GameUnPause();
             }
         }
 
         private void pictureBox2_Click(object sender, EventArgs e) ////////////////
         {
-            flagPauseIcon = false;
           
             if (picSound.Tag.ToString() == "On")
             {
@@ -1788,13 +1360,10 @@ namespace Bejeweled
             {
                 picSound.Image = Resources.SoundOn;
                 picSound.Tag = "On";
-
+                soundPlayer.Play();
                 flagSoundIcon = true;
             }
-            if (flagSoundIcon)
-            {
-                soundPlayer.Play();
-            }
+           
         }
 
         private void picSnakeHelper_Click(object sender, EventArgs e)
@@ -1889,14 +1458,9 @@ namespace Bejeweled
         private void pictureBox2_Click_1(object sender, EventArgs e)
         {
             timer1.Stop();
-            if (flagPauseIcon)
-            {
-                cover.flag = false;
-            }
              this.Hide();
             cover.ShowDialog();
             this.Close();
-
         }
 
         private void pictureBox2_MouseHover(object sender, EventArgs e)
@@ -1978,20 +1542,15 @@ namespace Bejeweled
             {
                 picSound.Image = Resources.SoundOn;
                 picSound.Tag = "On";
+                soundPlayer.Play();
             }
             else
             {
                 picSound.Image = Resources.SoundOff;
                 picSound.Tag = "Off";
-            }
-            if (flagSoundIcon)
-            {
-                soundPlayer.Play();
-            }
-            else
-            {
                 soundPlayer.Stop();
             }
+           
         }
 
         public bool IsSwapPossible(int a, int b, int a1, int b1)

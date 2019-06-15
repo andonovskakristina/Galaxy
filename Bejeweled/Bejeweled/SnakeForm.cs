@@ -58,6 +58,10 @@ namespace Bejeweled
             {
                 soundPlayerSnake.Play();
             }
+            else
+            {
+                soundPlayerSnake.Stop();
+            }
         }
 
         //private void StartDialog()
@@ -78,6 +82,10 @@ namespace Bejeweled
             {
                 ShowPoints();
                 this.Close();
+            }
+            if (!Form1.flagSoundIcon)
+            {
+                soundPlayerSnake.Stop();
             }
         }
 
