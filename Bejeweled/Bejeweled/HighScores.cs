@@ -14,18 +14,20 @@ namespace Bejeweled
     public partial class HighScores : Form
     {
         List<Score> score;
-        Game form;
+        GameOverForm form;
+        public HighScores(GameOverForm f)
+        {
+            InitializeComponent();
+            score = new List<Score>(11);
+            form = f;
+        }
         public HighScores()
         {
             InitializeComponent();
             score = new List<Score>(11);
+            form = null;
         }
-        public HighScores(Control f)
-        {
-            InitializeComponent();
-            score = new List<Score>(11);
-            form = (Game)f;
-        }
+
         public void sortHighScore(Score s)
         {
             if (score.Count < 10)
@@ -34,7 +36,7 @@ namespace Bejeweled
             {
                 if (score[score.Count() - 1].Points < s.Points)
                 {
-                    score.Remove(score[score.Count() - 1]);
+                    score.RemoveAt(score.Count() - 1);
                     score.Add(s);
                 }
             }
@@ -45,46 +47,40 @@ namespace Bejeweled
             {
                 lbRez.Items.Add(string.Format("{0}. {1}\t\t{2}", (i + 1), score[i].Name, score[i].Points));
             }
+
         }
         public List<Score> ReadScores(FileStream fileStream)
         {
-            string line;
-            List<Score> highScore = new List<Score>();
-            try
-            {
 
-                TextReader sr = new StreamReader(fileStream);
-                line = sr.ReadLine();
-                while (line != null)
+            List<Score> highScore = new List<Score>();
+            using (var reader = new StreamReader(fileStream))
+            {
+                string line;
+                while ((line = reader.ReadLine()) != null)
                 {
                     string[] parts = line.Split(' ');
-                    if (parts.Length >= 2) highScore.Add(new Score(parts[0], Convert.ToInt32(parts[1])));
-                    line = sr.ReadLine();
-                }
-                sr.Close();
-                score = highScore;
-                if (score.Count() != 0)
-                    score.Sort((x, y) => y.Points.CompareTo(x.Points));
-                for (int i = 0; i < score.Count(); i++)
-                {
-                    lbRez.Items.Add(string.Format("{0}. {1}\t\t{2}", (i + 1), score[i].Name, score[i].Points));
+                    if (parts.Length >= 2)
+                        highScore.Add(new Score(parts[0], Convert.ToInt32(parts[1])));
                 }
             }
-            catch (Exception e)
+            score = highScore;
+            if (score.Count() != 0)
+                score.Sort((x, y) => y.Points.CompareTo(x.Points));
+            for (int i = 0; i < score.Count(); i++)
             {
-                Console.WriteLine("Exception: " + e.Message);
-
+                lbRez.Items.Add(string.Format("{0}. {1}\t\t{2}", (i + 1), score[i].Name, score[i].Points));
             }
-
             return score;
         }
+
         public bool WriteScores(string fileName)
         {
             bool written = false;
             try
             {
-                System.IO.File.Delete(@fileName);
-                FileStream fileStream = new FileStream(@fileName, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None);
+
+                File.Delete(fileName);
+                FileStream fileStream = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None);
                 TextWriter wr = new StreamWriter(fileStream);
                 for (int i = 0; i < score.Count(); i++)
                 {
@@ -115,7 +111,8 @@ namespace Bejeweled
 
         private void HighScore_FormClosed(object sender, FormClosedEventArgs e)
         {
-            form.Show();
+            if (form != null)
+                form.Show();
         }
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -124,7 +121,7 @@ namespace Bejeweled
             MainMenu cover = new MainMenu();
             cover.ShowDialog();
             this.Close();
-            
+
         }
     }
 }

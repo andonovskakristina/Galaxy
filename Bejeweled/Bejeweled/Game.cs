@@ -1287,7 +1287,7 @@ namespace Bejeweled
                 GamePause();
                 SoundForm af = new SoundForm();
                 this.Hide(); 
-                this.Close();
+              //  this.Close();
                     if (af.ShowDialog() == DialogResult.OK)
                     {
                         af.Close();

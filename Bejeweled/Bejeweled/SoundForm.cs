@@ -248,7 +248,7 @@ namespace Bejeweled
 
         private void SoundForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            this.Close();
+           
         }
 
         private void btnPlay_Click(object sender, EventArgs e)

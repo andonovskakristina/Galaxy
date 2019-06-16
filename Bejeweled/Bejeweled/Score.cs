@@ -18,7 +18,7 @@ namespace Bejeweled
         }
         public override string ToString()
         {
-            return Name + "  " + Points.ToString();
+            return Name + " " + Convert.ToString(Points);
         }
     }
 }

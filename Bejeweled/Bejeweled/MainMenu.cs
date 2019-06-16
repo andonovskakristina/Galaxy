@@ -39,7 +39,7 @@ namespace Bejeweled
         {
             this.Hide();
             HighScores hs = new HighScores();
-            FileStream fileStream = new FileStream("HighScores.txt", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None);
+            FileStream fileStream = new FileStream("HighScore.txt", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None);
             hs.ReadScores(fileStream);
             hs.ShowDialog();
             this.Close();

@@ -38,13 +38,13 @@
             // lbRez
             // 
             this.lbRez.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.lbRez.Font = new System.Drawing.Font("High Tower Text", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbRez.Font = new System.Drawing.Font("High Tower Text", 14F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbRez.ForeColor = System.Drawing.SystemColors.Info;
             this.lbRez.FormattingEnabled = true;
-            this.lbRez.ItemHeight = 19;
+            this.lbRez.ItemHeight = 22;
             this.lbRez.Location = new System.Drawing.Point(12, 40);
             this.lbRez.Name = "lbRez";
-            this.lbRez.Size = new System.Drawing.Size(261, 251);
+            this.lbRez.Size = new System.Drawing.Size(261, 246);
             this.lbRez.TabIndex = 0;
             // 
             // button1
