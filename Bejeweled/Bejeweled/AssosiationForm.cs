@@ -176,7 +176,7 @@ namespace Bejeweled
             }
             if (index == 3)
             {
-                picture.BackgroundImage = Resources.moonCorect;
+                picture.BackgroundImage = Resources.moon3;
                 lblText.Text = "Our satallite: ";
                 solution = "moon";
             }

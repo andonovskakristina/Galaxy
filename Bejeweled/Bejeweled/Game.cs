@@ -181,7 +181,7 @@ namespace Bejeweled
                 {
                     if (Images[i][j].IsHit(e.X, e.Y))
                     {
-                        Images[i][j].IsSelected = true;
+                        
                         I = i;
                         J = j;
                         Break = true;
@@ -240,7 +240,7 @@ namespace Bejeweled
                     Images[I][J].Y = Images[I][J].Y;
                     Images[I][J + 1].X = Images[I][J + 1].X - dX;
                     Images[I][J + 1].Y = Images[I][J + 1].Y;
-                    Images[I][J + 1].IsSelected = true;
+                 
                     CurrentI = I;
                     CurrentJ = J + 1;
                     //check if square moved to end, then swap
@@ -309,7 +309,7 @@ namespace Bejeweled
                     Images[I][J].Y = Images[I][J].Y;
                     Images[I][J - 1].X = Images[I][J - 1].X - dX;
                     Images[I][J - 1].Y = Images[I][J - 1].Y;
-                    Images[I][J - 1].IsSelected = true;
+                
                     CurrentI = I;
                     CurrentJ = J - 1;
                     FlagMove = 1;
@@ -378,7 +378,7 @@ namespace Bejeweled
                     Images[I][J].Y = Images[I][J].Y + dY;
                     Images[I + 1][J].X = Images[I + 1][J].X;
                     Images[I + 1][J].Y = Images[I + 1][J].Y - dY;
-                    Images[I + 1][J].IsSelected = true;
+                  
                     CurrentI = I + 1;
                     CurrentJ = J;
                     FlagMove = 2;
@@ -446,7 +446,6 @@ namespace Bejeweled
                     Images[I][J].Y = Images[I][J].Y + dY;
                     Images[I - 1][J].X = Images[I - 1][J].X;
                     Images[I - 1][J].Y = Images[I - 1][J].Y - dY;
-                    Images[I - 1][J].IsSelected = true;
                     CurrentI = I - 1;
                     CurrentJ = J;
                     FlagMove = 3;

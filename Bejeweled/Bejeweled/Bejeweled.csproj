@@ -434,5 +434,11 @@
   <ItemGroup>
     <None Include="Resources\moonCorect.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\proba.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\moon3.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

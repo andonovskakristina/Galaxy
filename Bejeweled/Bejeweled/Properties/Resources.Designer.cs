@@ -335,6 +335,16 @@ namespace Bejeweled.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap moon3 {
+            get {
+                object obj = ResourceManager.GetObject("moon3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap moonCorect {
             get {
                 object obj = ResourceManager.GetObject("moonCorect", resourceCulture);
@@ -377,6 +387,16 @@ namespace Bejeweled.Properties {
         internal static System.Drawing.Bitmap Pause {
             get {
                 object obj = ResourceManager.GetObject("Pause", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap proba {
+            get {
+                object obj = ResourceManager.GetObject("proba", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

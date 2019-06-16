@@ -38,7 +38,7 @@ namespace Bejeweled
             tick = 0;
             indeksi = new List<int>();
             lblP.Text = "Points: " + Points.ToString();
-            lvlTime.Text = "Time left: 25";
+            lvlTime.Text = "Time left: 15";
             Name = "";
             first = false;
             second = false;
@@ -47,6 +47,7 @@ namespace Bejeweled
             pbFirst.Visible = pbSecond.Visible = pbThird.Visible = false;
 
         }
+
 
         private void tri_Tick(object sender, EventArgs e)
         {
@@ -58,18 +59,25 @@ namespace Bejeweled
                 brojac = 0;
                 refresh();
             }
+
         }
 
         private void delay_Tick(object sender, EventArgs e)
         {
             ticks++;
             ShowAnswer();
+
             if (ticks == 7)
             {
                 delay.Stop();
                 HideAnswer();
+                btnAnwser1.Text = "";
+                btnAnwser2.Text = "";
+                btnAnwser3.Text = "";
+                pictureBox1.Image = Resources.proba;
                 ticks = 0;
             }
+
 
         }
 
@@ -192,6 +200,7 @@ namespace Bejeweled
             delay.Start();
             tri.Start();
         }
+
         private void refresh()
         {
             index = r.Next(0, 7);
@@ -203,11 +212,13 @@ namespace Bejeweled
                 }
             }
             generateSong(index);
-            musicPlayer.Play();
+            musicPlayer.PlaySync();
+            lblListen.Visible = false;
+            pictureBox1.Image = Resources.guessTheSong;
             indeksi.Add(index);
 
-
         }
+
         private void btnAnwser1_Click(object sender, EventArgs e)
         {
             if (first)
@@ -218,6 +229,7 @@ namespace Bejeweled
             clicked = 1;
             delay.Start();
             tri.Start();
+            lblListen.Visible = true;
         }
 
         private void btnAnwser3_Click(object sender, EventArgs e)
@@ -228,9 +240,10 @@ namespace Bejeweled
                 Points += 300;
                 lblP.Text = "Points: " + Points.ToString();
             }
-             clicked = 3;
+            clicked = 3;
             delay.Start();
             tri.Start();
+            lblListen.Visible = true;
         }
 
         private void btnAnwser2_Click(object sender, EventArgs e)
@@ -243,12 +256,28 @@ namespace Bejeweled
             clicked = 2;
             delay.Start();
             tri.Start();
-   
+            lblListen.Visible = true;
+
         }
 
         private void SoundForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-           
+            musicPlayer.Stop();
+        }
+
+        private void SoundForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SoundForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            musicPlayer.Stop();
         }
 
         private void btnPlay_Click(object sender, EventArgs e)
@@ -256,21 +285,24 @@ namespace Bejeweled
             pbFirst.Visible = false;
             pbSecond.Visible = false;
             pbThird.Visible = false;
-            btnSkip.Enabled = true;
             timer1.Start();
-            refresh();
+            btnPlay.Visible = false;
+            lblListen.Visible = true;
+            pictureBox1.Image = Resources.proba;
+            tri.Start();
 
         }
+
         private void timer1_Tick(object sender, EventArgs e)
         {
             tick++;
-            lvlTime.Text = "Time left: " + (25 - tick);
-            if (tick == 25)
+            lvlTime.Text = "Time left: " + (15 - tick);
+            if (tick == 15)
             {
                 timer1.Stop();
                 musicPlayer.Stop();
                 DialogResult = DialogResult.OK;
-              //  this.Close();
+             
             }
         }
 
