@@ -18,21 +18,20 @@ namespace Bejeweled
             value = current;
             text = txt;
         }
-
         public void Draw(Graphics g)
         {
             Brush b;
             Pen p;
-            int skalar = 360 - (value * 3);
+            int skalar = 360 - (value*2 - (value/2));
             p = new Pen(Color.Black, 1);
             rec = new Rectangle(80, 560, 360, 30);
             g.DrawRectangle(p, rec);
 
-            if (value < 80)
+            if (value < 150)
             {
                 b = new SolidBrush(Color.FromArgb(51, 0, 51));
             }
-            else if (value >= 80 && value < 100)
+            else if (value >= 150 && value < 200)
             {
                 b = new SolidBrush(Color.FromArgb(134, 45, 134));
             }

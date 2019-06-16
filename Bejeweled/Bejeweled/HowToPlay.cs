@@ -98,7 +98,7 @@ namespace Bejeweled
             }
             if (i == 13)
             {
-                Form1 game = new Form1();
+                Game game = new Game();
                 this.Hide();
                 game.ShowDialog();
                 this.Close();
@@ -124,7 +124,7 @@ namespace Bejeweled
         }
         private void btnSkip_Click(object sender, EventArgs e)
         {
-            Cover c = new Cover();
+            MainMenu c = new MainMenu();
             this.Hide();
             c.ShowDialog();
             this.Close();

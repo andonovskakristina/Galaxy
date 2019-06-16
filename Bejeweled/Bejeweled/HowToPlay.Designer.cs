@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HowToPlay));
             this.label1 = new System.Windows.Forms.Label();
             this.lblText = new System.Windows.Forms.Label();
             this.btnNext = new System.Windows.Forms.Button();
@@ -127,9 +128,9 @@
             this.Controls.Add(this.lblText);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "HowToPlay";
             this.Text = "HowToPlay";
-//            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.HowToPlay_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.pbSlika)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

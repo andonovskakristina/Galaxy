@@ -72,15 +72,6 @@ namespace Bejeweled.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Aplauz {
-            get {
-                return ResourceManager.GetStream("Aplauz", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
-        /// </summary>
         internal static System.IO.UnmanagedMemoryStream Atmosphere_04 {
             get {
                 return ResourceManager.GetStream("Atmosphere_04", resourceCulture);
@@ -113,16 +104,6 @@ namespace Bejeweled.Properties {
         internal static System.Drawing.Bitmap BG4 {
             get {
                 object obj = ResourceManager.GetObject("BG4", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap blackCorrectMarkSmall {
-            get {
-                object obj = ResourceManager.GetObject("blackCorrectMarkSmall", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -189,16 +170,6 @@ namespace Bejeweled.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap correctMarkSmall {
-            get {
-                object obj = ResourceManager.GetObject("correctMarkSmall", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Earth {
             get {
                 object obj = ResourceManager.GetObject("Earth", resourceCulture);
@@ -231,16 +202,6 @@ namespace Bejeweled.Properties {
         internal static System.Drawing.Bitmap Galaxy_600px_14fps {
             get {
                 object obj = ResourceManager.GetObject("Galaxy_600px_14fps", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap gameOver {
-            get {
-                object obj = ResourceManager.GetObject("gameOver", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -323,16 +284,6 @@ namespace Bejeweled.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap KeyboardArrows {
-            get {
-                object obj = ResourceManager.GetObject("KeyboardArrows", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
         internal static System.IO.UnmanagedMemoryStream Love_of_my_life {
@@ -377,6 +328,16 @@ namespace Bejeweled.Properties {
         internal static System.Drawing.Bitmap moon {
             get {
                 object obj = ResourceManager.GetObject("moon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap moonCorect {
+            get {
+                object obj = ResourceManager.GetObject("moonCorect", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -589,15 +550,6 @@ namespace Bejeweled.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
-        /// </summary>
-        internal static System.IO.UnmanagedMemoryStream snakeEaten {
-            get {
-                return ResourceManager.GetStream("snakeEaten", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap solarSystem {
@@ -752,16 +704,6 @@ namespace Bejeweled.Properties {
         internal static System.IO.UnmanagedMemoryStream Wrong_answer {
             get {
                 return ResourceManager.GetStream("Wrong_answer", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap xMarkSmall {
-            get {
-                object obj = ResourceManager.GetObject("xMarkSmall", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }

@@ -10,24 +10,20 @@ namespace Bejeweled
     public partial class SoundForm : Form
     {
         private SoundPlayer musicPlayer;
-        // private musicPlayer musicPlayer;
         Random r;
         int index;
         List<int> indeksi;
-        Sound song;
         int tick;
         bool first, second, third;
         public int Points;
         Timer delay;
         int ticks;
-        bool Start;
         Timer tri;
         int brojac;
         int clicked;
         public SoundForm()
         {
             InitializeComponent();
-            // musicPlayer = new SoundPlayer();
             r = new Random();
             clicked = -1;
             delay = new Timer();
@@ -41,7 +37,6 @@ namespace Bejeweled
             index = 0;
             tick = 0;
             indeksi = new List<int>();
-            song = new Sound();
             lblP.Text = "Points: " + Points.ToString();
             lvlTime.Text = "Time left: 25";
             Name = "";
@@ -50,7 +45,6 @@ namespace Bejeweled
             third = false;
             ticks = 0;
             pbFirst.Visible = pbSecond.Visible = pbThird.Visible = false;
-            Start = true;
 
         }
 
@@ -75,16 +69,12 @@ namespace Bejeweled
                 delay.Stop();
                 HideAnswer();
                 ticks = 0;
-                //  Start = true;
             }
 
         }
 
         private void HideAnswer()
         {
-            //pbFirst.Visible = false;
-            //pbSecond.Visible = false;
-            //pbThird.Visible = false;
             btnAnwser1.BackColor = System.Drawing.Color.Black;
             btnAnwser2.BackColor = System.Drawing.Color.Black;
             btnAnwser3.BackColor = System.Drawing.Color.Black;
@@ -92,9 +82,6 @@ namespace Bejeweled
 
         private void ShowAnswer()
         {
-            //pbFirst.Visible = true;
-            //pbSecond.Visible = true;
-            //pbThird.Visible = true;
             if (third)
             {
                 btnAnwser3.BackColor = System.Drawing.Color.Green;
@@ -128,8 +115,6 @@ namespace Bejeweled
                     btnAnwser1.BackColor = System.Drawing.Color.Red;
                 }
             }
-
-
         }
 
         private void generateSong(int index)
@@ -140,13 +125,9 @@ namespace Bejeweled
             {
                 musicPlayer = new SoundPlayer(Resources._505);
                 btnAnwser1.Text = "505";
-                btnAnwser2.Text = "Why do you only when you're high";
+                btnAnwser2.Text = "Knee Socks";
                 btnAnwser3.Text = "Do u wanna know?";
                 first = true;
-                pbFirst.Image = Resources.blackCorrectMarkSmall;
-                pbSecond.Image = Resources.xMarkSmall;
-                pbThird.Image = Resources.xMarkSmall;
-
                 second = third = false;
             }
             if (index == 1)
@@ -156,9 +137,6 @@ namespace Bejeweled
                 btnAnwser2.Text = "I Want To Break Free";
                 btnAnwser3.Text = "Another One Bites The Dust";
                 second = true;
-                pbFirst.Image = Resources.xMarkSmall;
-                pbSecond.Image = Resources.blackCorrectMarkSmall;
-                pbThird.Image = Resources.xMarkSmall;
                 first = third = false;
             }
             if (index == 2)
@@ -168,9 +146,6 @@ namespace Bejeweled
                 btnAnwser2.Text = "I Want to Break Free";
                 btnAnwser3.Text = "Another One Bites The Dust";
                 first = true;
-                pbFirst.Image = Resources.blackCorrectMarkSmall;
-                pbSecond.Image = Resources.xMarkSmall;
-                pbThird.Image = Resources.xMarkSmall;
                 second = third = false;
             }
             if (index == 3)
@@ -180,9 +155,6 @@ namespace Bejeweled
                 btnAnwser2.Text = "Englishman in new york";
                 btnAnwser3.Text = "Stolen car";
                 second = true;
-                pbFirst.Image = Resources.xMarkSmall;
-                pbSecond.Image = Resources.blackCorrectMarkSmall;
-                pbThird.Image = Resources.xMarkSmall;
                 first = third = false;
             }
             if (index == 4)
@@ -192,9 +164,6 @@ namespace Bejeweled
                 btnAnwser2.Text = "Jet pilot";
                 btnAnwser3.Text = "Toxicity";
                 third = true;
-                pbFirst.Image = Resources.xMarkSmall;
-                pbSecond.Image = Resources.xMarkSmall;
-                pbThird.Image = Resources.blackCorrectMarkSmall;
                 first = second = false;
             }
             if (index == 5)
@@ -204,9 +173,7 @@ namespace Bejeweled
                 btnAnwser2.Text = "Just one lifetime";
                 btnAnwser3.Text = "Jet pilot";
                 first = true;
-                pbFirst.Image = Resources.blackCorrectMarkSmall;
-                pbSecond.Image = Resources.xMarkSmall;
-                pbThird.Image = Resources.xMarkSmall;
+
                 second = third = false;
             }
             if (index == 6)
@@ -216,9 +183,6 @@ namespace Bejeweled
                 btnAnwser2.Text = "Igri bez granici";
                 btnAnwser3.Text = "Polsko cvekje";
                 second = true;
-                pbFirst.Image = Resources.xMarkSmall;
-                pbSecond.Image = Resources.blackCorrectMarkSmall;
-                pbThird.Image = Resources.xMarkSmall;
                 first = third = false;
             }
         }
@@ -238,18 +202,12 @@ namespace Bejeweled
                     index = r.Next(0, 7);
                 }
             }
-
             generateSong(index);
-
             musicPlayer.Play();
             indeksi.Add(index);
 
 
         }
-        private void btnCheck_Click(object sender, EventArgs e)
-        {
-        }
-
         private void btnAnwser1_Click(object sender, EventArgs e)
         {
             if (first)
@@ -260,10 +218,7 @@ namespace Bejeweled
             clicked = 1;
             delay.Start();
             tri.Start();
-            //     first = false;
-
         }
-
 
         private void btnAnwser3_Click(object sender, EventArgs e)
         {
@@ -273,42 +228,22 @@ namespace Bejeweled
                 Points += 300;
                 lblP.Text = "Points: " + Points.ToString();
             }
-
-
-            clicked = 3;
+             clicked = 3;
             delay.Start();
             tri.Start();
-            //   third = false;
         }
 
         private void btnAnwser2_Click(object sender, EventArgs e)
         {
-
             if (second)
             {
                 Points += 300;
                 lblP.Text = "Points: " + Points.ToString();
-
-                //Sound correct
             }
             clicked = 2;
             delay.Start();
             tri.Start();
-            //  second = false;
-
-        }
-
-        private void SoundForm_Leave(object sender, EventArgs e)
-        {
-
-        }
-
-        private void SoundForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            //timer1.Stop();
-            ////DialogResult = DialogResult.OK;
-            //musicPlayer.Stop();
-
+   
         }
 
         private void SoundForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -335,8 +270,7 @@ namespace Bejeweled
                 timer1.Stop();
                 musicPlayer.Stop();
                 DialogResult = DialogResult.OK;
-                this.Close();
-                //game over sound
+              //  this.Close();
             }
         }
 

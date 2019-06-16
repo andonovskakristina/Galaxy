@@ -47,10 +47,9 @@
             this.Controls.Add(this.pbTimeLeft);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SnakeForm";
-            this.Text = "SnakeForm";
+            this.Text = "Earn Extra Time";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SnakeForm_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SnakeForm_FormClosed);
-            this.Load += new System.EventHandler(this.SnakeForm_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.ResumeLayout(false);

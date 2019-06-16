@@ -19,7 +19,7 @@ namespace Bejeweled
         Timer removeTimer;
         Timer TimeLeft;
         Rectangle bound;
-      public  SoundPlayer soundPlayerSnake;
+        public  SoundPlayer soundPlayerSnake;
         int NumberTicks;
         public int TimeToAdd;
         public SnakeForm()
@@ -28,7 +28,6 @@ namespace Bejeweled
             soundPlayerSnake = new SoundPlayer(Resources.On_Off_Snake);
             this.BackgroundImage = Resources.BG4;
             InitializeComponent();
-           // StartDialog();
             int top = 10;
             int left = 10;
             int width = this.Width - left * 4;
@@ -54,7 +53,7 @@ namespace Bejeweled
 
         private void checkSound()
         {
-            if (Form1.flagSoundIcon)
+            if (Game.flagSoundIcon)
             {
                 soundPlayerSnake.Play();
             }
@@ -63,16 +62,6 @@ namespace Bejeweled
                 soundPlayerSnake.Stop();
             }
         }
-
-        //private void StartDialog()
-        //{
-        //    KeyboardHelper kh = new KeyboardHelper();
-        //    if (kh.ShowDialog() == DialogResult.OK)
-        //    {
-        //        kh.Close();
-        //        soundPlayerSnake.Play();
-        //    }
-        //}
 
         private void TimeLeft_Tick(object sender, EventArgs e)
         {
@@ -83,7 +72,7 @@ namespace Bejeweled
                 ShowPoints();
                 this.Close();
             }
-            if (!Form1.flagSoundIcon)
+            if (!Game.flagSoundIcon)
             {
                 soundPlayerSnake.Stop();
             }
@@ -107,7 +96,6 @@ namespace Bejeweled
             {
                 moveTimer.Stop();
                 TimeLeft.Stop();
-                //   ShowPoints();
                 soundPlayerSnake.Stop();
             }
         }
@@ -127,10 +115,8 @@ namespace Bejeweled
         }
         public void ShowPoints()
         {
-           
                 TimeToAdd = s.StarsEaten * 5;
                 DialogResult = DialogResult.OK;
-           
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
@@ -159,11 +145,6 @@ namespace Bejeweled
                 s.squares[0].position = Square.Position.Right;
             }
             Invalidate();
-        }
-
-        private void SnakeForm_Load(object sender, EventArgs e)
-        {
-           
         }
 
         private void SnakeForm_FormClosed(object sender, FormClosedEventArgs e)

@@ -14,7 +14,7 @@ namespace Bejeweled
     public partial class HighScores : Form
     {
         List<Score> score;
-        Form1 form;
+        Game form;
         public HighScores()
         {
             InitializeComponent();
@@ -24,7 +24,7 @@ namespace Bejeweled
         {
             InitializeComponent();
             score = new List<Score>(11);
-            form = (Form1)f;
+            form = (Game)f;
         }
         public void sortHighScore(Score s)
         {
@@ -121,7 +121,7 @@ namespace Bejeweled
         private void button1_Click_1(object sender, EventArgs e)
         {
             this.Hide();
-            Cover cover = new Cover();
+            MainMenu cover = new MainMenu();
             cover.ShowDialog();
             this.Close();
             

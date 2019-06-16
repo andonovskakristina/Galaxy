@@ -23,7 +23,7 @@ namespace Bejeweled
             label2.BackColor = Color.Transparent;
             lblPoints.Parent = pictureBox1;
             lblPoints.BackColor = Color.Transparent;
-            lblPoints.Text = String.Format("{0:00000}", Form1.Points);
+            lblPoints.Text = String.Format("{0:00000}", Game.Points);
             label3.Parent = pictureBox1;
             label3.BackColor = Color.Transparent;
             textBox1.Focus();
@@ -31,15 +31,10 @@ namespace Bejeweled
 
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnPlay_Click(object sender, EventArgs e)
         {   if (textBox1.Text.Trim().Length != 0)
             {
-                    Score score = new Score(textBox1.Text, Form1.Points);
+                    Score score = new Score(textBox1.Text, Game.Points);
                     HighScores highScore = new HighScores(Parent);
                     FileStream fileStream = new FileStream("HighScores.txt", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None);
                     highScore.ReadScores(fileStream);
@@ -50,7 +45,7 @@ namespace Bejeweled
                     fileStream.Close();
                 
             }
-            Form1  f = new Form1();
+            Game  f = new Game();
             this.Hide();
             f.ShowDialog();
             //this.Close();
@@ -60,7 +55,7 @@ namespace Bejeweled
         {
               if (textBox1.Text.Trim().Length != 0)
                 {
-                    Score score = new Score(textBox1.Text, Form1.Points);
+                    Score score = new Score(textBox1.Text, Game.Points);
                     HighScores highScore = new HighScores(Parent);
                     FileStream fileStream = new FileStream("HighScores.txt", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None);
                     highScore.ReadScores(fileStream);
@@ -72,20 +67,10 @@ namespace Bejeweled
 
                 
             }
-            Cover f = new Cover();
+            MainMenu f = new MainMenu();
             this.Hide();
             f.ShowDialog();
            // this.Close();
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_MouseDown(object sender, MouseEventArgs e)
-        {
-
         }
 
         private void textBox1_KeyDown(object sender, KeyEventArgs e)
@@ -94,7 +79,7 @@ namespace Bejeweled
             {
                 if (textBox1.Text.Trim().Length != 0)
                 {
-                    Score score = new Score(textBox1.Text, Form1.Points);
+                    Score score = new Score(textBox1.Text, Game.Points);
                     HighScores highScore = new HighScores(Parent);
                     FileStream fileStream = new FileStream("HighScores.txt", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None);
                     highScore.ReadScores(fileStream);
@@ -109,7 +94,7 @@ namespace Bejeweled
                 else
                 {
                     this.Hide();
-                    Cover c = new Cover();
+                    MainMenu c = new MainMenu();
                     c.ShowDialog();
                   //  this.Close();
                 }

@@ -219,10 +219,8 @@
             this.Controls.Add(this.pictureBox2);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SoundForm";
-            this.Text = "SoundForm";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SoundForm_FormClosing);
+            this.Text = "Earn Extra Points";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SoundForm_FormClosed);
-            this.Leave += new System.EventHandler(this.SoundForm_Leave);
             ((System.ComponentModel.ISupportInitialize)(this.pbThird)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbSecond)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbFirst)).EndInit();
