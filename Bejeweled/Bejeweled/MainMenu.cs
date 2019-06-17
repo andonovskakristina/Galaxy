@@ -31,8 +31,10 @@ namespace Bejeweled
             tick = 0;
             pictureBox1.Controls.Add(picSound); 
             picSound.BackColor = Color.Transparent;
+            label1.Parent = pictureBox1;
+            label1.BackColor = Color.Transparent;
 
-           
+
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -86,16 +88,6 @@ namespace Bejeweled
         private void timer1_Tick(object sender, EventArgs e)
         {
             tick++;
-          
-            if (tick % 28 == 0)
-            {
-                if (picSound.Tag.ToString() == "On")
-                {
-                    soundPlayerCover.Play();
-               
-                }
-               
-            }
         }
 
         private void Cover_Load(object sender, EventArgs e)
