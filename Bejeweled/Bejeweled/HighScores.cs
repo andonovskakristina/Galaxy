@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -27,6 +28,8 @@ namespace Bejeweled
             score = new List<Score>(11);
             form = null;
         }
+
+     
 
         public void sortHighScore(Score s)
         {
@@ -117,7 +120,11 @@ namespace Bejeweled
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            this.Hide();
+            if (form != null)
+            {
+                form.Hide();
+            }
+            this.Hide();          
             MainMenu cover = new MainMenu();
             cover.ShowDialog();
             this.Close();

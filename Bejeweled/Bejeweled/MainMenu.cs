@@ -23,7 +23,8 @@ namespace Bejeweled
         {
             InitializeComponent();
             soundPlayerCover = new SoundPlayer(Resources.Atmosphere_04);
-            soundPlayerCover.Play();
+            soundPlayerCover.PlayLooping();
+            checkSound();
             picSound.Image = Resources.SounOnMainMenu;
             picSound.Tag = "On";
            /// Form1.flagSoundIcon = true;
@@ -37,6 +38,13 @@ namespace Bejeweled
 
         }
 
+        private void checkSound()
+        {
+            if (!Game.flagSoundIcon)
+            {
+                soundPlayerCover.Stop();
+            }
+        }
         private void button3_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -70,7 +78,7 @@ namespace Bejeweled
             {
                 picSound.Image = Resources.SounOnMainMenu;
                 Game.flagSoundIcon = true;
-                soundPlayerCover.Play();
+                soundPlayerCover.PlayLooping();
                 flag = true;
                 picSound.Tag = "On";
             }

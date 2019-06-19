@@ -587,7 +587,7 @@ namespace Bejeweled
             GameUnPause();
             if (flagSoundIcon)
             {
-                soundPlayer.Play();
+                soundPlayer.PlayLooping();
             }
             else
             {
@@ -609,7 +609,7 @@ namespace Bejeweled
             this.Show();
             if (flagSoundIcon)
             {
-                soundPlayer.Play();               
+                soundPlayer.PlayLooping();               
             }
             else
             {
@@ -788,13 +788,7 @@ namespace Bejeweled
         private void timer1_Tick(object sender, EventArgs e)
         {
             time++;
-            if(time % 28 == 0)
-            {
-                if (flagSoundIcon)
-                {
-                    soundPlayer.Play();
-                }              
-            } 
+           
             int left = 240 - time;
             int min = left / 60;
             int sec = left % 60;
@@ -1302,7 +1296,7 @@ namespace Bejeweled
             GameUnPause();
             if (flagSoundIcon)
             {
-                soundPlayer.Play();
+                soundPlayer.PlayLooping();
             }
 
         }
@@ -1323,7 +1317,7 @@ namespace Bejeweled
                 picStart.Tag = "Pause";
                 if (flagSoundIcon)
                 {
-                    soundPlayer.Play();
+                    soundPlayer.PlayLooping();
                 }
                 
                 GameUnPause();
@@ -1345,7 +1339,7 @@ namespace Bejeweled
             {
                 picSound.Image = Resources.SoundOn;
                 picSound.Tag = "On";
-                soundPlayer.Play();
+                soundPlayer.PlayLooping();
                 flagSoundIcon = true;
             }
            
@@ -1363,7 +1357,7 @@ namespace Bejeweled
                 this.Show();
                 if (flagSoundIcon)
                 {
-                    soundPlayer.Play();
+                    soundPlayer.PlayLooping();
                 }
             }
         }
@@ -1488,7 +1482,7 @@ namespace Bejeweled
             picStart.Image = Resources.Pause;
             if (flagSoundIcon)
             {
-                soundPlayer.Play();
+                soundPlayer.PlayLooping();
             }
         }
    
@@ -1514,7 +1508,7 @@ namespace Bejeweled
                     picStart.Tag = "Pause";
                     if (flagSoundIcon)
                     {
-                        soundPlayer.Play();
+                        soundPlayer.PlayLooping();
                     }
 
                     GameUnPause();
@@ -1547,7 +1541,7 @@ namespace Bejeweled
                 {
                     picSound.Image = Resources.SoundOn;
                     picSound.Tag = "On";
-                    soundPlayer.Play();
+                    soundPlayer.PlayLooping();
                     flagSoundIcon = true;
                 }
 
@@ -1581,7 +1575,7 @@ namespace Bejeweled
             {
                 picSound.Image = Resources.SoundOn;
                 picSound.Tag = "On";
-                soundPlayer.Play();
+                soundPlayer.PlayLooping();
             }
             else
             {
